@@ -1,7 +1,7 @@
 #ifndef GXAPPLICATION_H
 #define GXAPPLICATION_H
 
-#include "GxCore/GxPrivate.h"
+#include <windows.h>
 
 namespace Gx
 {
@@ -14,10 +14,10 @@ public:
     void show();
     bool loop();
 
-    void *hwnd() const;
+    HWND hwnd() const { return hw; }
 
 private:
-    Gx::Private<sizeof(void*)> p;
+    HWND hw;
 };
 
 }

@@ -1,7 +1,10 @@
 #ifndef GXGRAPHICSDEVICE_H
 #define GXGRAPHICSDEVICE_H
 
-#include "GxCore/GxPrivate.h"
+#include <windows.h>
+
+class IDirect3D9;
+class IDirect3DDevice9;
 
 namespace Gx
 {
@@ -9,7 +12,7 @@ namespace Gx
 class GraphicsDevice
 {
 public:
-    GraphicsDevice(void *hwnd);
+    GraphicsDevice(HWND hwnd);
     ~GraphicsDevice();
 
     void reset();
@@ -21,7 +24,10 @@ public:
     bool isReadyToReset() const;
 
 private:
-    Gx::Private<sizeof(void*)*3> p;
+    HWND hw;
+
+    IDirect3D9 *direct3d;
+    IDirect3DDevice9 *device;
 };
 
 }

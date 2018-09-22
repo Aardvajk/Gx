@@ -7,15 +7,6 @@
 namespace
 {
 
-class Rep
-{
-public:
-    HWND hw;
-};
-
-template<std::size_t N> Rep &rep(Gx::Private<N> &p){ return p.template get<Rep>(); }
-template<std::size_t N> const Rep &rep(const Gx::Private<N> &p){ return p.template get<Rep>(); }
-
 void setClientSize(HWND hw, int width, int height)
 {
     RECT r;
@@ -48,10 +39,8 @@ LRESULT CALLBACK wndProc(HWND hw, UINT msg, WPARAM wParam, LPARAM lParam)
 
 }
 
-Gx::Application::Application()
+Gx::Application::Application() : hw(NULL)
 {
-    p.alloc<Rep>();
-
     WNDCLASS wc;
     ZeroMemory(&wc, sizeof(WNDCLASS));
 
@@ -65,10 +54,10 @@ Gx::Application::Application()
         throw std::runtime_error("unable to register window class");
     }
 
-    rep(p).hw = CreateWindow("WINDOWCLASS", "Game", WS_DLGFRAME | WS_SYSMENU, 100, 100, 0, 0, NULL, NULL, wc.hInstance, NULL);
-    setClientSize(rep(p).hw, 640, 480);
+    hw = CreateWindow("WINDOWCLASS", "Game", WS_DLGFRAME | WS_SYSMENU, 100, 100, 0, 0, NULL, NULL, wc.hInstance, NULL);
+    setClientSize(hw, 640, 480);
 
-    if(!rep(p).hw)
+    if(!hw)
     {
         throw std::runtime_error("unable to create window");
     }
@@ -76,7 +65,7 @@ Gx::Application::Application()
 
 void Gx::Application::show()
 {
-    ShowWindow(rep(p).hw, SW_SHOW);
+    ShowWindow(hw, SW_SHOW);
 }
 
 bool Gx::Application::loop()
@@ -89,9 +78,4 @@ bool Gx::Application::loop()
     }
 
     return msg.message != WM_QUIT;
-}
-
-void *Gx::Application::hwnd() const
-{
-    return rep(p).hw;
 }

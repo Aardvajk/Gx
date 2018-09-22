@@ -31,11 +31,9 @@ private:
 
 }
 
-template<typename T> struct gx_detail_is_flag_enum : std::false_type { };
+template<typename T> struct GxIsFlagEnum : std::false_type { };
 
-#define GX_DECLARE_FLAGS(T, F) using F = Gx::Flags<T>; template<> struct gx_detail_is_flag_enum<T> : std::true_type { }
-
-template<typename T> using gx_detail_flag_type = typename std::enable_if<gx_detail_is_flag_enum<T>::value, T>::type;
+template<typename T> using gx_detail_flag_type = typename std::enable_if<GxIsFlagEnum<T>::value, T>::type;
 
 template<typename T> Gx::Flags<gx_detail_flag_type<T> > operator|(T a, T b){ return T(static_cast<typename Gx::Flags<gx_detail_flag_type<T> >::type>(a) | static_cast<typename Gx::Flags<gx_detail_flag_type<T> >::type>(b)); }
 template<typename T> Gx::Flags<gx_detail_flag_type<T> > operator&(T a, T b){ return T(static_cast<typename Gx::Flags<gx_detail_flag_type<T> >::type>(a) & static_cast<typename Gx::Flags<gx_detail_flag_type<T> >::type>(b)); }

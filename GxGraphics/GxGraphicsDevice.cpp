@@ -6,20 +6,6 @@
 namespace
 {
 
-class Rep
-{
-public:
-    Rep(HWND hw) : hw(hw), direct3d(nullptr), device(nullptr) { }
-
-    HWND hw;
-
-    IDirect3D9 *direct3d;
-    IDirect3DDevice9 *device;
-};
-
-template<std::size_t N> Rep &rep(Gx::Private<N> &p){ return p.template get<Rep>(); }
-template<std::size_t N> const Rep &rep(const Gx::Private<N> &p){ return p.template get<Rep>(); }
-
 D3DPRESENT_PARAMETERS
 createParams(HWND hw, int width, int height)
 {
@@ -75,38 +61,23 @@ setGlobalDeviceSettings(IDirect3DDevice9 *device)
     device->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
 }
 
-void release(Rep &r)
-{
-    if(r.device)
-    {
-        r.device->Release();
-        r.device = nullptr;
-    }
-
-    if(r.direct3d)
-    {
-        r.direct3d->Release();
-        r.direct3d = nullptr;
-    }
-}
+template<typename T> void release(T *&t){ if(t) { t->Release(); t = nullptr; } }
 
 }
 
-Gx::GraphicsDevice::GraphicsDevice(void *hwnd)
+Gx::GraphicsDevice::GraphicsDevice(HWND hwnd) : hw(hwnd)
 {
-    p.alloc<Rep>(static_cast<HWND>(hwnd));
-
-    rep(p).direct3d = Direct3DCreate9(D3D_SDK_VERSION);
-    if(!rep(p).direct3d)
+    direct3d = Direct3DCreate9(D3D_SDK_VERSION);
+    if(!direct3d)
     {
         throw std::runtime_error("unable to create direct3D");
     }
 
     D3DCAPS9 caps;
-    HRESULT r = rep(p).direct3d->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &caps);
+    HRESULT r = direct3d->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &caps);
     if(FAILED(r))
     {
-        release(rep(p));
+        release(direct3d);
         throw std::runtime_error("unable to get device caps");
     }
 
@@ -115,55 +86,58 @@ Gx::GraphicsDevice::GraphicsDevice(void *hwnd)
     if(caps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT) vertexProcessing = D3DCREATE_HARDWARE_VERTEXPROCESSING;
     else                                              vertexProcessing = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
 
-    D3DPRESENT_PARAMETERS params = createParams(rep(p).hw, 640, 480);
+    D3DPRESENT_PARAMETERS params = createParams(hw, 640, 480);
 
-    r = rep(p).direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, rep(p).hw, vertexProcessing, &params, &(rep(p).device));
+    r = direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hw, vertexProcessing, &params, &(device));
     if(FAILED(r))
     {
-        release(rep(p));
+        release(device);
+        release(direct3d);
+
         throw std::runtime_error("unable to create device");
     }
 
-    setGlobalDeviceSettings(rep(p).device);
+    setGlobalDeviceSettings(device);
 }
 
 Gx::GraphicsDevice::~GraphicsDevice()
 {
-    release(rep(p));
+    release(device);
+    release(direct3d);
 }
 
 void Gx::GraphicsDevice::reset()
 {
-    D3DPRESENT_PARAMETERS params = createParams(rep(p).hw, 640, 480);
+    D3DPRESENT_PARAMETERS params = createParams(hw, 640, 480);
 
-    HRESULT r = rep(p).device->Reset(&params);
+    HRESULT r = device->Reset(&params);
     if(FAILED(r))
     {
-        release(rep(p));
+        release(device);
+        release(direct3d);
+
         throw std::runtime_error("unable to reset device");
     }
 }
 
 void Gx::GraphicsDevice::begin()
 {
-    rep(p).device->BeginScene();
-    rep(p).device->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(255, 0, 0), 1, 0);
+    device->BeginScene();
+    device->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(255, 0, 0), 1, 0);
 }
 
 void Gx::GraphicsDevice::end()
 {
-    rep(p).device->EndScene();
-    rep(p).device->Present(NULL, NULL, rep(p).hw, NULL);
+    device->EndScene();
+    device->Present(NULL, NULL, hw, NULL);
 }
 
 bool Gx::GraphicsDevice::isLost() const
 {
-    if(!rep(p).device) return true;
-    return rep(p).device->TestCooperativeLevel() == D3DERR_DEVICELOST;
+    return device ? device->TestCooperativeLevel() == D3DERR_DEVICELOST : true;
 }
 
 bool Gx::GraphicsDevice::isReadyToReset() const
 {
-    if(!rep(p).device) return false;
-    return rep(p).device->TestCooperativeLevel() == D3DERR_DEVICENOTRESET;
+    return device ? device->TestCooperativeLevel() == D3DERR_DEVICENOTRESET : false;
 }
