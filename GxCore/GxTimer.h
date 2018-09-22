@@ -2,8 +2,7 @@
 #define GXTIMER_H
 
 #include <GxCore/GxFlags.h>
-
-#include <windows.h>
+#include <GxCore/GxWindows.h>
 
 namespace Gx
 {

@@ -1,7 +1,8 @@
 #ifndef GXGRAPHICSDEVICE_H
 #define GXGRAPHICSDEVICE_H
 
-#include <windows.h>
+#include <GxCore/GxWindows.h>
+#include <GxCore/GxNonCopyable.h>
 
 class IDirect3D9;
 class IDirect3DDevice9;
@@ -9,10 +10,10 @@ class IDirect3DDevice9;
 namespace Gx
 {
 
-class GraphicsDevice
+class GraphicsDevice : public NonCopyable
 {
 public:
-    GraphicsDevice(HWND hwnd);
+    explicit GraphicsDevice(HWND hwnd);
     ~GraphicsDevice();
 
     void reset();

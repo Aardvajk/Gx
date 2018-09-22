@@ -1,12 +1,13 @@
 #ifndef GXAPPLICATION_H
 #define GXAPPLICATION_H
 
-#include <windows.h>
+#include <GxCore/GxWindows.h>
+#include <GxCore/GxNonCopyable.h>
 
 namespace Gx
 {
 
-class Application
+class Application : public NonCopyable
 {
 public:
     Application();

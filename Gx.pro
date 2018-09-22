@@ -29,4 +29,6 @@ HEADERS += \
     GxGraphics/GxGraphicsDevice.h \
     GxCore/GxFlags.h \
     GxCore/GxDebug.h \
-    GxCore/GxTimer.h
+    GxCore/GxTimer.h \
+    GxCore/GxWindows.h \
+    GxCore/GxNonCopyable.h

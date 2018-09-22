@@ -1,6 +1,5 @@
 #include "GxCore/GxDebug.h"
-
-#include <windows.h>
+#include "GxCore/GxWindows.h"
 
 Gx::Debug::~Debug()
 {
