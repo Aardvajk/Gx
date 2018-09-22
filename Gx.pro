@@ -20,9 +20,12 @@ LIBS += "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x64/d3d9.l
 
 SOURCES += \
     GxApplication/GxApplication.cpp \
-    GxGraphics/GxGraphicsDevice.cpp
+    GxGraphics/GxGraphicsDevice.cpp \
+    GxCore/GxDebug.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
     GxGraphics/GxGraphicsDevice.h \
-    GxCore/GxPrivate.h
+    GxCore/GxPrivate.h \
+    GxCore/GxFlags.h \
+    GxCore/GxDebug.h
