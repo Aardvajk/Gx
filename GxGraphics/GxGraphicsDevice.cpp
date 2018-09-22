@@ -18,6 +18,7 @@ public:
 };
 
 template<std::size_t N> Rep &rep(Gx::Private<N> &p){ return p.template get<Rep>(); }
+template<std::size_t N> const Rep &rep(const Gx::Private<N> &p){ return p.template get<Rep>(); }
 
 D3DPRESENT_PARAMETERS
 createParams(HWND hw, int width, int height)
@@ -122,14 +123,7 @@ Gx::GraphicsDevice::GraphicsDevice(void *hwnd)
         release(rep(p));
         throw std::runtime_error("unable to create device");
     }
-    
-    r = rep(p).device->Reset(&params);
-    if(FAILED(r))
-    {
-        release(rep(p));
-        throw std::runtime_error("unable to reset device");
-    }
-    
+
     setGlobalDeviceSettings(rep(p).device);
 }
 
@@ -138,14 +132,38 @@ Gx::GraphicsDevice::~GraphicsDevice()
     release(rep(p));
 }
 
+void Gx::GraphicsDevice::reset()
+{
+    D3DPRESENT_PARAMETERS params = createParams(rep(p).hw, 640, 480);
+
+    HRESULT r = rep(p).device->Reset(&params);
+    if(FAILED(r))
+    {
+        release(rep(p));
+        throw std::runtime_error("unable to reset device");
+    }
+}
+
 void Gx::GraphicsDevice::begin()
 {
     rep(p).device->BeginScene();
-    rep(p).device->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(255, 0, 255), 1, 0);
+    rep(p).device->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(255, 0, 0), 1, 0);
 }
 
 void Gx::GraphicsDevice::end()
 {
     rep(p).device->EndScene();
     rep(p).device->Present(NULL, NULL, rep(p).hw, NULL);
+}
+
+bool Gx::GraphicsDevice::isLost() const
+{
+    if(!rep(p).device) return true;
+    return rep(p).device->TestCooperativeLevel() == D3DERR_DEVICELOST;
+}
+
+bool Gx::GraphicsDevice::isReadyToReset() const
+{
+    if(!rep(p).device) return false;
+    return rep(p).device->TestCooperativeLevel() == D3DERR_DEVICENOTRESET;
 }

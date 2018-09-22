@@ -11,9 +11,14 @@ class GraphicsDevice
 public:
     GraphicsDevice(void *hwnd);
     ~GraphicsDevice();
+
+    void reset();
     
     void begin();
     void end();
+
+    bool isLost() const;
+    bool isReadyToReset() const;
 
 private:
     Gx::Private<sizeof(void*)*3> p;

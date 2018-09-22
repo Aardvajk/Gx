@@ -74,29 +74,21 @@ Gx::Application::Application()
     }
 }
 
-int Gx::Application::exec()
+void Gx::Application::show()
 {
     ShowWindow(rep(p).hw, SW_SHOW);
-
-    MSG msg;
-    PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE);
-
-    while(msg.message != WM_QUIT)
-    {
-        while(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-
-        render();
-    }
-    
-    return 0;    
 }
 
-void Gx::Application::render()
+bool Gx::Application::loop()
 {
+    MSG msg;
+    while(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+
+    return msg.message != WM_QUIT;
 }
 
 void *Gx::Application::hwnd() const

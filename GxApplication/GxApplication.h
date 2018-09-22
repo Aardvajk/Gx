@@ -11,9 +11,8 @@ class Application
 public:
     Application();
     
-    int exec();
-
-    virtual void render();
+    void show();
+    bool loop();
 
     void *hwnd() const;
 
