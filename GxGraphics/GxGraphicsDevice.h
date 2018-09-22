@@ -4,6 +4,8 @@
 #include <GxCore/GxWindows.h>
 #include <GxCore/GxNonCopyable.h>
 
+#include <GxGraphics/GxDisplaySettings.h>
+
 class IDirect3D9;
 class IDirect3DDevice9;
 
@@ -13,9 +15,10 @@ namespace Gx
 class GraphicsDevice : public NonCopyable
 {
 public:
-    explicit GraphicsDevice(HWND hwnd);
+    explicit GraphicsDevice(HWND hwnd, const DisplaySettings &settings);
     ~GraphicsDevice();
 
+    void reset(const DisplaySettings &settings);
     void reset();
     
     void begin();
@@ -29,6 +32,8 @@ private:
 
     IDirect3D9 *direct3d;
     IDirect3DDevice9 *device;
+    
+    DisplaySettings currentSettings;
 };
 
 }

@@ -7,13 +7,13 @@ namespace
 {
 
 D3DPRESENT_PARAMETERS
-createParams(HWND hw, int width, int height)
+createParams(HWND hw, const Gx::DisplaySettings &settings)
 {
     D3DPRESENT_PARAMETERS p;
     ZeroMemory(&p, sizeof(D3DPRESENT_PARAMETERS));
 
-    p.BackBufferWidth = width;
-    p.BackBufferHeight = height;
+    p.BackBufferWidth = settings.size.width;
+    p.BackBufferHeight = settings.size.height;
 
     p.BackBufferFormat = D3DFMT_X8R8G8B8;
     p.BackBufferCount = 1;
@@ -22,13 +22,13 @@ createParams(HWND hw, int width, int height)
 
     p.SwapEffect = D3DSWAPEFFECT_DISCARD;
     p.hDeviceWindow = hw;
-    p.Windowed = true;
+    p.Windowed = settings.options & Gx::DisplaySettings::Option::Windowed;
     p.EnableAutoDepthStencil = true;
     p.AutoDepthStencilFormat = D3DFMT_D24S8;
     p.Flags = 0;
 
     p.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;
-    p.PresentationInterval = D3DPRESENT_INTERVAL_ONE;
+    p.PresentationInterval = settings.options & Gx::DisplaySettings::Option::VSync ? D3DPRESENT_INTERVAL_ONE : D3DPRESENT_INTERVAL_IMMEDIATE;
 
     return p;
 }
@@ -63,9 +63,23 @@ setGlobalDeviceSettings(IDirect3DDevice9 *device)
 
 template<typename T> void release(T *&t){ if(t) { t->Release(); t = nullptr; } }
 
+void resetDevice(IDirect3D9 *&direct3d, IDirect3DDevice9 *&device, HWND hw, const Gx::DisplaySettings &settings)
+{
+    D3DPRESENT_PARAMETERS params = createParams(hw, settings);
+
+    HRESULT r = device->Reset(&params);
+    if(FAILED(r))
+    {
+        release(device);
+        release(direct3d);
+
+        throw std::runtime_error("unable to reset device");
+    }
 }
 
-Gx::GraphicsDevice::GraphicsDevice(HWND hwnd) : hw(hwnd)
+}
+
+Gx::GraphicsDevice::GraphicsDevice(HWND hwnd, const DisplaySettings &settings) : hw(hwnd), currentSettings(settings)
 {
     direct3d = Direct3DCreate9(D3D_SDK_VERSION);
     if(!direct3d)
@@ -86,7 +100,7 @@ Gx::GraphicsDevice::GraphicsDevice(HWND hwnd) : hw(hwnd)
     if(caps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT) vertexProcessing = D3DCREATE_HARDWARE_VERTEXPROCESSING;
     else                                              vertexProcessing = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
 
-    D3DPRESENT_PARAMETERS params = createParams(hw, 640, 480);
+    D3DPRESENT_PARAMETERS params = createParams(hw, currentSettings);
 
     r = direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hw, vertexProcessing, &params, &(device));
     if(FAILED(r))
@@ -106,18 +120,15 @@ Gx::GraphicsDevice::~GraphicsDevice()
     release(direct3d);
 }
 
+void Gx::GraphicsDevice::reset(const DisplaySettings &settings)
+{
+    resetDevice(direct3d, device, hw, settings);
+    currentSettings = settings;
+}
+
 void Gx::GraphicsDevice::reset()
 {
-    D3DPRESENT_PARAMETERS params = createParams(hw, 640, 480);
-
-    HRESULT r = device->Reset(&params);
-    if(FAILED(r))
-    {
-        release(device);
-        release(direct3d);
-
-        throw std::runtime_error("unable to reset device");
-    }
+    resetDevice(direct3d, device, hw, currentSettings);
 }
 
 void Gx::GraphicsDevice::begin()

@@ -38,7 +38,7 @@ LRESULT CALLBACK wndProc(HWND hw, UINT msg, WPARAM wParam, LPARAM lParam)
 
 }
 
-Gx::Application::Application() : hw(NULL)
+Gx::Application::Application(const Size &size) : hw(NULL)
 {
     WNDCLASS wc;
     ZeroMemory(&wc, sizeof(WNDCLASS));
@@ -54,7 +54,7 @@ Gx::Application::Application() : hw(NULL)
     }
 
     hw = CreateWindow("WINDOWCLASS", "Game", WS_DLGFRAME | WS_SYSMENU, 100, 100, 0, 0, NULL, NULL, wc.hInstance, NULL);
-    setClientSize(hw, 640, 480);
+    setClientSize(hw, size.width, size.height);
 
     if(!hw)
     {

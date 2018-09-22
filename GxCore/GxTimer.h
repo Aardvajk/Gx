@@ -12,7 +12,11 @@ class Timer
 public:
     Timer();
 
-    enum class Option { Restart = 1 };
+    enum class Option : std::uint8_t
+    {
+        Restart = 1
+    };
+    
     typedef Flags<Option> Options;
 
     float elapsed(Options options = Options());

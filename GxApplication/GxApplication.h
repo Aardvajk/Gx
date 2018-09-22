@@ -3,6 +3,7 @@
 
 #include <GxCore/GxWindows.h>
 #include <GxCore/GxNonCopyable.h>
+#include <GxCore/GxSize.h>
 
 namespace Gx
 {
@@ -10,7 +11,7 @@ namespace Gx
 class Application : public NonCopyable
 {
 public:
-    Application();
+    explicit Application(const Size &size);
     
     void show();
     bool loop();
