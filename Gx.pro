@@ -1,5 +1,5 @@
-TEMPLATE = app
-CONFIG += console
+TEMPLATE = staticlib
+CONFIG -= console
 CONFIG -= app_bundle
 CONFIG -= qt
 
