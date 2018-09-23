@@ -1,5 +1,7 @@
 #include "GxGraphics/GxGraphicsDevice.h"
 
+#include "GxGraphics/GxVertexDeclaration.h"
+
 #include <memory>
 #include <d3d9.h>
 
@@ -77,10 +79,20 @@ void resetDevice(IDirect3D9 *&direct3d, IDirect3DDevice9 *&device, HWND hw, cons
     }
 }
 
+class Cache
+{
+public:
+    Cache() : vertexDec(nullptr) { }
+
+    const Gx::VertexDeclaration *vertexDec;
+};
+
 }
 
 Gx::GraphicsDevice::GraphicsDevice(HWND hwnd, const DisplaySettings &settings) : hw(hwnd), currentSettings(settings)
 {
+    cache.alloc<Cache>();
+
     direct3d = Direct3DCreate9(D3D_SDK_VERSION);
     if(!direct3d)
     {
@@ -131,10 +143,28 @@ void Gx::GraphicsDevice::reset()
     resetDevice(direct3d, device, hw, currentSettings);
 }
 
+void Gx::GraphicsDevice::setVertexDeclaration(const VertexDeclaration &resource)
+{
+    if(cache.get<Cache>().vertexDec != &resource)
+    {
+        device->SetVertexDeclaration(resource.ptr);
+        cache.get<Cache>().vertexDec = &resource;
+    }
+}
+
+void Gx::GraphicsDevice::setVertexDeclaration()
+{
+    if(cache.get<Cache>().vertexDec)
+    {
+        device->SetVertexDeclaration(nullptr);
+        cache.get<Cache>().vertexDec = nullptr;
+    }
+}
+
 void Gx::GraphicsDevice::begin()
 {
     device->BeginScene();
-    device->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(255, 0, 0), 1, 0);
+    device->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(90, 180, 255), 1, 0);
 }
 
 void Gx::GraphicsDevice::end()

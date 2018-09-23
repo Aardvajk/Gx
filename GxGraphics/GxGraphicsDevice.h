@@ -3,14 +3,19 @@
 
 #include <GxCore/GxWindows.h>
 #include <GxCore/GxNonCopyable.h>
+#include <GxCore/GxAlignedStore.h>
 
 #include <GxGraphics/GxDisplaySettings.h>
+
+#include <type_traits>
 
 class IDirect3D9;
 class IDirect3DDevice9;
 
 namespace Gx
 {
+
+class VertexDeclaration;
 
 class GraphicsDevice : public NonCopyable
 {
@@ -21,6 +26,9 @@ public:
     void reset(const DisplaySettings &settings);
     void reset();
     
+    void setVertexDeclaration(const VertexDeclaration &resource);
+    void setVertexDeclaration();
+
     void begin();
     void end();
 
@@ -36,6 +44,8 @@ private:
     IDirect3DDevice9 *device;
     
     DisplaySettings currentSettings;
+    
+    AlignedStore<sizeof(void*)> cache;
 };
 
 }

@@ -23,7 +23,6 @@ SOURCES += \
     GxGraphics/GxGraphicsDevice.cpp \
     GxCore/GxDebug.cpp \
     GxCore/GxTimer.cpp \
-    GxGraphics/GxVertexElement.cpp \
     GxGraphics/GxVertexDeclaration.cpp
 
 HEADERS += \
@@ -36,6 +35,6 @@ HEADERS += \
     GxCore/GxNonCopyable.h \
     GxCore/GxSize.h \
     GxGraphics/GxDisplaySettings.h \
-    GxGraphics/GxVertexElement.h \
     GxGraphics/GxGraphicsResource.h \
-    GxGraphics/GxVertexDeclaration.h
+    GxGraphics/GxVertexDeclaration.h \
+    GxCore/GxAlignedStore.h
