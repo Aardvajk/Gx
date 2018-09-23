@@ -1,6 +1,9 @@
 #include "GxGraphics/GxVertexDeclaration.h"
 
+#include "GxGraphics/GxGraphicsCore.h"
 #include "GxGraphics/GxGraphicsDevice.h"
+
+#include "internal/gx_common.h"
 
 #include <stdexcept>
 #include <d3d9.h>
@@ -50,7 +53,7 @@ Gx::VertexDeclaration::VertexDeclaration(std::vector<VertexElement> elements) : 
 
 Gx::VertexDeclaration::~VertexDeclaration()
 {
-    release();
+    gx_detail_com_ptr_release(ptr);
 }
 
 void Gx::VertexDeclaration::reset(GraphicsDevice &device)
@@ -76,7 +79,7 @@ void Gx::VertexDeclaration::reset(GraphicsDevice &device)
 
 void Gx::VertexDeclaration::release()
 {
-    if(ptr){ ptr->Release(); ptr = nullptr; }
+    gx_detail_com_ptr_release(ptr);
 }
 
 bool Gx::VertexDeclaration::isDeviceBound() const

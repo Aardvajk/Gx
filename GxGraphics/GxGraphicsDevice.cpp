@@ -2,6 +2,8 @@
 
 #include "GxGraphics/GxVertexDeclaration.h"
 
+#include "internal/gx_common.h"
+
 #include <memory>
 #include <d3d9.h>
 
@@ -63,8 +65,6 @@ setGlobalDeviceSettings(IDirect3DDevice9 *device)
     device->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
 }
 
-template<typename T> void release(T *&t){ if(t) { t->Release(); t = nullptr; } }
-
 void resetDevice(IDirect3D9 *&direct3d, IDirect3DDevice9 *&device, HWND hw, const Gx::DisplaySettings &settings)
 {
     D3DPRESENT_PARAMETERS params = createParams(hw, settings);
@@ -72,8 +72,8 @@ void resetDevice(IDirect3D9 *&direct3d, IDirect3DDevice9 *&device, HWND hw, cons
     HRESULT r = device->Reset(&params);
     if(FAILED(r))
     {
-        release(device);
-        release(direct3d);
+        gx_detail_com_ptr_release(device);
+        gx_detail_com_ptr_release(direct3d);
 
         throw std::runtime_error("unable to reset device");
     }
@@ -103,7 +103,7 @@ Gx::GraphicsDevice::GraphicsDevice(HWND hwnd, const DisplaySettings &settings) :
     HRESULT r = direct3d->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &caps);
     if(FAILED(r))
     {
-        release(direct3d);
+        gx_detail_com_ptr_release(direct3d);
         throw std::runtime_error("unable to get device caps");
     }
 
@@ -117,8 +117,8 @@ Gx::GraphicsDevice::GraphicsDevice(HWND hwnd, const DisplaySettings &settings) :
     r = direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hw, vertexProcessing, &params, &(device));
     if(FAILED(r))
     {
-        release(device);
-        release(direct3d);
+        gx_detail_com_ptr_release(device);
+        gx_detail_com_ptr_release(direct3d);
 
         throw std::runtime_error("unable to create device");
     }
@@ -128,8 +128,8 @@ Gx::GraphicsDevice::GraphicsDevice(HWND hwnd, const DisplaySettings &settings) :
 
 Gx::GraphicsDevice::~GraphicsDevice()
 {
-    release(device);
-    release(direct3d);
+    gx_detail_com_ptr_release(device);
+    gx_detail_com_ptr_release(direct3d);
 }
 
 void Gx::GraphicsDevice::reset(const DisplaySettings &settings)

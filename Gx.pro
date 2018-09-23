@@ -1,6 +1,5 @@
-TEMPLATE = lib
-CONFIG -= console
-CONFIG += staticlib
+TEMPLATE = app
+CONFIG += console
 CONFIG -= app_bundle
 CONFIG -= qt
 
@@ -23,7 +22,10 @@ SOURCES += \
     GxGraphics/GxGraphicsDevice.cpp \
     GxCore/GxDebug.cpp \
     GxCore/GxTimer.cpp \
-    GxGraphics/GxVertexDeclaration.cpp
+    GxGraphics/GxVertexDeclaration.cpp \
+    GxGraphics/GxVertexBuffer.cpp \
+    internal/gx_common.cpp \
+    GxGraphics/GxShader.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -37,4 +39,9 @@ HEADERS += \
     GxGraphics/GxDisplaySettings.h \
     GxGraphics/GxGraphicsResource.h \
     GxGraphics/GxVertexDeclaration.h \
-    GxCore/GxAlignedStore.h
+    GxCore/GxAlignedStore.h \
+    GxGraphics/GxGraphicsCore.h \
+    internal/gx_common.h \
+    GxGraphics/GxVertexBuffer.h \
+    GxGraphics/GxShader.h
+

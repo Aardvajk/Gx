@@ -16,6 +16,8 @@ namespace Gx
 {
 
 class VertexDeclaration;
+class VertexBuffer;
+class AbstractShader;
 
 class GraphicsDevice : public NonCopyable
 {
@@ -37,6 +39,8 @@ public:
     
 private:
     friend class VertexDeclaration;
+    friend class VertexBuffer;
+    friend class AbstractShader;
 
     HWND hw;
 
