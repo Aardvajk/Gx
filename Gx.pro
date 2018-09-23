@@ -22,7 +22,9 @@ SOURCES += \
     GxApplication/GxApplication.cpp \
     GxGraphics/GxGraphicsDevice.cpp \
     GxCore/GxDebug.cpp \
-    GxCore/GxTimer.cpp
+    GxCore/GxTimer.cpp \
+    GxGraphics/GxVertexElement.cpp \
+    GxGraphics/GxVertexDeclaration.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -33,4 +35,7 @@ HEADERS += \
     GxCore/GxWindows.h \
     GxCore/GxNonCopyable.h \
     GxCore/GxSize.h \
-    GxGraphics/GxDisplaySettings.h
+    GxGraphics/GxDisplaySettings.h \
+    GxGraphics/GxVertexElement.h \
+    GxGraphics/GxGraphicsResource.h \
+    GxGraphics/GxVertexDeclaration.h

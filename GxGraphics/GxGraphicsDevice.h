@@ -28,6 +28,8 @@ public:
     bool isReadyToReset() const;
 
 private:
+    friend class VertexDeclaration;
+
     HWND hw;
 
     IDirect3D9 *direct3d;
