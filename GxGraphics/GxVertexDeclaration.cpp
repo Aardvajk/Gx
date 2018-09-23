@@ -76,11 +76,7 @@ void Gx::VertexDeclaration::reset(GraphicsDevice &device)
 
 void Gx::VertexDeclaration::release()
 {
-    if(ptr)
-    {
-        ptr->Release();
-        ptr = nullptr;
-    }
+    if(ptr){ ptr->Release(); ptr = nullptr; }
 }
 
 bool Gx::VertexDeclaration::isDeviceBound() const
