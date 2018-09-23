@@ -24,13 +24,23 @@ const BYTE usages[] =
     D3DDECLUSAGE_TEXCOORD
 };
 
-const std::size_t sizes[] =
+const WORD sizes[] =
 {
     12,
     16,
     4,
     8
 };
+
+const BYTE indices[] =
+{
+    0,
+    0,
+    0,
+    0
+};
+
+template<typename T> T get(const T t[], Gx::VertexElement e){ return t[static_cast<int>(e)]; }
 
 }
 
@@ -50,10 +60,10 @@ void Gx::VertexDeclaration::reset(GraphicsDevice &device)
     std::vector<D3DVERTEXELEMENT9> v;
     str = 0;
 
-    for(const auto &e: elements)
+    for(auto e: elements)
     {
-        v.push_back({ 0xFF, str, types[static_cast<int>(e.type)], D3DDECLMETHOD_DEFAULT, usages[static_cast<int>(e.type)], e.index });
-        str += sizes[static_cast<int>(e.type)];
+        v.push_back({ 0xFF, str, get(types, e), D3DDECLMETHOD_DEFAULT, get(usages, e), get(indices, e) });
+        str += get(sizes, e);
     }
 
     v.push_back({ 0xFF, 0, D3DDECLTYPE_UNUSED, 0, 0, 0 });

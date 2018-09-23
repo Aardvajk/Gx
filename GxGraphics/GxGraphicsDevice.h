@@ -34,7 +34,7 @@ public:
 
     bool isLost() const;
     bool isReadyToReset() const;
-
+    
 private:
     friend class VertexDeclaration;
 

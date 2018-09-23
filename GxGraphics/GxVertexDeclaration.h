@@ -11,22 +11,12 @@ class IDirect3DVertexDeclaration9;
 namespace Gx
 {
 
-class VertexElement
+enum class VertexElement : std::uint8_t
 {
-public:
-    enum class Type : std::uint8_t
-    {
-        Position,
-        Normal,
-        Color,
-        TexCoord
-    };
-
-    VertexElement() = default;
-    VertexElement(Type type, std::uint8_t index = 0) : type(type), index(index) { }
-
-    Type type;
-    std::uint8_t index;
+    Position,
+    Normal,
+    Color,
+    TexCoord
 };
 
 class VertexDeclaration : public GraphicsResource
