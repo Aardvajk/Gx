@@ -16,6 +16,8 @@ class ID3DXConstantTable;
 namespace Gx
 {
 
+class Matrix;
+
 class AbstractShader : public GraphicsResource
 {
 public:
@@ -26,7 +28,7 @@ public:
 
     virtual bool isDeviceBound() const override;
 
-    void setMatrix(GraphicsDevice &device, const std::string &name, const D3DXMATRIX &matrix);
+    void setMatrix(GraphicsDevice &device, const std::string &name, const Matrix &matrix);
 
 protected:
     enum class Type : std::uint8_t

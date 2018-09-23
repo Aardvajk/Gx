@@ -4,6 +4,8 @@
 #include "GxGraphics/GxShader.h"
 #include "GxGraphics/GxVertexBuffer.h"
 
+#include "GxMaths/GxColor.h"
+
 #include "internal/gx_common.h"
 
 #include <memory>
@@ -209,13 +211,17 @@ void Gx::GraphicsDevice::setPixelShader()
 void Gx::GraphicsDevice::begin()
 {
     device->BeginScene();
-    device->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(90, 180, 255), 1, 0);
 }
 
 void Gx::GraphicsDevice::end()
 {
     device->EndScene();
     device->Present(NULL, NULL, hw, NULL);
+}
+
+void Gx::GraphicsDevice::clear(const Gx::Color &color, float z)
+{
+    device->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, color, z, 0);
 }
 
 void Gx::GraphicsDevice::renderTriangleList(const VertexBuffer &buffer)

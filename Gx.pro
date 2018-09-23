@@ -26,7 +26,8 @@ SOURCES += \
     GxGraphics/GxVertexDeclaration.cpp \
     GxGraphics/GxVertexBuffer.cpp \
     internal/gx_common.cpp \
-    GxGraphics/GxShader.cpp
+    GxGraphics/GxShader.cpp \
+    GxMaths/GxMatrix.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -44,5 +45,9 @@ HEADERS += \
     GxGraphics/GxGraphicsCore.h \
     internal/gx_common.h \
     GxGraphics/GxVertexBuffer.h \
-    GxGraphics/GxShader.h
+    GxGraphics/GxShader.h \
+    GxMaths/GxMatrix.h \
+    GxMaths/GxVec3.h \
+    GxMaths/GxColor.h \
+    GxMaths/GxVec2.h
 

@@ -2,6 +2,8 @@
 
 #include "GxGraphics/GxGraphicsDevice.h"
 
+#include "GxMaths/GxMatrix.h"
+
 #include "GxCore/GxDebug.h"
 
 #include "internal/gx_common.h"
@@ -54,7 +56,7 @@ bool Gx::AbstractShader::isDeviceBound() const
     return false;
 }
 
-void Gx::AbstractShader::setMatrix(GraphicsDevice &device, const std::string &name, const D3DXMATRIX &matrix)
+void Gx::AbstractShader::setMatrix(GraphicsDevice &device, const std::string &name, const Matrix &matrix)
 {
     table->SetMatrix(device.device, table->GetConstantByName(0, name.c_str()), &matrix);
 }

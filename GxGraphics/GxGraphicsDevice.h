@@ -22,6 +22,8 @@ class VertexShader;
 class PixelShader;
 class VertexBuffer;
 
+class Color;
+
 class GraphicsDevice : public NonCopyable
 {
 public:
@@ -42,6 +44,8 @@ public:
 
     void begin();
     void end();
+
+    void clear(const Color &color, float z);
 
     void renderTriangleList(const VertexBuffer &buffer);
 
