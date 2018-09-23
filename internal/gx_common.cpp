@@ -25,6 +25,6 @@ D3DPOOL gx_detail_d3d_pool(Gx::Graphics::Pool v)
     {
         case Gx::Graphics::Pool::Managed: return D3DPOOL_MANAGED;
 
-        default: return D3DPOOL_MANAGED;
+        default: return D3DPOOL_DEFAULT;
     }
 }

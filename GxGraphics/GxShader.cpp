@@ -2,6 +2,8 @@
 
 #include "GxGraphics/GxGraphicsDevice.h"
 
+#include "GxCore/GxDebug.h"
+
 #include "internal/gx_common.h"
 
 #include <vector>
@@ -31,6 +33,14 @@ void Gx::AbstractShader::reset(Gx::GraphicsDevice &device)
     {
         throw std::runtime_error("unable to create shader");
     }
+
+    r = D3DXGetShaderConstantTable(reinterpret_cast<DWORD*>(buffer.data()), &table);
+
+    if(FAILED(r))
+    {
+        release();
+        throw std::runtime_error("unable to get shader constant table");
+    }
 }
 
 void Gx::AbstractShader::release()
@@ -42,4 +52,9 @@ void Gx::AbstractShader::release()
 bool Gx::AbstractShader::isDeviceBound() const
 {
     return false;
+}
+
+void Gx::AbstractShader::setMatrix(GraphicsDevice &device, const std::string &name, const D3DXMATRIX &matrix)
+{
+    table->SetMatrix(device.device, table->GetConstantByName(0, name.c_str()), &matrix);
 }

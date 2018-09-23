@@ -1,11 +1,13 @@
 #include "GxGraphics/GxGraphicsDevice.h"
 
 #include "GxGraphics/GxVertexDeclaration.h"
+#include "GxGraphics/GxShader.h"
+#include "GxGraphics/GxVertexBuffer.h"
 
 #include "internal/gx_common.h"
 
 #include <memory>
-#include <d3d9.h>
+#include <d3dx9.h>
 
 namespace
 {
@@ -82,9 +84,11 @@ void resetDevice(IDirect3D9 *&direct3d, IDirect3DDevice9 *&device, HWND hw, cons
 class Cache
 {
 public:
-    Cache() : vertexDec(nullptr) { }
+    Cache() : vertexDec(nullptr), vertexShader(nullptr), pixelShader(nullptr) { }
 
     const Gx::VertexDeclaration *vertexDec;
+    const Gx::VertexShader *vertexShader;
+    const Gx::PixelShader *pixelShader;
 };
 
 }
@@ -141,6 +145,7 @@ void Gx::GraphicsDevice::reset(const DisplaySettings &settings)
 void Gx::GraphicsDevice::reset()
 {
     resetDevice(direct3d, device, hw, currentSettings);
+    cache.get<Cache>() = { };
 }
 
 void Gx::GraphicsDevice::setVertexDeclaration(const VertexDeclaration &resource)
@@ -161,6 +166,46 @@ void Gx::GraphicsDevice::setVertexDeclaration()
     }
 }
 
+void Gx::GraphicsDevice::setVertexShader(const VertexShader &resource)
+{
+    if(cache.get<Cache>().vertexShader != &resource)
+    {
+        device->SetVertexShader(static_cast<IDirect3DVertexShader9*>(resource.ptr));
+        resource.table->SetDefaults(device);
+
+        cache.get<Cache>().vertexShader = &resource;
+    }
+}
+
+void Gx::GraphicsDevice::setVertexShader()
+{
+    if(cache.get<Cache>().vertexShader)
+    {
+        device->SetVertexShader(nullptr);
+        cache.get<Cache>().vertexShader = nullptr;
+    }
+}
+
+void Gx::GraphicsDevice::setPixelShader(const PixelShader &resource)
+{
+    if(cache.get<Cache>().pixelShader != &resource)
+    {
+        device->SetPixelShader(static_cast<IDirect3DPixelShader9*>(resource.ptr));
+        resource.table->SetDefaults(device);
+
+        cache.get<Cache>().pixelShader = &resource;
+    }
+}
+
+void Gx::GraphicsDevice::setPixelShader()
+{
+    if(cache.get<Cache>().pixelShader)
+    {
+        device->SetPixelShader(nullptr);
+        cache.get<Cache>().pixelShader = nullptr;
+    }
+}
+
 void Gx::GraphicsDevice::begin()
 {
     device->BeginScene();
@@ -171,6 +216,17 @@ void Gx::GraphicsDevice::end()
 {
     device->EndScene();
     device->Present(NULL, NULL, hw, NULL);
+}
+
+void Gx::GraphicsDevice::renderTriangleList(const VertexBuffer &buffer)
+{
+    if(buffer.bytes() / cache.get<Cache>().vertexDec->stride() >= 3)
+    {
+        device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
+        device->SetIndices(0);
+    
+        device->DrawPrimitive(D3DPT_TRIANGLELIST, 0, (buffer.bytes() / cache.get<Cache>().vertexDec->stride()) / 3);
+    }
 }
 
 bool Gx::GraphicsDevice::isLost() const

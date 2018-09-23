@@ -4,5 +4,4 @@
 Gx::Debug::~Debug()
 {
     OutputDebugString(o.str().c_str());
-    OutputDebugString("\n");
 }

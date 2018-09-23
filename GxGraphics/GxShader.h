@@ -11,6 +11,8 @@
 class IUnknown;
 class ID3DXConstantTable;
 
+#include <d3dx9.h>
+
 namespace Gx
 {
 
@@ -24,6 +26,8 @@ public:
 
     virtual bool isDeviceBound() const override;
 
+    void setMatrix(GraphicsDevice &device, const std::string &name, const D3DXMATRIX &matrix);
+
 protected:
     enum class Type : std::uint8_t
     {
@@ -31,9 +35,11 @@ protected:
         Pixel
     };
 
-    AbstractShader(Type type, std::vector<char> buffer) : type(type), buffer(std::move(buffer)) { }
+    AbstractShader(Type type, std::vector<char> buffer) : type(type), buffer(std::move(buffer)), ptr(nullptr), table(nullptr) { }
 
 private:
+    friend class GraphicsDevice;
+
     Type type;
 
     std::vector<char> buffer;

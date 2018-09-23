@@ -18,6 +18,9 @@ namespace Gx
 class VertexDeclaration;
 class VertexBuffer;
 class AbstractShader;
+class VertexShader;
+class PixelShader;
+class VertexBuffer;
 
 class GraphicsDevice : public NonCopyable
 {
@@ -31,8 +34,16 @@ public:
     void setVertexDeclaration(const VertexDeclaration &resource);
     void setVertexDeclaration();
 
+    void setVertexShader(const VertexShader &resource);
+    void setVertexShader();
+    
+    void setPixelShader(const PixelShader &resource);
+    void setPixelShader();
+
     void begin();
     void end();
+
+    void renderTriangleList(const VertexBuffer &buffer);
 
     bool isLost() const;
     bool isReadyToReset() const;
@@ -49,7 +60,7 @@ private:
     
     DisplaySettings currentSettings;
     
-    AlignedStore<sizeof(void*)> cache;
+    AlignedStore<sizeof(void*)*3> cache;
 };
 
 }

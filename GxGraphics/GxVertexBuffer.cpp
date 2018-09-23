@@ -53,3 +53,8 @@ void Gx::VertexBuffer::unlock()
 {
     ptr->Unlock();
 }
+
+unsigned Gx::VertexBuffer::bytes() const
+{
+    return b;
+}

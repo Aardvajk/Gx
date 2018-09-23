@@ -20,7 +20,7 @@ public:
         Graphics::Pool pool;
     };
     
-    explicit VertexBuffer(const Desc &desc) : d(desc), ptr(nullptr) { }
+    explicit VertexBuffer(const Desc &desc) : d(desc), b(d.elements * d.stride), ptr(nullptr) { }
     ~VertexBuffer();
 
     virtual void reset(GraphicsDevice &device) override;
@@ -31,8 +31,13 @@ public:
     void *lock(Graphics::Lock::Flags flags);
     void unlock();
 
+    unsigned bytes() const;
+
 private:
+    friend class GraphicsDevice;
+
     Desc d;
+    unsigned b;
     IDirect3DVertexBuffer9 *ptr;
 };
 

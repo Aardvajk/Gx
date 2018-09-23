@@ -5,6 +5,8 @@
 
 #include "internal/gx_common.h"
 
+#include <GxCore/GxDebug.h>
+
 #include <stdexcept>
 #include <d3d9.h>
 
@@ -14,7 +16,7 @@ namespace
 const BYTE types[] =
 {
     D3DDECLTYPE_FLOAT3,
-    D3DDECLTYPE_FLOAT4,
+    D3DDECLTYPE_FLOAT3,
     D3DDECLTYPE_D3DCOLOR,
     D3DDECLTYPE_FLOAT2,
 };
@@ -30,7 +32,7 @@ const BYTE usages[] =
 const WORD sizes[] =
 {
     12,
-    16,
+    12,
     4,
     8
 };
@@ -65,13 +67,14 @@ void Gx::VertexDeclaration::reset(GraphicsDevice &device)
 
     for(auto e: elements)
     {
-        v.push_back({ 0xFF, str, get(types, e), D3DDECLMETHOD_DEFAULT, get(usages, e), get(indices, e) });
+        v.push_back({ 0, str, get(types, e), D3DDECLMETHOD_DEFAULT, get(usages, e), get(indices, e) });
         str += get(sizes, e);
     }
 
     v.push_back({ 0xFF, 0, D3DDECLTYPE_UNUSED, 0, 0, 0 });
 
-    if(FAILED(device.device->CreateVertexDeclaration(reinterpret_cast<const D3DVERTEXELEMENT9*>(v.data()), &ptr)))
+    HRESULT r = device.device->CreateVertexDeclaration(v.data(), &ptr);
+    if(FAILED(r))
     {
         throw std::runtime_error("unable to reset vertex declaration");
     }
