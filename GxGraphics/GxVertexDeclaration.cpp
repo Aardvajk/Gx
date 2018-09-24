@@ -49,8 +49,9 @@ template<typename T> T get(const T t[], Gx::VertexElement e){ return t[static_ca
 
 }
 
-Gx::VertexDeclaration::VertexDeclaration(std::vector<VertexElement> elements) : ptr(nullptr), elements(std::move(elements))
+Gx::VertexDeclaration::VertexDeclaration(GraphicsDevice &device, std::vector<VertexElement> elements) : ptr(nullptr), elements(std::move(elements))
 {
+    reset(device);
 }
 
 Gx::VertexDeclaration::~VertexDeclaration()

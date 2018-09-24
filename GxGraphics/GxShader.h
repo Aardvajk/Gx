@@ -1,21 +1,21 @@
 #ifndef GXSHADER_H
 #define GXSHADER_H
 
+#include <GxCore/GxAlignedStore.h>
+
 #include <GxGraphics/GxGraphicsResource.h>
 
 #include <cstdint>
 #include <vector>
-#include <string>
-#include <map>
 
 class IUnknown;
 class ID3DXConstantTable;
 
-#include <d3dx9.h>
-
 namespace Gx
 {
 
+class Vec3;
+class Vec4;
 class Matrix;
 
 class AbstractShader : public GraphicsResource
@@ -28,7 +28,9 @@ public:
 
     virtual bool isDeviceBound() const override;
 
-    void setMatrix(GraphicsDevice &device, const std::string &name, const Matrix &matrix);
+    void setVector(GraphicsDevice &device, const std::string &name, const Vec3 &value);
+    void setVector(GraphicsDevice &device, const std::string &name, const Vec4 &value);
+    void setMatrix(GraphicsDevice &device, const std::string &name, const Matrix &value);
 
 protected:
     enum class Type : std::uint8_t
@@ -37,7 +39,7 @@ protected:
         Pixel
     };
 
-    AbstractShader(Type type, std::vector<char> buffer) : type(type), buffer(std::move(buffer)), ptr(nullptr), table(nullptr) { }
+    AbstractShader(GraphicsDevice &device, Type type, std::vector<char> buffer);
 
 private:
     friend class GraphicsDevice;
@@ -48,18 +50,20 @@ private:
 
     IUnknown *ptr;
     ID3DXConstantTable *table;
+    
+    AlignedStore<48> cache;
 };
 
 class VertexShader : public AbstractShader
 {
 public:
-    explicit VertexShader(std::vector<char> buffer) : AbstractShader(AbstractShader::Type::Vertex, std::move(buffer)) { }
+    explicit VertexShader(GraphicsDevice &device, std::vector<char> buffer) : AbstractShader(device,AbstractShader::Type::Vertex, std::move(buffer)) { }
 };
 
 class PixelShader : public AbstractShader
 {
 public:
-    explicit PixelShader(std::vector<char> buffer) : AbstractShader(AbstractShader::Type::Pixel, std::move(buffer)) { }
+    explicit PixelShader(GraphicsDevice &device, std::vector<char> buffer) : AbstractShader(device, AbstractShader::Type::Pixel, std::move(buffer)) { }
 };
 
 }

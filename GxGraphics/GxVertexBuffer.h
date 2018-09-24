@@ -20,7 +20,7 @@ public:
         Graphics::Pool pool;
     };
     
-    explicit VertexBuffer(const Desc &desc) : d(desc), b(d.elements * d.stride), ptr(nullptr) { }
+    explicit VertexBuffer(GraphicsDevice &device, const Desc &desc);
     ~VertexBuffer();
 
     virtual void reset(GraphicsDevice &device) override;

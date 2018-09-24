@@ -7,6 +7,11 @@
 #include <stdexcept>
 #include <d3d9.h>
 
+Gx::VertexBuffer::VertexBuffer(GraphicsDevice &device, const Desc &desc) : d(desc), b(d.elements * d.stride), ptr(nullptr)
+{
+    reset(device);
+}
+
 Gx::VertexBuffer::~VertexBuffer()
 {
     gx_detail_com_ptr_release(ptr);

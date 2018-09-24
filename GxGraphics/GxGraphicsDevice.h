@@ -49,13 +49,14 @@ public:
 
     void renderTriangleList(const VertexBuffer &buffer);
 
-    bool isLost() const;
+    bool isOk() const;
     bool isReadyToReset() const;
     
 private:
     friend class VertexDeclaration;
     friend class VertexBuffer;
     friend class AbstractShader;
+    friend class Font;
 
     HWND hw;
 

@@ -22,7 +22,7 @@ enum class VertexElement : std::uint8_t
 class VertexDeclaration : public GraphicsResource
 {
 public:
-    explicit VertexDeclaration(std::vector<VertexElement> elements);
+    explicit VertexDeclaration(GraphicsDevice &device, std::vector<VertexElement> elements);
     virtual ~VertexDeclaration();
 
     virtual void reset(GraphicsDevice &device) override;

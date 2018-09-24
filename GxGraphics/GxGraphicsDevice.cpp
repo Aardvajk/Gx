@@ -81,6 +81,8 @@ void resetDevice(IDirect3D9 *&direct3d, IDirect3DDevice9 *&device, HWND hw, cons
 
         throw std::runtime_error("unable to reset device");
     }
+
+    setGlobalDeviceSettings(device);
 }
 
 class Cache
@@ -142,6 +144,8 @@ void Gx::GraphicsDevice::reset(const DisplaySettings &settings)
 {
     resetDevice(direct3d, device, hw, settings);
     currentSettings = settings;
+
+    cache.get<Cache>() = { };
 }
 
 void Gx::GraphicsDevice::reset()
@@ -235,9 +239,9 @@ void Gx::GraphicsDevice::renderTriangleList(const VertexBuffer &buffer)
     }
 }
 
-bool Gx::GraphicsDevice::isLost() const
+bool Gx::GraphicsDevice::isOk() const
 {
-    return device ? device->TestCooperativeLevel() == D3DERR_DEVICELOST : true;
+    return device ? device->TestCooperativeLevel() == D3D_OK : false;
 }
 
 bool Gx::GraphicsDevice::isReadyToReset() const

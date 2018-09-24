@@ -6,6 +6,8 @@
 namespace Gx
 {
 
+using Rgba = D3DCOLOR;
+
 class Color : public D3DXCOLOR
 {
 public:
