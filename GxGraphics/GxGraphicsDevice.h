@@ -2,10 +2,10 @@
 #define GXGRAPHICSDEVICE_H
 
 #include <GxCore/GxWindows.h>
-#include <GxCore/GxNonCopyable.h>
 
 #include <GxGraphics/GxDisplaySettings.h>
 
+#include <pcx/non_copyable.h>
 #include <pcx/aligned_store.h>
 
 #include <type_traits>
@@ -25,7 +25,7 @@ class VertexBuffer;
 
 class Color;
 
-class GraphicsDevice : public NonCopyable
+class GraphicsDevice : public pcx::non_copyable
 {
 public:
     explicit GraphicsDevice(HWND hwnd, const DisplaySettings &settings);

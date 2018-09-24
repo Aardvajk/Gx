@@ -2,13 +2,14 @@
 #define GXAPPLICATION_H
 
 #include <GxCore/GxWindows.h>
-#include <GxCore/GxNonCopyable.h>
 #include <GxCore/GxSize.h>
+
+#include <pcx/non_copyable.h>
 
 namespace Gx
 {
 
-class Application : public NonCopyable
+class Application : public pcx::non_copyable
 {
 public:
     explicit Application(const Size &size);

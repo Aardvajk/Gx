@@ -41,7 +41,6 @@ HEADERS += \
     GxCore/GxDebug.h \
     GxCore/GxTimer.h \
     GxCore/GxWindows.h \
-    GxCore/GxNonCopyable.h \
     GxCore/GxSize.h \
     GxGraphics/GxDisplaySettings.h \
     GxGraphics/GxGraphicsResource.h \

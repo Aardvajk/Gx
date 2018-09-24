@@ -1,14 +1,14 @@
 #ifndef GXGRAPHICSRESOURCE_H
 #define GXGRAPHICSRESOURCE_H
 
-#include <GxCore/GxNonCopyable.h>
+#include <pcx/non_copyable.h>
 
 namespace Gx
 {
 
 class GraphicsDevice;
 
-class GraphicsResource : public NonCopyable
+class GraphicsResource : public pcx::non_copyable
 {
 public:
     GraphicsResource() = default;
