@@ -1,7 +1,8 @@
 #ifndef GXTIMER_H
 #define GXTIMER_H
 
-#include <GxCore/GxFlags.h>
+#include <pcx/flags.h>
+
 #include <GxCore/GxWindows.h>
 
 namespace Gx
@@ -12,14 +13,14 @@ class Timer
 public:
     Timer();
 
-    enum class Option : std::uint8_t
+    enum class Flag : std::uint8_t
     {
         Restart = 1
     };
     
-    typedef Flags<Option> Options;
+    using Flags = pcx::flags<Flag>;
 
-    float elapsed(Options options = Options());
+    float elapsed(Flags flags = { });
 
 private:
     LARGE_INTEGER frequency;
@@ -28,6 +29,6 @@ private:
 
 }
 
-template<> struct GxIsFlagEnum<Gx::Timer::Option> : std::true_type { };
+template<> struct pcx_is_flag_enum<Gx::Timer::Flag> : std::true_type { };
 
 #endif // GXTIMER_H

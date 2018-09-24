@@ -1,9 +1,9 @@
 #ifndef GXSHADER_H
 #define GXSHADER_H
 
-#include <GxCore/GxAlignedStore.h>
-
 #include <GxGraphics/GxGraphicsResource.h>
+
+#include <pcx/aligned_store.h>
 
 #include <cstdint>
 #include <vector>
@@ -51,7 +51,7 @@ private:
     IUnknown *ptr;
     ID3DXConstantTable *table;
     
-    AlignedStore<48> cache;
+    pcx::aligned_store<48> cache;
 };
 
 class VertexShader : public AbstractShader

@@ -1,7 +1,7 @@
 #ifndef GXFONTMETRICS_H
 #define GXFONTMETRICS_H
 
-#include <GxCore/GxAlignedStore.h>
+#include <pcx/aligned_store.h>
 
 namespace Gx
 {
@@ -17,7 +17,7 @@ public:
     unsigned width(const std::string &text) const;
 
 private:
-    AlignedStore<16> cache;
+    pcx::aligned_store<16> cache;
 };
 
 }

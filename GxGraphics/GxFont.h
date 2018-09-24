@@ -1,10 +1,9 @@
 #ifndef GXFONT_H
 #define GXFONT_H
 
-#include <GxCore/GxFlags.h>
-#include <GxCore/GxAlignedStore.h>
-
 #include <GxGraphics/GxGraphicsResource.h>
+
+#include <pcx/flags.h>
 
 #include <string>
 
@@ -24,7 +23,7 @@ public:
         Italic = 2
     };
 
-    using Flags = Gx::Flags<Flag>;
+    using Flags = pcx::flags<Flag>;
 
     struct Desc
     {
@@ -49,12 +48,10 @@ private:
 
     Desc d;
     ID3DXFont *ptr;
-    
-    AlignedStore<8> cache;
 };
 
 }
 
-template<> struct GxIsFlagEnum<Gx::Font::Flag> : std::true_type { };
+template<> struct pcx_is_flag_enum<Gx::Font::Flag> : std::true_type { };
 
 #endif // GXFONT_H

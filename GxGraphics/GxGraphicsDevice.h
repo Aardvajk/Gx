@@ -3,9 +3,10 @@
 
 #include <GxCore/GxWindows.h>
 #include <GxCore/GxNonCopyable.h>
-#include <GxCore/GxAlignedStore.h>
 
 #include <GxGraphics/GxDisplaySettings.h>
+
+#include <pcx/aligned_store.h>
 
 #include <type_traits>
 
@@ -65,7 +66,7 @@ private:
     
     DisplaySettings currentSettings;
     
-    AlignedStore<sizeof(void*)*3> cache;
+    pcx::aligned_store<40> cache;
 };
 
 }

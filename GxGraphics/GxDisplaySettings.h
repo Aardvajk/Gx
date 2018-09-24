@@ -1,8 +1,9 @@
 #ifndef GXDISPLAYSETTINGS_H
 #define GXDISPLAYSETTINGS_H
 
+#include <pcx/flags.h>
+
 #include <GxCore/GxSize.h>
-#include <GxCore/GxFlags.h>
 
 namespace Gx
 {
@@ -17,7 +18,7 @@ public:
         VSync = 2
     };
 
-    using Options = Flags<Option>;
+    using Options = pcx::flags<Option>;
 
     DisplaySettings() = default;
     DisplaySettings(const Size &size, Options options) : size(size), options(options) { }
@@ -28,6 +29,6 @@ public:
 
 }
 
-template<> struct GxIsFlagEnum<Gx::DisplaySettings::Option> : std::true_type { };
+template<> struct pcx_is_flag_enum<Gx::DisplaySettings::Option> : std::true_type { };
 
 #endif // GXDISPLAYSETTINGS_H

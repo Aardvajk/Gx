@@ -6,14 +6,14 @@ Gx::Timer::Timer()
     QueryPerformanceCounter(&lastCount);
 }
 
-float Gx::Timer::elapsed(Options options)
+float Gx::Timer::elapsed(Flags flags)
 {
     LARGE_INTEGER count;
     QueryPerformanceCounter(&count);
 
     float time = static_cast<float>(count.QuadPart - lastCount.QuadPart)/static_cast<float>(frequency.QuadPart);
 
-    if(options & Option::Restart)
+    if(flags & Flag::Restart)
     {
         lastCount = count;
     }

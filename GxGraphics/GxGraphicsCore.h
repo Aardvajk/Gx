@@ -1,7 +1,7 @@
 #ifndef GXGRAPHICSCORE_H
 #define GXGRAPHICSCORE_H
 
-#include <GxCore/GxFlags.h>
+#include <pcx/flags.h>
 
 namespace Gx
 {
@@ -18,7 +18,7 @@ enum class Flag : std::uint8_t
     RenderTarget = 2
 };
 
-using Flags = Gx::Flags<Flag>;
+using Flags = pcx::flags<Flag>;
 
 }
 
@@ -36,7 +36,7 @@ enum class Flag : std::uint8_t
     Discard = 1
 };
 
-using Flags = Gx::Flags<Flag>;
+using Flags = pcx::flags<Flag>;
 
 };
 
@@ -44,7 +44,7 @@ using Flags = Gx::Flags<Flag>;
 
 }
 
-template<> struct GxIsFlagEnum<Gx::Graphics::Usage::Flag> : std::true_type { };
-template<> struct GxIsFlagEnum<Gx::Graphics::Lock::Flag> : std::true_type { };
+template<> struct pcx_is_flag_enum<Gx::Graphics::Usage::Flag> : std::true_type { };
+template<> struct pcx_is_flag_enum<Gx::Graphics::Lock::Flag> : std::true_type { };
 
 #endif // GXGRAPHICSCORE_H
