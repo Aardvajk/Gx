@@ -40,11 +40,6 @@ bool Gx::VertexBuffer::isDeviceBound() const
 
 void *Gx::VertexBuffer::lock(Graphics::Lock::Flags flags)
 {
-    if(!ptr)
-    {
-        return nullptr;
-    }
-    
     void *data;
     if(!FAILED(ptr->Lock(0, 0, &data, gx_detail_d3d_lock(flags))))
     {

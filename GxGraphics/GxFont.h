@@ -43,11 +43,9 @@ public:
 
     void draw(int x, int y, const std::string &text, const Color &color);
     
-    unsigned height() const;
-    unsigned width(const std::string &text) const;
-
 private:
     friend class GraphicsDevice;
+    friend class FontMetrics;
 
     Desc d;
     ID3DXFont *ptr;

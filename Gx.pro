@@ -28,7 +28,8 @@ SOURCES += \
     internal/gx_common.cpp \
     GxGraphics/GxShader.cpp \
     GxMaths/GxMatrix.cpp \
-    GxGraphics/GxFont.cpp
+    GxGraphics/GxFont.cpp \
+    GxGraphics/GxFontMetrics.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -50,5 +51,6 @@ HEADERS += \
     GxMaths/GxMatrix.h \
     GxMaths/GxColor.h \
     GxMaths/GxVector.h \
-    GxGraphics/GxFont.h
+    GxGraphics/GxFont.h \
+    GxGraphics/GxFontMetrics.h
 

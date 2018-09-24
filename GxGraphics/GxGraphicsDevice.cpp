@@ -241,10 +241,10 @@ void Gx::GraphicsDevice::renderTriangleList(const VertexBuffer &buffer)
 
 bool Gx::GraphicsDevice::isOk() const
 {
-    return device ? device->TestCooperativeLevel() == D3D_OK : false;
+    return device->TestCooperativeLevel() == D3D_OK;
 }
 
 bool Gx::GraphicsDevice::isReadyToReset() const
 {
-    return device ? device->TestCooperativeLevel() == D3DERR_DEVICENOTRESET : false;
+    return device->TestCooperativeLevel() == D3DERR_DEVICENOTRESET;
 }
