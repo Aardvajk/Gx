@@ -30,13 +30,13 @@ createParams(HWND hw, const Gx::DisplaySettings &settings)
 
     p.SwapEffect = D3DSWAPEFFECT_DISCARD;
     p.hDeviceWindow = hw;
-    p.Windowed = settings.options & Gx::DisplaySettings::Option::Windowed;
+    p.Windowed = settings.options & Gx::DisplaySettings::Flag::Windowed;
     p.EnableAutoDepthStencil = true;
     p.AutoDepthStencilFormat = D3DFMT_D24S8;
     p.Flags = 0;
 
     p.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;
-    p.PresentationInterval = settings.options & Gx::DisplaySettings::Option::VSync ? D3DPRESENT_INTERVAL_ONE : D3DPRESENT_INTERVAL_IMMEDIATE;
+    p.PresentationInterval = settings.options & Gx::DisplaySettings::Flag::VSync ? D3DPRESENT_INTERVAL_ONE : D3DPRESENT_INTERVAL_IMMEDIATE;
 
     return p;
 }

@@ -38,7 +38,7 @@ enum class Flag : std::uint8_t
 
 using Flags = pcx::flags<Flag>;
 
-};
+}
 
 }
 
