@@ -1,5 +1,5 @@
-#ifndef GXFONTMETRICS_H
-#define GXFONTMETRICS_H
+#ifndef GX_FONTMETRICS_H
+#define GX_FONTMETRICS_H
 
 #include <pcx/aligned_store.h>
 
@@ -22,4 +22,4 @@ private:
 
 }
 
-#endif // GXFONTMETRICS_H
+#endif // GX_FONTMETRICS_H

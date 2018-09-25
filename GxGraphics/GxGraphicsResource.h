@@ -1,5 +1,5 @@
-#ifndef GXGRAPHICSRESOURCE_H
-#define GXGRAPHICSRESOURCE_H
+#ifndef GX_GRAPHICSRESOURCE_H
+#define GX_GRAPHICSRESOURCE_H
 
 #include <pcx/non_copyable.h>
 
@@ -22,4 +22,4 @@ public:
 
 }
 
-#endif // GXGRAPHICSRESOURCE_H
+#endif // GX_GRAPHICSRESOURCE_H

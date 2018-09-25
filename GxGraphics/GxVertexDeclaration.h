@@ -1,5 +1,5 @@
-#ifndef GXVERTEXDECLARATION_H
-#define GXVERTEXDECLARATION_H
+#ifndef GX_VERTEXDECLARATION_H
+#define GX_VERTEXDECLARATION_H
 
 #include <GxGraphics/GxGraphicsResource.h>
 
@@ -41,4 +41,4 @@ private:
 };
 
 }
-#endif // GXVERTEXDECLARATION_H
+#endif // GX_VERTEXDECLARATION_H

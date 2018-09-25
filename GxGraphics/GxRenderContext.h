@@ -1,5 +1,7 @@
-#ifndef GXRENDERCONTEXT_H
-#define GXRENDERCONTEXT_H
+#ifndef GX_RENDERCONTEXT_H
+#define GX_RENDERCONTEXT_H
+
+#include <GxGraphics/GxCubeMap.h>
 
 class IDirect3DSurface9;
 
@@ -15,6 +17,7 @@ class RenderContext
 public:
     RenderContext(GraphicsDevice &device);
     RenderContext(Texture &texture, DepthStencilSurface &depthStencil);
+    RenderContext(CubeMap &texture, CubeMap::Face face, DepthStencilSurface &depthStencil);
     ~RenderContext();
 
     void apply(GraphicsDevice &device);
@@ -26,4 +29,4 @@ private:
 
 }
 
-#endif // GXRENDERCONTEXT_H
+#endif // GX_RENDERCONTEXT_H

@@ -1,6 +1,6 @@
-#include "internal/gx_common.h"
+#include "internal/gx_graphics_common.h"
 
-DWORD gx_detail_d3d_usage(Gx::Graphics::Usage::Flags v)
+DWORD gx_detail_graphics_usage(Gx::Graphics::Usage::Flags v)
 {
     DWORD r = 0;
     
@@ -10,7 +10,7 @@ DWORD gx_detail_d3d_usage(Gx::Graphics::Usage::Flags v)
     return r;
 }
 
-DWORD gx_detail_d3d_lock(Gx::Graphics::Lock::Flags v)
+DWORD gx_detail_graphics_lock(Gx::Graphics::Lock::Flags v)
 {
     DWORD r = 0;
 
@@ -19,7 +19,7 @@ DWORD gx_detail_d3d_lock(Gx::Graphics::Lock::Flags v)
     return r;
 }
 
-D3DPOOL gx_detail_d3d_pool(Gx::Graphics::Pool v)
+D3DPOOL gx_detail_graphics_pool(Gx::Graphics::Pool v)
 {
     switch(v)
     {
@@ -29,7 +29,7 @@ D3DPOOL gx_detail_d3d_pool(Gx::Graphics::Pool v)
     }
 }
 
-D3DFORMAT gx_detail_d3d_format(Gx::Graphics::Format v)
+D3DFORMAT gx_detail_graphics_format(Gx::Graphics::Format v)
 {
     switch(v)
     {

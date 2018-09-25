@@ -1,5 +1,5 @@
-#ifndef GXGRAPHICSDEVICE_H
-#define GXGRAPHICSDEVICE_H
+#ifndef GX_GRAPHICSDEVICE_H
+#define GX_GRAPHICSDEVICE_H
 
 #include <GxCore/GxWindows.h>
 
@@ -60,9 +60,11 @@ public:
 private:
     friend class VertexDeclaration;
     friend class VertexBuffer;
+    friend class IndexBuffer;
     friend class AbstractShader;
     friend class Font;
     friend class Texture;
+    friend class CubeMap;
     friend class DepthStencilSurface;
     friend class RenderContext;
 
@@ -78,4 +80,4 @@ private:
 
 }
 
-#endif // GXGRAPHICSDEVICE_H
+#endif // GX_GRAPHICSDEVICE_H

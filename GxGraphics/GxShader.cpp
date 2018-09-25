@@ -63,6 +63,7 @@ void Gx::AbstractShader::reset(Gx::GraphicsDevice &device)
 
     if(FAILED(r))
     {
+        release();
         throw std::runtime_error("unable to create shader");
     }
 

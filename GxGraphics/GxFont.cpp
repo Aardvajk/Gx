@@ -1,4 +1,4 @@
-#include "GxFont.h"
+#include "GxGraphics/GxFont.h"
 
 #include "GxGraphics/GxGraphicsDevice.h"
 

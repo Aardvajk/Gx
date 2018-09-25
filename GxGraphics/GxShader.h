@@ -1,5 +1,5 @@
-#ifndef GXSHADER_H
-#define GXSHADER_H
+#ifndef GX_SHADER_H
+#define GX_SHADER_H
 
 #include <GxGraphics/GxGraphicsResource.h>
 
@@ -68,4 +68,4 @@ public:
 
 }
 
-#endif // GXSHADER_H
+#endif // GX_SHADER_H

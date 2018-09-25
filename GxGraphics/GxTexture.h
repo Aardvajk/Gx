@@ -1,9 +1,9 @@
-#ifndef GXTEXTURE_H
-#define GXTEXTURE_H
+#ifndef GX_TEXTURE_H
+#define GX_TEXTURE_H
 
 #include <GxCore/GxSize.h>
 
-#include <GxGraphics/GxGraphicsCore.h>
+#include <GxGraphics/GxGraphicsTypes.h>
 #include <GxGraphics/GxGraphicsResource.h>
 
 class IDirect3DTexture9;
@@ -43,4 +43,4 @@ private:
 
 }
 
-#endif // GXTEXTURE_H
+#endif // GX_TEXTURE_H

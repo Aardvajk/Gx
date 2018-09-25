@@ -1,5 +1,5 @@
-#ifndef GXGRAPHICSCORE_H
-#define GXGRAPHICSCORE_H
+#ifndef GX_GRAPHICSTYPES_H
+#define GX_GRAPHICSTYPES_H
 
 #include <pcx/flags.h>
 
@@ -54,4 +54,4 @@ enum class Format : std::uint8_t
 template<> struct pcx_is_flag_enum<Gx::Graphics::Usage::Flag> : std::true_type { };
 template<> struct pcx_is_flag_enum<Gx::Graphics::Lock::Flag> : std::true_type { };
 
-#endif // GXGRAPHICSCORE_H
+#endif // GX_GRAPHICSTYPEE_H

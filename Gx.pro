@@ -29,14 +29,16 @@ SOURCES += \
     GxCore/GxTimer.cpp \
     GxGraphics/GxVertexDeclaration.cpp \
     GxGraphics/GxVertexBuffer.cpp \
-    internal/gx_common.cpp \
     GxGraphics/GxShader.cpp \
     GxMaths/GxMatrix.cpp \
     GxGraphics/GxFont.cpp \
     GxGraphics/GxFontMetrics.cpp \
     GxGraphics/GxDepthStencilSurface.cpp \
     GxGraphics/GxTexture.cpp \
-    GxGraphics/GxRenderContext.cpp
+    GxGraphics/GxRenderContext.cpp \
+    internal/gx_graphics_common.cpp \
+    GxGraphics/GxCubeMap.cpp \
+    GxGraphics/GxIndexBuffer.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -48,8 +50,6 @@ HEADERS += \
     GxGraphics/GxDisplaySettings.h \
     GxGraphics/GxGraphicsResource.h \
     GxGraphics/GxVertexDeclaration.h \
-    GxGraphics/GxGraphicsCore.h \
-    internal/gx_common.h \
     GxGraphics/GxVertexBuffer.h \
     GxGraphics/GxShader.h \
     GxMaths/GxMatrix.h \
@@ -59,5 +59,10 @@ HEADERS += \
     GxGraphics/GxFontMetrics.h \
     GxGraphics/GxDepthStencilSurface.h \
     GxGraphics/GxTexture.h \
-    GxGraphics/GxRenderContext.h
+    GxGraphics/GxRenderContext.h \
+    internal/gx_graphics_common.h \
+    internal/gx_common.h \
+    GxGraphics/GxCubeMap.h \
+    GxGraphics/GxIndexBuffer.h \
+    GxGraphics/GxGraphicsTypes.h
 

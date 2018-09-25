@@ -41,6 +41,7 @@ void Gx::DepthStencilSurface::reset(Gx::GraphicsDevice &device)
     HRESULT r = device.device->CreateDepthStencilSurface(d.size.width, d.size.height, format(d.format), D3DMULTISAMPLE_NONE, 0, FALSE, &ptr, NULL);
     if(FAILED(r))
     {
+        release();
         throw std::runtime_error("unable to create depth stencil surface");
     }
 }

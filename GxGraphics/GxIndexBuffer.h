@@ -1,15 +1,17 @@
-#ifndef GX_VERTEXBUFFER_H
-#define GX_VERTEXBUFFER_H
+#ifndef GXINDEXBUFFER_H
+#define GXINDEXBUFFER_H
 
 #include <GxGraphics/GxGraphicsTypes.h>
 #include <GxGraphics/GxGraphicsResource.h>
 
-class IDirect3DVertexBuffer9;
+#include <cstdint>
+
+class IDirect3DIndexBuffer9;
 
 namespace Gx
 {
 
-class VertexBuffer : public GraphicsResource
+class IndexBuffer : public GraphicsResource
 {
 public:
     struct Desc
@@ -19,10 +21,10 @@ public:
         Graphics::Usage::Flags usage;
         Graphics::Pool pool;
     };
-    
-    explicit VertexBuffer(GraphicsDevice &device, const Desc &desc);
-    virtual ~VertexBuffer() override;
 
+    explicit IndexBuffer(GraphicsDevice &device, const Desc &desc);
+    virtual ~IndexBuffer() override;
+    
     virtual void reset(GraphicsDevice &device) override;
     virtual void release() override;
 
@@ -31,16 +33,13 @@ public:
     void *lock(Graphics::Lock::Flags flags);
     void unlock();
 
-    unsigned bytes() const;
+    std::uint16_t stride() const;
 
 private:
-    friend class GraphicsDevice;
-
     Desc d;
-    unsigned b;
-    IDirect3DVertexBuffer9 *ptr;
+    IDirect3DIndexBuffer9 *ptr;
 };
 
 }
 
-#endif // GX_VERTEXBUFFER_H
+#endif // GXINDEXBUFFER_H

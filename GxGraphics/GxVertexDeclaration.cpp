@@ -1,6 +1,6 @@
 #include "GxGraphics/GxVertexDeclaration.h"
 
-#include "GxGraphics/GxGraphicsCore.h"
+#include "GxGraphics/GxGraphicsTypes.h"
 #include "GxGraphics/GxGraphicsDevice.h"
 
 #include "internal/gx_common.h"
@@ -77,6 +77,7 @@ void Gx::VertexDeclaration::reset(GraphicsDevice &device)
     HRESULT r = device.device->CreateVertexDeclaration(v.data(), &ptr);
     if(FAILED(r))
     {
+        release();
         throw std::runtime_error("unable to reset vertex declaration");
     }
 }

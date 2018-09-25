@@ -3,6 +3,7 @@
 #include "GxGraphics/GxGraphicsDevice.h"
 
 #include "internal/gx_common.h"
+#include "internal/gx_graphics_common.h"
 
 #include <stdexcept>
 #include <d3d9.h>
@@ -21,9 +22,10 @@ void Gx::VertexBuffer::reset(Gx::GraphicsDevice &device)
 {
     release();
 
-    HRESULT r = device.device->CreateVertexBuffer(d.elements * d.stride, gx_detail_d3d_usage(d.usage), 0, gx_detail_d3d_pool(d.pool), &ptr, 0);    
+    HRESULT r = device.device->CreateVertexBuffer(d.elements * d.stride, gx_detail_graphics_usage(d.usage), 0, gx_detail_graphics_pool(d.pool), &ptr, 0);    
     if(FAILED(r))
     {
+        release();
         throw std::runtime_error("unable to create vertex buffer");
     }
 }
@@ -41,7 +43,7 @@ bool Gx::VertexBuffer::isDeviceBound() const
 void *Gx::VertexBuffer::lock(Graphics::Lock::Flags flags)
 {
     void *data;
-    if(!FAILED(ptr->Lock(0, 0, &data, gx_detail_d3d_lock(flags))))
+    if(!FAILED(ptr->Lock(0, 0, &data, gx_detail_graphics_lock(flags))))
     {
         return data;
     }

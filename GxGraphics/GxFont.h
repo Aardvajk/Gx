@@ -1,5 +1,5 @@
-#ifndef GXFONT_H
-#define GXFONT_H
+#ifndef GX_FONT_H
+#define GX_FONT_H
 
 #include <GxGraphics/GxGraphicsResource.h>
 
@@ -54,4 +54,4 @@ private:
 
 template<> struct pcx_is_flag_enum<Gx::Font::Flag> : std::true_type { };
 
-#endif // GXFONT_H
+#endif // GX_FONT_H

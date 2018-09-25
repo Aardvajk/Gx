@@ -20,6 +20,14 @@ Gx::RenderContext::RenderContext(Texture &texture, DepthStencilSurface &depthSte
     d->AddRef();
 }
 
+Gx::RenderContext::RenderContext(CubeMap &texture, CubeMap::Face face, DepthStencilSurface &depthStencil)
+{
+    texture.ptr->GetCubeMapSurface(static_cast<D3DCUBEMAP_FACES>(face), 0, &r);
+
+    d = depthStencil.ptr;
+    d->AddRef();
+}
+
 Gx::RenderContext::~RenderContext()
 {
     r->Release();
