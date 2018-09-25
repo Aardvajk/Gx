@@ -62,8 +62,9 @@ private:
     friend class VertexBuffer;
     friend class AbstractShader;
     friend class Font;
-    friend class DepthStencilSurface;
     friend class Texture;
+    friend class DepthStencilSurface;
+    friend class RenderContext;
 
     HWND hw;
 

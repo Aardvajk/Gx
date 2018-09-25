@@ -35,6 +35,7 @@ public:
 
 private:
     friend class GraphicsDevice;
+    friend class RenderContext;
 
     Desc d;
     IDirect3DTexture9 *ptr;

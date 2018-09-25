@@ -39,6 +39,8 @@ public:
     Size size() const;
 
 private:
+    friend class RenderContext;
+
     Desc d;
     IDirect3DSurface9 *ptr;
 };
