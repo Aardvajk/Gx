@@ -22,6 +22,7 @@ class AbstractShader;
 class VertexShader;
 class PixelShader;
 class VertexBuffer;
+class Texture;
 
 class Color;
 
@@ -42,6 +43,9 @@ public:
     
     void setPixelShader(const PixelShader &resource);
     void setPixelShader();
+    
+    void setTexture(unsigned stage, const Texture &texture);
+    void setTexture(unsigned stage);
 
     void begin();
     void end();
@@ -58,6 +62,8 @@ private:
     friend class VertexBuffer;
     friend class AbstractShader;
     friend class Font;
+    friend class DepthStencilSurface;
+    friend class Texture;
 
     HWND hw;
 

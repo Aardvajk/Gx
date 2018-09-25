@@ -14,12 +14,12 @@ Gx::VertexBuffer::VertexBuffer(GraphicsDevice &device, const Desc &desc) : d(des
 
 Gx::VertexBuffer::~VertexBuffer()
 {
-    gx_detail_com_ptr_release(ptr);
+    release();
 }
 
 void Gx::VertexBuffer::reset(Gx::GraphicsDevice &device)
 {
-    gx_detail_com_ptr_release(ptr);
+    release();
 
     HRESULT r = device.device->CreateVertexBuffer(d.elements * d.stride, gx_detail_d3d_usage(d.usage), 0, gx_detail_d3d_pool(d.pool), &ptr, 0);    
     if(FAILED(r))

@@ -19,4 +19,6 @@ DWORD gx_detail_d3d_lock(Gx::Graphics::Lock::Flags v);
 
 D3DPOOL gx_detail_d3d_pool(Gx::Graphics::Pool v);
 
+D3DFORMAT gx_detail_d3d_format(Gx::Graphics::Format v);
+
 #endif

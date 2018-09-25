@@ -23,7 +23,7 @@ class VertexDeclaration : public GraphicsResource
 {
 public:
     explicit VertexDeclaration(GraphicsDevice &device, std::vector<VertexElement> elements);
-    virtual ~VertexDeclaration();
+    virtual ~VertexDeclaration() override;
 
     virtual void reset(GraphicsDevice &device) override;
     virtual void release() override;

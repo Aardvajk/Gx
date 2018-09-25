@@ -14,7 +14,7 @@ public:
     T height;
 };
 
-using Size = BasicSize<int>;
+using Size = BasicSize<unsigned>;
 using SizeF = BasicSize<float>;
 
 }

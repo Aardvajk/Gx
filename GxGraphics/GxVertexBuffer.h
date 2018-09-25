@@ -21,7 +21,7 @@ public:
     };
     
     explicit VertexBuffer(GraphicsDevice &device, const Desc &desc);
-    ~VertexBuffer();
+    virtual ~VertexBuffer() override;
 
     virtual void reset(GraphicsDevice &device) override;
     virtual void release() override;

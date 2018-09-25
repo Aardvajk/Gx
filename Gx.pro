@@ -33,7 +33,9 @@ SOURCES += \
     GxGraphics/GxShader.cpp \
     GxMaths/GxMatrix.cpp \
     GxGraphics/GxFont.cpp \
-    GxGraphics/GxFontMetrics.cpp
+    GxGraphics/GxFontMetrics.cpp \
+    GxGraphics/GxDepthStencilSurface.cpp \
+    GxGraphics/GxTexture.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -53,5 +55,7 @@ HEADERS += \
     GxMaths/GxColor.h \
     GxMaths/GxVector.h \
     GxGraphics/GxFont.h \
-    GxGraphics/GxFontMetrics.h
+    GxGraphics/GxFontMetrics.h \
+    GxGraphics/GxDepthStencilSurface.h \
+    GxGraphics/GxTexture.h
 

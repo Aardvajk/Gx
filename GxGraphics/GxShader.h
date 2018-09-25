@@ -21,7 +21,7 @@ class Matrix;
 class AbstractShader : public GraphicsResource
 {
 public:
-    virtual ~AbstractShader();
+    virtual ~AbstractShader() override;
 
     virtual void reset(GraphicsDevice &device) override;
     virtual void release() override;

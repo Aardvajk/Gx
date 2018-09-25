@@ -22,12 +22,6 @@ using Flags = pcx::flags<Flag>;
 
 }
 
-enum class Pool : std::uint8_t
-{
-    Default,
-    Managed
-};
-
 namespace Lock
 {
 
@@ -39,6 +33,19 @@ enum class Flag : std::uint8_t
 using Flags = pcx::flags<Flag>;
 
 }
+
+enum class Pool : std::uint8_t
+{
+    Default,
+    Managed
+};
+
+enum class Format : std::uint8_t
+{
+    X8R8G8B8,
+    A8R8G8B8,
+    R32F
+};
 
 }
 

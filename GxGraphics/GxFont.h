@@ -32,8 +32,8 @@ public:
         Flags flags;
     };
 
-    Font(GraphicsDevice &device, const Desc &desc);
-    ~Font();
+    explicit Font(GraphicsDevice &device, const Desc &desc);
+    virtual ~Font() override;
     
     virtual void reset(GraphicsDevice &device) override;
     virtual void release() override;

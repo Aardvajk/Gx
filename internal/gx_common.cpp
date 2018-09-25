@@ -28,3 +28,15 @@ D3DPOOL gx_detail_d3d_pool(Gx::Graphics::Pool v)
         default: return D3DPOOL_DEFAULT;
     }
 }
+
+D3DFORMAT gx_detail_d3d_format(Gx::Graphics::Format v)
+{
+    switch(v)
+    {
+        case Gx::Graphics::Format::X8R8G8B8: return D3DFMT_X8B8G8R8;
+        case Gx::Graphics::Format::A8R8G8B8: return D3DFMT_A8B8G8R8;
+        case Gx::Graphics::Format::R32F: return D3DFMT_R32F;
+
+        default: return { };
+    }
+}

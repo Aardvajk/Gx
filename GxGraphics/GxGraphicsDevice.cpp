@@ -3,6 +3,7 @@
 #include "GxGraphics/GxVertexDeclaration.h"
 #include "GxGraphics/GxShader.h"
 #include "GxGraphics/GxVertexBuffer.h"
+#include "GxGraphics/GxTexture.h"
 
 #include "GxMaths/GxColor.h"
 
@@ -210,6 +211,16 @@ void Gx::GraphicsDevice::setPixelShader()
         device->SetPixelShader(nullptr);
         cache.get<Cache>().pixelShader = nullptr;
     }
+}
+
+void Gx::GraphicsDevice::setTexture(unsigned stage, const Texture &texture)
+{
+    device->SetTexture(stage, texture.ptr);
+}
+
+void Gx::GraphicsDevice::setTexture(unsigned stage)
+{
+    device->SetTexture(stage, nullptr);
 }
 
 void Gx::GraphicsDevice::begin()
