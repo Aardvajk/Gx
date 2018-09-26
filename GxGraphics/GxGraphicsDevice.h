@@ -3,8 +3,6 @@
 
 #include <GxCore/GxWindows.h>
 
-#include <GxGraphics/GxDisplaySettings.h>
-
 #include <pcx/non_copyable.h>
 #include <pcx/aligned_store.h>
 
@@ -18,10 +16,10 @@ namespace Gx
 
 class VertexDeclaration;
 class VertexBuffer;
+class IndexBuffer;
 class AbstractShader;
 class VertexShader;
 class PixelShader;
-class VertexBuffer;
 class Texture;
 
 class Color;
@@ -29,12 +27,8 @@ class Color;
 class GraphicsDevice : public pcx::non_copyable
 {
 public:
-    explicit GraphicsDevice(HWND hwnd, const DisplaySettings &settings);
-    ~GraphicsDevice();
+    GraphicsDevice();
 
-    void reset(const DisplaySettings &settings);
-    void reset();
-    
     void setVertexDeclaration(const VertexDeclaration &resource);
     void setVertexDeclaration();
 
@@ -47,15 +41,19 @@ public:
     void setTexture(unsigned stage, const Texture &texture);
     void setTexture(unsigned stage);
 
-    void begin();
-    void end();
-
     void clear(const Color &color, float z);
 
     void renderTriangleList(const VertexBuffer &buffer);
+    void renderTriangleList(const VertexBuffer &buffer, const IndexBuffer &indices);
 
     bool isOk() const;
     bool isReadyToReset() const;
+
+protected:
+    void clearCache();
+
+    IDirect3D9 *direct3d;
+    IDirect3DDevice9 *device;
     
 private:
     friend class VertexDeclaration;
@@ -68,13 +66,6 @@ private:
     friend class DepthStencilSurface;
     friend class RenderContext;
 
-    HWND hw;
-
-    IDirect3D9 *direct3d;
-    IDirect3DDevice9 *device;
-    
-    DisplaySettings currentSettings;
-    
     pcx::aligned_store<40> cache;
 };
 

@@ -37,7 +37,6 @@ private:
     friend class GraphicsDevice;
 
     Desc d;
-    unsigned b;
     IDirect3DVertexBuffer9 *ptr;
 };
 

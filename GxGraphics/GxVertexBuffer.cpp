@@ -8,7 +8,7 @@
 #include <stdexcept>
 #include <d3d9.h>
 
-Gx::VertexBuffer::VertexBuffer(GraphicsDevice &device, const Desc &desc) : d(desc), b(d.elements * d.stride), ptr(nullptr)
+Gx::VertexBuffer::VertexBuffer(GraphicsDevice &device, const Desc &desc) : d(desc), ptr(nullptr)
 {
     reset(device);
 }
@@ -58,5 +58,5 @@ void Gx::VertexBuffer::unlock()
 
 unsigned Gx::VertexBuffer::bytes() const
 {
-    return b;
+    return d.elements * d.stride;
 }

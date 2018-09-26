@@ -56,6 +56,11 @@ void Gx::IndexBuffer::unlock()
     ptr->Unlock();    
 }
 
+unsigned Gx::IndexBuffer::bytes() const
+{
+    return d.elements * d.stride;
+}
+
 std::uint16_t Gx::IndexBuffer::stride() const
 {
     return d.stride;

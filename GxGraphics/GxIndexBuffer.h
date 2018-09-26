@@ -33,9 +33,12 @@ public:
     void *lock(Graphics::Lock::Flags flags);
     void unlock();
 
+    unsigned bytes() const;
     std::uint16_t stride() const;
 
 private:
+    friend class GraphicsDevice;
+    
     Desc d;
     IDirect3DIndexBuffer9 *ptr;
 };
