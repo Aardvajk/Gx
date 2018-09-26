@@ -34,6 +34,11 @@ createParams(HWND hw, const Gx::DisplaySettings &settings)
     return p;
 }
 
+DWORD vertexProcessing(bool hardware)
+{
+    return hardware ? D3DCREATE_HARDWARE_VERTEXPROCESSING : D3DCREATE_SOFTWARE_VERTEXPROCESSING;
+}
+
 void
 setGlobalDeviceSettings(IDirect3DDevice9 *device)
 {
@@ -89,6 +94,7 @@ Gx::ExclusiveGraphicsDevice::ExclusiveGraphicsDevice(HWND hwnd, const DisplaySet
     }
 
     D3DCAPS9 caps;
+    
     HRESULT r = direct3d->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &caps);
     if(FAILED(r))
     {
@@ -96,14 +102,9 @@ Gx::ExclusiveGraphicsDevice::ExclusiveGraphicsDevice(HWND hwnd, const DisplaySet
         throw std::runtime_error("unable to get device caps");
     }
 
-    DWORD vertexProcessing;
-
-    if(caps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT) vertexProcessing = D3DCREATE_HARDWARE_VERTEXPROCESSING;
-    else                                              vertexProcessing = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
-
     D3DPRESENT_PARAMETERS params = createParams(hw, currentSettings);
 
-    r = direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hw, vertexProcessing, &params, &(device));
+    r = direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hw, vertexProcessing(caps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT), &params, &(device));
     if(FAILED(r))
     {
         gx_detail_com_ptr_release(device);

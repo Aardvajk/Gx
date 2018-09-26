@@ -6,8 +6,6 @@
 #include <pcx/non_copyable.h>
 #include <pcx/aligned_store.h>
 
-#include <type_traits>
-
 class IDirect3D9;
 class IDirect3DDevice9;
 
@@ -21,13 +19,13 @@ class AbstractShader;
 class VertexShader;
 class PixelShader;
 class Texture;
-
 class Color;
 
 class GraphicsDevice : public pcx::non_copyable
 {
 public:
     GraphicsDevice();
+    virtual ~GraphicsDevice() = default;
 
     void setVertexDeclaration(const VertexDeclaration &resource);
     void setVertexDeclaration();

@@ -39,7 +39,8 @@ SOURCES += \
     internal/gx_graphics_common.cpp \
     GxGraphics/GxCubeMap.cpp \
     GxGraphics/GxIndexBuffer.cpp \
-    GxGraphics/GxExclusiveGraphicsDevice.cpp
+    GxGraphics/GxExclusiveGraphicsDevice.cpp \
+    GxMaths/GxVector.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
