@@ -40,7 +40,8 @@ SOURCES += \
     GxGraphics/GxCubeMap.cpp \
     GxGraphics/GxIndexBuffer.cpp \
     GxGraphics/GxExclusiveGraphicsDevice.cpp \
-    GxMaths/GxVector.cpp
+    GxMaths/GxVector.cpp \
+    GxMaths/GxQuaternion.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -67,5 +68,6 @@ HEADERS += \
     GxGraphics/GxCubeMap.h \
     GxGraphics/GxIndexBuffer.h \
     GxGraphics/GxGraphicsTypes.h \
-    GxGraphics/GxExclusiveGraphicsDevice.h
+    GxGraphics/GxExclusiveGraphicsDevice.h \
+    GxMaths/GxQuaternion.h
 

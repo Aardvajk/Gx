@@ -20,8 +20,8 @@ public:
     
     Vec2 transformedCoord(const Matrix &v) const;
     Vec2 transformedNormal(const Matrix &v) const;
-    
-    Vec2 interpolate(const Vec2 &v, float t) const { return (*this * (1.0f - t)) + (v * t); }
+
+    Vec2 interpolated(const Vec2 &v, float t) const { return (*this * (1.0f - t)) + (v * t); }
     
     float dot(const Vec2 &v) const { return D3DXVec2Dot(this, &v); }
 
@@ -38,11 +38,12 @@ public:
     Vec3(const D3DXVECTOR3 &v) : D3DXVECTOR3(v) { }
 
     Vec3 normalized() const { Vec3 v; D3DXVec3Normalize(&v, this); return v; }
+    Vec3 cross(const Vec3 &v) const;
 
     Vec3 transformedCoord(const Matrix &v) const;
     Vec3 transformedNormal(const Matrix &v) const;
 
-    Vec3 interpolate(const Vec3 &v, float t) const { return (*this * (1.0f - t)) + (v * t); }
+    Vec3 interpolatde(const Vec3 &v, float t) const { return (*this * (1.0f - t)) + (v * t); }
 
     float dot(const Vec3 &v) const { return D3DXVec3Dot(this, &v); }
 
@@ -62,7 +63,7 @@ public:
 
     Vec4 transformed(const Matrix &v) const;
 
-    Vec4 interpolate(const Vec4 &v, float t) const { return (*this * (1.0f - t)) + (v * t); }
+    Vec4 interpolated(const Vec4 &v, float t) const { return (*this * (1.0f - t)) + (v * t); }
 
     float dot(const Vec4 &v) const { return D3DXVec4Dot(this, &v); }
 

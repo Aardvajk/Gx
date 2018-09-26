@@ -18,6 +18,14 @@ Gx::Vec2 Gx::Vec2::transformedNormal(const Matrix &v) const
     return r;
 }
 
+Gx::Vec3 Gx::Vec3::cross(const Gx::Vec3 &v) const
+{
+    Vec3 r;
+    D3DXVec3Cross(&r, this, &v);
+    
+    return r;
+}
+
 Gx::Vec3 Gx::Vec3::transformedCoord(const Matrix &v) const
 {
     Vec3 r;
