@@ -43,7 +43,7 @@ public:
     Vec3 transformedCoord(const Matrix &v) const;
     Vec3 transformedNormal(const Matrix &v) const;
 
-    Vec3 interpolatde(const Vec3 &v, float t) const { return (*this * (1.0f - t)) + (v * t); }
+    Vec3 interpolated(const Vec3 &v, float t) const { return (*this * (1.0f - t)) + (v * t); }
 
     float dot(const Vec3 &v) const { return D3DXVec3Dot(this, &v); }
 
