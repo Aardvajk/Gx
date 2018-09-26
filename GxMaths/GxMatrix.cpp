@@ -2,6 +2,14 @@
 
 #include "GxMaths/GxVector.h"
 
+Gx::Matrix Gx::Matrix::inverse() const
+{
+    Matrix m;
+    D3DXMatrixInverse(&m, NULL, this);
+    
+    return m;
+}
+
 Gx::Matrix Gx::Matrix::identity()
 {
     Matrix m;
@@ -50,10 +58,34 @@ Gx::Matrix Gx::Matrix::rotationZ(float angle)
     return m;
 }
 
-Gx::Matrix Gx::Matrix::translate(const Gx::Vec3 &value)
+Gx::Matrix Gx::Matrix::rotationXYZ(const Vec3 &values)
 {
     Matrix m;
-    D3DXMatrixTranslation(&m, value.x, value.y, value.z);
+    D3DXMatrixRotationYawPitchRoll(&m, values.x, values.y, values.z);
+
+    return m;
+}
+
+Gx::Matrix Gx::Matrix::rotationAxis(const Vec3 &axis, float angle)
+{
+    Matrix m;
+    D3DXMatrixRotationAxis(&m, &axis, angle);
+
+    return m;
+}
+
+Gx::Matrix Gx::Matrix::translation(const Gx::Vec3 &values)
+{
+    Matrix m;
+    D3DXMatrixTranslation(&m, values.x, values.y, values.z);
+    
+    return m;
+}
+
+Gx::Matrix Gx::Matrix::scaling(const Gx::Vec3 &values)
+{
+    Matrix m;
+    D3DXMatrixScaling(&m, values.x, values.y, values.z);
     
     return m;
 }
