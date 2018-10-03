@@ -7,7 +7,7 @@ CONFIG -= qt
 QMAKE_CXXFLAGS += -std=gnu++11
 QMAKE_LFLAGS += -Wl,--exclude-all-symbols
 
-QMAKE_CXXFLAGS_WARN_ON += -Wno-unknown-pragmas -Wno-comment -Wno-maybe-uninitialized -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-parameter
+QMAKE_CXXFLAGS_WARN_ON += -Wno-unknown-pragmas -Wno-comment -Wno-maybe-uninitialized -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-attributes
 
 INCLUDEPATH += "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include" \
                "C:/Projects/pcx"
