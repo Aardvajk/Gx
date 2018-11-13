@@ -73,5 +73,6 @@ HEADERS += \
     GxGraphics/GxGraphicsTypes.h \
     GxGraphics/GxExclusiveGraphicsDevice.h \
     GxMaths/GxQuaternion.h \
-    GxMaths/GxRay.h
+    GxMaths/GxRay.h \
+    GxGraphics/GxBufferStream.h
 
