@@ -1,5 +1,5 @@
-#ifndef GXTIMER_H
-#define GXTIMER_H
+#ifndef GX_TIMER_H
+#define GX_TIMER_H
 
 #include <pcx/flags.h>
 
@@ -31,4 +31,4 @@ private:
 
 template<> struct pcx_is_flag_enum<Gx::Timer::Flag> : std::true_type { };
 
-#endif // GXTIMER_H
+#endif // GX_TIMER_H

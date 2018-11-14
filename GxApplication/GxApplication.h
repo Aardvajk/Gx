@@ -1,5 +1,5 @@
-#ifndef GXAPPLICATION_H
-#define GXAPPLICATION_H
+#ifndef GX_APPLICATION_H
+#define GX_APPLICATION_H
 
 #include <GxCore/GxWindows.h>
 #include <GxCore/GxSize.h>
@@ -25,4 +25,4 @@ private:
 
 }
 
-#endif // GXAPPLICATION_H
+#endif // GX_APPLICATION_H

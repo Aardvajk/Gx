@@ -1,5 +1,5 @@
-#ifndef GXRAY_H
-#define GXRAY_H
+#ifndef GX_RAY_H
+#define GX_RAY_H
 
 #include <GxMaths/GxVector.h>
 
@@ -28,4 +28,4 @@ public:
 
 }
 
-#endif // GXRAY_H
+#endif // GX_RAY_H

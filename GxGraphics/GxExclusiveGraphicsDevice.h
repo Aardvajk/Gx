@@ -1,5 +1,5 @@
-#ifndef GXEXCLUSIVEGRAPHICSDEVICE_H
-#define GXEXCLUSIVEGRAPHICSDEVICE_H
+#ifndef GX_EXCLUSIVEGRAPHICSDEVICE_H
+#define GX_EXCLUSIVEGRAPHICSDEVICE_H
 
 #include <GxGraphics/GxGraphicsDevice.h>
 #include <GxGraphics/GxDisplaySettings.h>
@@ -26,4 +26,4 @@ private:
 
 }
 
-#endif // GXEXCLUSIVEGRAPHICSDEVICE_H
+#endif // GX_EXCLUSIVEGRAPHICSDEVICE_H

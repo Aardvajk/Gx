@@ -1,5 +1,5 @@
-#ifndef GX_DISPLAYSETTINGS_H
-#define GX_DISPLAYSETTINGS_H
+#ifndef GX__DISPLAYSETTINGS_H
+#define GX__DISPLAYSETTINGS_H
 
 #include <pcx/flags.h>
 
@@ -31,4 +31,4 @@ public:
 
 template<> struct pcx_is_flag_enum<Gx::DisplaySettings::Flag> : std::true_type { };
 
-#endif // GX_DISPLAYSETTINGS_H
+#endif // GX__DISPLAYSETTINGS_H

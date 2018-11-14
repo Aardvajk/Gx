@@ -1,5 +1,5 @@
-#ifndef GXCOLOR_H
-#define GXCOLOR_H
+#ifndef GX_COLOR_H
+#define GX_COLOR_H
 
 #include <d3dx9.h>
 
@@ -22,4 +22,4 @@ public:
 
 }
 
-#endif // GXCOLOR_H
+#endif // GX_COLOR_H

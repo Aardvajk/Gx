@@ -1,5 +1,5 @@
-#ifndef GXSIZE_H
-#define GXSIZE_H
+#ifndef GX_SIZE_H
+#define GX_SIZE_H
 
 namespace Gx
 {
@@ -19,4 +19,4 @@ using SizeF = BasicSize<float>;
 
 }
 
-#endif // GXSIZE_H
+#endif // GX_SIZE_H

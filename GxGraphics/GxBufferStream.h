@@ -1,5 +1,5 @@
-#ifndef GX_BUFFERSTREAM_H
-#define GX_BUFFERSTREAM_H
+#ifndef GX__BUFFERSTREAM_H
+#define GX__BUFFERSTREAM_H
 
 #include <GxGraphics/GxGraphicsTypes.h>
 
@@ -26,4 +26,4 @@ private:
 
 }
 
-#endif // GX_BUFFERSTREAM_H
+#endif // GX__BUFFERSTREAM_H

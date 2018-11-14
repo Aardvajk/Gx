@@ -13,6 +13,18 @@ Gx::Matrix Gx::Quaternion::matrix() const
     return m;
 }
 
+Gx::Vec2 Gx::Quaternion::angle() const
+{
+    double sqx = x * x;
+    double sqy = y * y;
+    double sqz = z * z;
+
+    float tx = atan2(2 * y * w - 2 * x * z, 1 - 2 * sqy - 2 * sqz);
+    float ty = atan2(2 * x * w - 2 * y * z, 1 - 2 * sqx - 2 * sqz);
+
+    return Vec2(tx, ty);
+}
+
 Gx::Quaternion Gx::Quaternion::rotationBetween(const Gx::Vec3 &a, const Gx::Vec3 &b) const
 {
     Quaternion q;
@@ -79,6 +91,14 @@ Gx::Quaternion Gx::Quaternion::identity()
 {
     Quaternion q;
     D3DXQuaternionIdentity(&q);
+
+    return q;
+}
+
+Gx::Quaternion Gx::Quaternion::axisRotation(const Vec3 &v)
+{
+    Quaternion q;
+    D3DXQuaternionRotationYawPitchRoll(&q, v.y, v.x, v.z);
 
     return q;
 }

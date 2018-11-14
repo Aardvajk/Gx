@@ -1,5 +1,5 @@
-#ifndef GXINDEXBUFFER_H
-#define GXINDEXBUFFER_H
+#ifndef GX_INDEXBUFFER_H
+#define GX_INDEXBUFFER_H
 
 #include <GxGraphics/GxGraphicsTypes.h>
 #include <GxGraphics/GxGraphicsResource.h>
@@ -45,4 +45,4 @@ private:
 
 }
 
-#endif // GXINDEXBUFFER_H
+#endif // GX_INDEXBUFFER_H

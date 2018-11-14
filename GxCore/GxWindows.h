@@ -1,5 +1,5 @@
-#ifndef GXWINDOWS_H
-#define GXWINDOWS_H
+#ifndef GX_WINDOWS_H
+#define GX_WINDOWS_H
 
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0501
@@ -15,4 +15,4 @@
 
 #include <windows.h>
 
-#endif // GXWINDOWS_H
+#endif // GX_WINDOWS_H

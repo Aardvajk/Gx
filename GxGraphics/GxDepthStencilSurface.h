@@ -1,5 +1,5 @@
-#ifndef GX_DEPTHSTENCILSURFACE_H
-#define GX_DEPTHSTENCILSURFACE_H
+#ifndef GX__DEPTHSTENCILSURFACE_H
+#define GX__DEPTHSTENCILSURFACE_H
 
 #include <GxCore/GxSize.h>
 
@@ -47,4 +47,4 @@ private:
 
 }
 
-#endif // GX_DEPTHSTENCILSURFACE_H
+#endif // GX__DEPTHSTENCILSURFACE_H

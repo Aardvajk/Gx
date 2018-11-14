@@ -1,5 +1,5 @@
-#ifndef GXDEBUG_H
-#define GXDEBUG_H
+#ifndef GX_DEBUG_H
+#define GX_DEBUG_H
 
 #include <sstream>
 
@@ -19,4 +19,4 @@ private:
 
 }
 
-#endif // GXDEBUG_H
+#endif // GX_DEBUG_H

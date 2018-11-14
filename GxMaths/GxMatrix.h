@@ -1,5 +1,5 @@
-#ifndef GXMATRIX_H
-#define GXMATRIX_H
+#ifndef GX_MATRIX_H
+#define GX_MATRIX_H
 
 #include <d3dx9.h>
 
@@ -34,4 +34,4 @@ public:
 
 }
 
-#endif // GXMATRIX_H
+#endif // GX_MATRIX_H
