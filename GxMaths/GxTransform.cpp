@@ -53,7 +53,7 @@ void Gx::Transform::flatVectors(Vec3 &look, Vec3 &right) const
 {
     auto m = Matrix::rotationY(angle().x);
 
-    look = Vec3(0, 0, 1).transformedNormal(m);
-    right = Vec3(1, 0, 0).transformedNormal(m);
+    look = Vec3(0, 0, 1).transformedNormal(m).normalized();
+    right = Vec3(1, 0, 0).transformedNormal(m).normalized();
 }
 
