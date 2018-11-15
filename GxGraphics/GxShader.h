@@ -28,6 +28,7 @@ public:
 
     virtual bool isDeviceBound() const override;
 
+    void setFloat(GraphicsDevice &device, const std::string &name, float value);
     void setVector(GraphicsDevice &device, const std::string &name, const Vec3 &value);
     void setVector(GraphicsDevice &device, const std::string &name, const Vec4 &value);
     void setMatrix(GraphicsDevice &device, const std::string &name, const Matrix &value);

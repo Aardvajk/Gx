@@ -89,6 +89,11 @@ bool Gx::AbstractShader::isDeviceBound() const
     return false;
 }
 
+void Gx::AbstractShader::setFloat(GraphicsDevice &device, const std::string &name, float value)
+{
+    table->SetFloat(device.device, cache.get<Cache>().handle(table, name), value);
+}
+
 void Gx::AbstractShader::setVector(GraphicsDevice &device, const std::string &name, const Vec3 &value)
 {
     setVector(device, name, Vec4(value.x, value.y, value.z, 1));
