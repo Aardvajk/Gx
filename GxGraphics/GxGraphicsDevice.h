@@ -14,7 +14,6 @@ namespace Gx
 
 class VertexDeclaration;
 class VertexBuffer;
-class IndexBuffer;
 class AbstractShader;
 class VertexShader;
 class PixelShader;
@@ -41,8 +40,12 @@ public:
 
     void clear(const Color &color, float z);
 
-    void renderTriangleList(const VertexBuffer &buffer);
-    void renderTriangleList(const VertexBuffer &buffer, const IndexBuffer &indices);
+    void renderTriangleList(const VertexBuffer &buffer, unsigned count);
+    void renderLineList(const VertexBuffer &buffer, unsigned count);
+    void renderPointList(const VertexBuffer &buffer, unsigned count);
+
+    void setZBufferEnable(bool state);
+    void setPointSize(float size);
 
     bool isOk() const;
     bool isReadyToReset() const;

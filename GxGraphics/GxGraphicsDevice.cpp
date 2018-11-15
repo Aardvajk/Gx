@@ -3,7 +3,6 @@
 #include "GxGraphics/GxVertexDeclaration.h"
 #include "GxGraphics/GxShader.h"
 #include "GxGraphics/GxVertexBuffer.h"
-#include "GxGraphics/GxIndexBuffer.h"
 #include "GxGraphics/GxTexture.h"
 
 #include "GxMaths/GxColor.h"
@@ -104,26 +103,38 @@ void Gx::GraphicsDevice::clear(const Gx::Color &color, float z)
     device->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, color, z, 0);
 }
 
-void Gx::GraphicsDevice::renderTriangleList(const VertexBuffer &buffer)
+void Gx::GraphicsDevice::renderTriangleList(const VertexBuffer &buffer, unsigned count)
 {
-    if(buffer.bytes() / cache.get<Cache>().vertexDec->stride() >= 3)
-    {
-        device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
-        device->SetIndices(0);
-    
-        device->DrawPrimitive(D3DPT_TRIANGLELIST, 0, (buffer.bytes() / cache.get<Cache>().vertexDec->stride()) / 3);
-    }
+    device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
+    device->SetIndices(0);
+
+    device->DrawPrimitive(D3DPT_TRIANGLELIST, 0, count);
 }
 
-void Gx::GraphicsDevice::renderTriangleList(const VertexBuffer &buffer, const IndexBuffer &indices)
+void Gx::GraphicsDevice::renderLineList(const VertexBuffer &buffer, unsigned count)
 {
-    if(indices.bytes() > 0 && ((indices.bytes() / indices.stride()) % 3) == 0)
-    {
-        device->SetStreamSource(0, buffer.ptr, 0, cache.get<Cache>().vertexDec->stride());
-        device->SetIndices(indices.ptr);
-    
-        device->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, buffer.bytes() / cache.get<Cache>().vertexDec->stride(), 0, (indices.bytes() / indices.stride()) / 3);
-    }
+    device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
+    device->SetIndices(0);
+
+    device->DrawPrimitive(D3DPT_LINELIST, 0, count);
+}
+
+void Gx::GraphicsDevice::renderPointList(const VertexBuffer &buffer, unsigned count)
+{
+    device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
+    device->SetIndices(0);
+
+    device->DrawPrimitive(D3DPT_POINTLIST, 0, count);
+}
+
+void Gx::GraphicsDevice::setZBufferEnable(bool state)
+{
+    device->SetRenderState(D3DRS_ZENABLE, state);
+}
+
+void Gx::GraphicsDevice::setPointSize(float size)
+{
+    device->SetRenderState(D3DRS_POINTSIZE, *((DWORD*)(&size)));
 }
 
 bool Gx::GraphicsDevice::isOk() const
