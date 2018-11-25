@@ -26,11 +26,19 @@ Gx::Matrix Gx::Matrix::lookAt(const Gx::Vec3 &eye, const Gx::Vec3 &look, const G
     return m;
 }
 
-Gx::Matrix Gx::Matrix::proj(float fov, float aspect, float nearClip, float farClip)
+Gx::Matrix Gx::Matrix::perspective(float fov, float aspect, float nearClip, float farClip)
 {
     Matrix m;
     D3DXMatrixPerspectiveFovLH(&m, fov, aspect, nearClip, farClip);
     
+    return m;
+}
+
+Gx::Matrix Gx::Matrix::ortho(float width, float height, float nearClip, float farClip)
+{
+    Matrix m;
+    D3DXMatrixOrthoLH(&m, width, height, nearClip, farClip);
+
     return m;
 }
 
