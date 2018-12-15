@@ -1,5 +1,6 @@
 #include "GxMaths/GxRay.h"
 
+#include "GxMaths/GxSize.h"
 #include "GxMaths/GxMatrix.h"
 
 pcx::optional<float> Gx::Ray::intersectPlane(const Vec3 &p, const Vec3 &n) const
@@ -64,33 +65,22 @@ pcx::optional<float> Gx::Ray::intersectsSphere(const Vec3 &origin, float radius)
 }
 
 
-Gx::Ray Gx::Ray::compute(const Vec2 &pos, const Vec2 &size, const Matrix &view, const Matrix &proj)
+Gx::Ray Gx::Ray::compute(const Vec2 &pos, const SizeF &size, const Matrix &view, const Matrix &proj)
 {
-    float w = size.x;
-    float h = size.y;
+    D3DVIEWPORT9 vp = { 0, 0, static_cast<DWORD>(size.width), static_cast<DWORD>(size.height), 0, 1 };
+    auto id = Gx::Matrix::identity();
 
-    float sx = pos.x;
-    float sy = pos.y;
+    Gx::Vec3 p(pos.x, pos.y, 0);
 
-    Vec3 v;
-    v.x = (((2.0f * sx) / w ) - 1) / proj._11;
-    v.y = -(((2.0f * sy) / h) - 1) / proj._22;
-    v.z =  1.0f;
+    Gx::Vec3 a;
+    D3DXVec3Unproject(&a, &p, &vp, &proj, &view, &id);
 
-    Matrix m = view.inverse();
+    p.z = 1.0f;
 
-    Ray ray;
+    Gx::Vec3 b;
+    D3DXVec3Unproject(&b, &p, &vp, &proj, &view, &id);
 
-    ray.direction.x = v.x*m._11 + v.y*m._21 + v.z*m._31;
-    ray.direction.y = v.x*m._12 + v.y*m._22 + v.z*m._32;
-    ray.direction.z = v.x*m._13 + v.y*m._23 + v.z*m._33;
-    ray.position.x = m._41;
-    ray.position.y = m._42;
-    ray.position.z = m._43;
-
-    ray.direction = ray.direction.normalized();
-
-    return ray;
+    return Gx::Ray(a, Gx::Vec3(b - a).normalized());
 }
 
 Gx::Ray Gx::Ray::transform(const Ray &ray, const Matrix &transform)

@@ -8,6 +8,8 @@
 namespace Gx
 {
 
+class SizeF;
+
 class Ray
 {
 public:
@@ -19,7 +21,7 @@ public:
     pcx::optional<float> intersectsTriFacing(const Vec3 &a, const Vec3 &b, const Vec3 &c, const Vec3 &normal) const;
     pcx::optional<float> intersectsSphere(const Vec3 &origin, float radius) const;
 
-    static Ray compute(const Vec2 &position, const Vec2 &size, const Matrix &view, const Matrix &proj);
+    static Ray compute(const Vec2 &position, const SizeF &size, const Matrix &view, const Matrix &proj);
     static Ray transform(const Ray &ray, const Matrix &transform);
     
     Vec3 position;

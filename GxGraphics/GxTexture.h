@@ -1,7 +1,7 @@
 #ifndef GX_TEXTURE_H
 #define GX_TEXTURE_H
 
-#include <GxCore/GxSize.h>
+#include <GxMaths/GxSize.h>
 
 #include <GxGraphics/GxGraphicsTypes.h>
 #include <GxGraphics/GxGraphicsResource.h>

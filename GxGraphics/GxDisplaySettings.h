@@ -3,7 +3,7 @@
 
 #include <pcx/flags.h>
 
-#include <GxCore/GxSize.h>
+#include <GxMaths/GxSize.h>
 
 namespace Gx
 {

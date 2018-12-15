@@ -52,7 +52,7 @@ HEADERS += \
     GxCore/GxDebug.h \
     GxCore/GxTimer.h \
     GxCore/GxWindows.h \
-    GxCore/GxSize.h \
+    GxMaths/GxSize.h \
     GxGraphics/GxDisplaySettings.h \
     GxGraphics/GxGraphicsResource.h \
     GxGraphics/GxVertexDeclaration.h \
@@ -74,5 +74,6 @@ HEADERS += \
     GxMaths/GxQuaternion.h \
     GxMaths/GxRay.h \
     GxGraphics/GxBufferStream.h \
-    GxMaths/GxTransform.h
+    GxMaths/GxTransform.h \
+    GxMaths/GxRange.h
 

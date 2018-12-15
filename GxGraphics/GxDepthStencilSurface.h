@@ -1,7 +1,7 @@
 #ifndef GX__DEPTHSTENCILSURFACE_H
 #define GX__DEPTHSTENCILSURFACE_H
 
-#include <GxCore/GxSize.h>
+#include <GxMaths/GxSize.h>
 
 #include <GxGraphics/GxGraphicsResource.h>
 

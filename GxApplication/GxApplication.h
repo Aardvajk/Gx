@@ -2,7 +2,8 @@
 #define GX_APPLICATION_H
 
 #include <GxCore/GxWindows.h>
-#include <GxCore/GxSize.h>
+
+#include <GxMaths/GxSize.h>
 
 #include <pcx/non_copyable.h>
 
