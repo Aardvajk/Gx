@@ -137,6 +137,26 @@ void Gx::GraphicsDevice::setPointSize(float size)
     device->SetRenderState(D3DRS_POINTSIZE, *((DWORD*)(&size)));
 }
 
+void Gx::GraphicsDevice::setAlphaBlend(AlphaBlend type)
+{
+    if(type == AlphaBlend::Normal)
+    {
+        device->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
+        device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+        device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+    }
+    else if(type == AlphaBlend::Invert)
+    {
+        device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+        device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_INVDESTCOLOR);
+        device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ZERO);
+    }
+    else
+    {
+        device->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
+    }
+}
+
 bool Gx::GraphicsDevice::isOk() const
 {
     return device->TestCooperativeLevel() == D3D_OK;
@@ -151,3 +171,4 @@ void Gx::GraphicsDevice::clearCache()
 {
     cache.get<Cache>() = { };
 }
+

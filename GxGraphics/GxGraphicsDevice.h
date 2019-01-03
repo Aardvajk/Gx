@@ -47,6 +47,10 @@ public:
     void setZBufferEnable(bool state);
     void setPointSize(float size);
 
+    enum class AlphaBlend { Off, Normal, Invert };
+
+    void setAlphaBlend(AlphaBlend type);
+
     bool isOk() const;
     bool isReadyToReset() const;
 
