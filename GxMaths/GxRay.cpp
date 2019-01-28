@@ -2,6 +2,7 @@
 
 #include "GxMaths/GxSize.h"
 #include "GxMaths/GxMatrix.h"
+#include "GxMaths/GxViewport.h"
 
 pcx::optional<float> Gx::Ray::intersectPlane(const Vec3 &p, const Vec3 &n) const
 {
@@ -67,18 +68,14 @@ pcx::optional<float> Gx::Ray::intersectsSphere(const Vec3 &origin, float radius)
 
 Gx::Ray Gx::Ray::compute(const Vec2 &pos, const SizeF &size, const Matrix &view, const Matrix &proj)
 {
-    D3DVIEWPORT9 vp = { 0, 0, static_cast<DWORD>(size.width), static_cast<DWORD>(size.height), 0, 1 };
+    Gx::Viewport vp(size);
     auto id = Gx::Matrix::identity();
 
     Gx::Vec3 p(pos.x, pos.y, 0);
-
-    Gx::Vec3 a;
-    D3DXVec3Unproject(&a, &p, &vp, &proj, &view, &id);
+    Gx::Vec3 a = p.unprojected(vp, id, view, proj);
 
     p.z = 1.0f;
-
-    Gx::Vec3 b;
-    D3DXVec3Unproject(&b, &p, &vp, &proj, &view, &id);
+    Gx::Vec3 b = p.unprojected(vp, id, view, proj);
 
     return Gx::Ray(a, Gx::Vec3(b - a).normalized());
 }

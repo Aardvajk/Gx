@@ -7,6 +7,7 @@ namespace Gx
 {
 
 class Matrix;
+class Viewport;
 
 class Vec2 : public D3DXVECTOR2
 {
@@ -44,6 +45,7 @@ public:
     Vec3 transformedNormal(const Matrix &v) const;
 
     Vec3 interpolated(const Vec3 &v, float t) const { return (*this * (1.0f - t)) + (v * t); }
+    Vec3 unprojected(const Viewport &vp, const Matrix &world, const Matrix &view, const Matrix &proj) const;
 
     float dot(const Vec3 &v) const { return D3DXVec3Dot(this, &v); }
 

@@ -44,7 +44,8 @@ SOURCES += \
     GxMaths/GxVector.cpp \
     GxMaths/GxQuaternion.cpp \
     GxMaths/GxRay.cpp \
-    GxMaths/GxTransform.cpp
+    GxMaths/GxTransform.cpp \
+    GxMaths/GxViewport.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -75,5 +76,6 @@ HEADERS += \
     GxMaths/GxRay.h \
     GxGraphics/GxBufferStream.h \
     GxMaths/GxTransform.h \
-    GxMaths/GxRange.h
+    GxMaths/GxRange.h \
+    GxMaths/GxViewport.h
 
