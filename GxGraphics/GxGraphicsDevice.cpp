@@ -132,6 +132,11 @@ void Gx::GraphicsDevice::setZBufferEnable(bool state)
     device->SetRenderState(D3DRS_ZENABLE, state);
 }
 
+void Gx::GraphicsDevice::setZWriteEnable(bool state)
+{
+    device->SetRenderState(D3DRS_ZWRITEENABLE, state);
+}
+
 void Gx::GraphicsDevice::setPointSize(float size)
 {
     device->SetRenderState(D3DRS_POINTSIZE, *((DWORD*)(&size)));

@@ -45,6 +45,7 @@ public:
     void renderPointList(const VertexBuffer &buffer, unsigned count);
 
     void setZBufferEnable(bool state);
+    void setZWriteEnable(bool state);
     void setPointSize(float size);
 
     enum class AlphaBlend { Off, Normal, Invert };
