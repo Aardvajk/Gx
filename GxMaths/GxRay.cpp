@@ -4,6 +4,8 @@
 #include "GxMaths/GxMatrix.h"
 #include "GxMaths/GxViewport.h"
 
+#include <cmath>
+
 pcx::optional<float> Gx::Ray::intersectPlane(const Vec3 &p, const Vec3 &n) const
 {
     float denom = n.dot(direction);
@@ -60,7 +62,10 @@ pcx::optional<float> Gx::Ray::intersectsSphere(const Vec3 &origin, float radius)
         return { };
     }
 
-    if(i1 < 0) i1 = 0;
+    if(i1 < 0)
+    {
+        i1 = 0;
+    }
 
     return i1 < i2 ? i1 : i2;
 }
