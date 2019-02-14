@@ -18,6 +18,8 @@ public:
     void show();
     bool loop();
 
+    void close();
+
     HWND hwnd() const { return hw; }
 
 private:

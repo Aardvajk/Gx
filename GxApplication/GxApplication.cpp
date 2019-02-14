@@ -78,3 +78,9 @@ bool Gx::Application::loop()
 
     return msg.message != WM_QUIT;
 }
+
+void Gx::Application::close()
+{
+    PostMessage(hw, WM_CLOSE, 0, 0);
+}
+
