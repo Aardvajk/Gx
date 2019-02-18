@@ -14,8 +14,7 @@ class VertexBuffer : public GraphicsResource
 public:
     struct Desc
     {
-        std::uint32_t elements;
-        std::uint16_t stride;
+        std::uint32_t bytes;
         Graphics::Usage::Flags usage;
         Graphics::Pool pool;
     };

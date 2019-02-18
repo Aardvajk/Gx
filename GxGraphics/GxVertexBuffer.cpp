@@ -22,7 +22,7 @@ void Gx::VertexBuffer::reset(Gx::GraphicsDevice &device)
 {
     release();
 
-    HRESULT r = device.device->CreateVertexBuffer(d.elements * d.stride, gx_detail_graphics_usage(d.usage), 0, gx_detail_graphics_pool(d.pool), &ptr, 0);    
+    HRESULT r = device.device->CreateVertexBuffer(d.bytes, gx_detail_graphics_usage(d.usage), 0, gx_detail_graphics_pool(d.pool), &ptr, 0);
     if(FAILED(r))
     {
         release();
@@ -58,5 +58,5 @@ void Gx::VertexBuffer::unlock()
 
 unsigned Gx::VertexBuffer::bytes() const
 {
-    return d.elements * d.stride;
+    return d.bytes;
 }
