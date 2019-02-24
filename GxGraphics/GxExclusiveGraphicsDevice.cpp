@@ -71,8 +71,7 @@ void resetDevice(IDirect3D9 *&direct3d, IDirect3DDevice9 *&device, HWND hw, cons
 {
     D3DPRESENT_PARAMETERS params = createParams(hw, settings);
 
-    HRESULT r = device->Reset(&params);
-    if(FAILED(r))
+    if(FAILED(device->Reset(&params)))
     {
         gx_detail_com_ptr_release(device);
         gx_detail_com_ptr_release(direct3d);
@@ -95,8 +94,7 @@ Gx::ExclusiveGraphicsDevice::ExclusiveGraphicsDevice(HWND hwnd, const DisplaySet
 
     D3DCAPS9 caps;
     
-    HRESULT r = direct3d->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &caps);
-    if(FAILED(r))
+    if(FAILED(direct3d->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &caps)))
     {
         gx_detail_com_ptr_release(direct3d);
         throw std::runtime_error("unable to get device caps");
@@ -104,8 +102,7 @@ Gx::ExclusiveGraphicsDevice::ExclusiveGraphicsDevice(HWND hwnd, const DisplaySet
 
     D3DPRESENT_PARAMETERS params = createParams(hw, currentSettings);
 
-    r = direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hw, vertexProcessing(caps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT), &params, &(device));
-    if(FAILED(r))
+    if(FAILED(direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hw, vertexProcessing(caps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT), &params, &(device))))
     {
         gx_detail_com_ptr_release(device);
         gx_detail_com_ptr_release(direct3d);

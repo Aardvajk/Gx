@@ -1,5 +1,5 @@
-#ifndef GX__CUBEMAP_H
-#define GX__CUBEMAP_H
+#ifndef GX_CUBEMAP_H
+#define GX_CUBEMAP_H
 
 #include <GxGraphics/GxGraphicsTypes.h>
 #include <GxGraphics/GxGraphicsResource.h>
@@ -50,4 +50,4 @@ private:
 
 }
 
-#endif // GX__CUBEMAP_H
+#endif // GX_CUBEMAP_H

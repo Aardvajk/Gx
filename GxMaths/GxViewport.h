@@ -1,5 +1,5 @@
-#ifndef GXVIEWPORT_H
-#define GXVIEWPORT_H
+#ifndef GX_VIEWPORT_H
+#define GX_VIEWPORT_H
 
 #include <d3d9.h>
 
@@ -18,4 +18,4 @@ public:
 
 }
 
-#endif // GXVIEWPORT_H
+#endif // GX_VIEWPORT_H

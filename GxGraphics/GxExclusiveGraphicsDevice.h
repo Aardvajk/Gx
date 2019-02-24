@@ -10,7 +10,7 @@ namespace Gx
 class ExclusiveGraphicsDevice : public GraphicsDevice
 {
 public:
-    explicit ExclusiveGraphicsDevice(HWND hwnd, const DisplaySettings &settings);
+    ExclusiveGraphicsDevice(HWND hwnd, const DisplaySettings &settings);
     ~ExclusiveGraphicsDevice();
 
     void reset(const DisplaySettings &settings);

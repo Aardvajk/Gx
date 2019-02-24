@@ -11,18 +11,21 @@ QMAKE_LFLAGS += -Wl,--exclude-all-symbols
 
 QMAKE_CXXFLAGS_WARN_ON += -Wno-unknown-pragmas -Wno-comment -Wno-maybe-uninitialized -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-attributes -Wno-strict-aliasing
 
-INCLUDEPATH += "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include" \
-               "C:/Projects/pcx"
+INCLUDEPATH += "C:/Projects/pcx" \
+               "C:/lib/Bullet/src"
 
 PRE_TARGETDEPS += "C:/Projects/pcx/build-pcx/release/libpcx.a"
 
 LIBS += "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x64/d3d9.lib" \
         "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x64/d3dx9.lib" \
         "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x64/dxerr.lib" \
+        "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x64/dsound.lib" \
+        "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x64/dxguid.lib" \
         "C:/mingw64/x86_64-w64-mingw32.shared/lib/libuser32.a" \
         "C:/mingw64/x86_64-w64-mingw32.shared/lib/libgdi32.a" \
         "C:/mingw64/x86_64-w64-mingw32.shared/lib/libpsapi.a" \
-        "C:/Projects/pcx/build-pcx/release/libpcx.a"
+        "C:/Projects/pcx/build-pcx/release/libpcx.a" \
+        "C:/lib/Bullet/build-Bullet/release/libBullet.a"
 
 SOURCES += \
     GxApplication/GxApplication.cpp \
@@ -45,7 +48,19 @@ SOURCES += \
     GxMaths/GxQuaternion.cpp \
     GxMaths/GxRay.cpp \
     GxMaths/GxTransform.cpp \
-    GxMaths/GxViewport.cpp
+    GxMaths/GxViewport.cpp \
+    GxAudio/GxAudioBuffer.cpp \
+    GxAudio/GxAudioDevice.cpp \
+    internal/gx_audio_common.cpp \
+    GxPhysics/GxPhysicsModel.cpp \
+    internal/gx_physics_gjk.cpp \
+    GxPhysics/GxPhysicsTypes.cpp \
+    internal/gx_physics_common.cpp \
+    GxPhysics/GxShapes/GxShape.cpp \
+    GxPhysics/GxShapes/GxCapsuleShape.cpp \
+    GxPhysics/GxShapes/GxSphereShape.cpp \
+    GxPhysics/GxShapes/GxPolyhedronShape.cpp \
+    GxPhysics/GxBody.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -77,5 +92,18 @@ HEADERS += \
     GxGraphics/GxBufferStream.h \
     GxMaths/GxTransform.h \
     GxMaths/GxRange.h \
-    GxMaths/GxViewport.h
+    GxMaths/GxViewport.h \
+    GxAudio/GxAudioBuffer.h \
+    GxAudio/GxAudioDevice.h \
+    GxAudio/GxAudioTypes.h \
+    internal/gx_audio_common.h \
+    GxPhysics/GxPhysicsModel.h \
+    internal/gx_physics_gjk.h \
+    GxPhysics/GxPhysicsTypes.h \
+    internal/gx_physics_common.h \
+    GxPhysics/GxShapes/GxShape.h \
+    GxPhysics/GxShapes/GxCapsuleShape.h \
+    GxPhysics/GxShapes/GxSphereShape.h \
+    GxPhysics/GxShapes/GxPolyhedronShape.h \
+    GxPhysics/GxBody.h
 

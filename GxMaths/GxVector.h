@@ -1,5 +1,5 @@
-#ifndef GXVECTOR_H
-#define GXVECTOR_H
+#ifndef GX_VECTOR_H
+#define GX_VECTOR_H
 
 #include <d3dx9.h>
 
@@ -75,4 +75,4 @@ public:
 
 }
 
-#endif // GXVECTOR_H
+#endif // GX_VECTOR_H
