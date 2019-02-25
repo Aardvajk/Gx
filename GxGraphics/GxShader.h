@@ -28,6 +28,8 @@ public:
 
     virtual bool isDeviceBound() const override;
 
+    void reset(GraphicsDevice &device, std::vector<char> data);
+
     void setFloat(GraphicsDevice &device, const std::string &name, float value);
     void setVector(GraphicsDevice &device, const std::string &name, const Vec3 &value);
     void setVector(GraphicsDevice &device, const std::string &name, const Vec4 &value);

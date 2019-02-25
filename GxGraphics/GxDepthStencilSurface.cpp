@@ -56,6 +56,12 @@ bool Gx::DepthStencilSurface::isDeviceBound() const
     return true;
 }
 
+void Gx::DepthStencilSurface::reset(GraphicsDevice &device, const Desc &desc)
+{
+    d = desc;
+    reset(device);
+}
+
 Gx::Size Gx::DepthStencilSurface::size() const
 {
     D3DSURFACE_DESC desc;

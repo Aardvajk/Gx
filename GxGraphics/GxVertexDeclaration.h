@@ -29,6 +29,8 @@ public:
     virtual void release() override;
 
     virtual bool isDeviceBound() const override;
+
+    void reset(GraphicsDevice &device, std::vector<VertexElement> data);
     
     std::uint16_t stride() const;
 

@@ -39,6 +39,8 @@ public:
     virtual void release() override;
     virtual bool isDeviceBound() const override;
 
+    void reset(GraphicsDevice &device, const Desc &desc);
+
     unsigned size() const;
 
 private:

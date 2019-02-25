@@ -40,6 +40,12 @@ bool Gx::CubeMap::isDeviceBound() const
     return d.pool != Graphics::Pool::Managed;
 }
 
+void Gx::CubeMap::reset(GraphicsDevice &device, const Desc &desc)
+{
+    d = desc;
+    reset(device);
+}
+
 unsigned Gx::CubeMap::size() const
 {
     return d.size;

@@ -92,6 +92,12 @@ bool Gx::VertexDeclaration::isDeviceBound() const
     return false;
 }
 
+void Gx::VertexDeclaration::reset(GraphicsDevice &device, std::vector<VertexElement> data)
+{
+    elements = std::move(data);
+    reset(device);
+}
+
 uint16_t Gx::VertexDeclaration::stride() const
 {
     return str;

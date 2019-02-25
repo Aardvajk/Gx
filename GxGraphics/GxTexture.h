@@ -31,6 +31,8 @@ public:
 
     virtual bool isDeviceBound() const override;
 
+    void reset(GraphicsDevice &device, const Desc &desc);
+
     Size size() const;
 
 private:

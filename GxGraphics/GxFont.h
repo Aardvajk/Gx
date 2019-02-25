@@ -40,6 +40,8 @@ public:
 
     virtual bool isDeviceBound() const override;
 
+    void reset(GraphicsDevice &device, const Desc &desc);
+
     void draw(int x, int y, const std::string &text, const Color &color);
     
 private:

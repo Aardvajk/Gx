@@ -40,6 +40,12 @@ bool Gx::VertexBuffer::isDeviceBound() const
     return d.pool != Graphics::Pool::Managed;
 }
 
+void Gx::VertexBuffer::reset(GraphicsDevice &device, const Desc &desc)
+{
+    d = desc;
+    reset(device);
+}
+
 void *Gx::VertexBuffer::lock(Graphics::Lock::Flags flags)
 {
     void *data;

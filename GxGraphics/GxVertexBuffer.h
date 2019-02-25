@@ -27,6 +27,8 @@ public:
 
     virtual bool isDeviceBound() const override;
 
+    void reset(GraphicsDevice &device, const Desc &desc);
+
     void *lock(Graphics::Lock::Flags flags);
     void unlock();
 

@@ -40,6 +40,12 @@ bool Gx::Texture::isDeviceBound() const
     return d.pool != Graphics::Pool::Managed;
 }
 
+void Gx::Texture::reset(GraphicsDevice &device, const Desc &desc)
+{
+    d = desc;
+    reset(device);
+}
+
 Gx::Size Gx::Texture::size() const
 {
     D3DSURFACE_DESC desc;

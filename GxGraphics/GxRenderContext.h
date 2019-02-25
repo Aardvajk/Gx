@@ -3,6 +3,8 @@
 
 #include <GxGraphics/GxCubeMap.h>
 
+#include <pcx/non_copyable.h>
+
 class IDirect3DSurface9;
 
 namespace Gx
@@ -12,7 +14,7 @@ class GraphicsDevice;
 class Texture;
 class DepthStencilSurface;
 
-class RenderContext
+class RenderContext : public pcx::non_copyable
 {
 public:
     RenderContext(GraphicsDevice &device);

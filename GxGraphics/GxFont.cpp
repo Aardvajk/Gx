@@ -42,6 +42,12 @@ bool Gx::Font::isDeviceBound() const
     return true;
 }
 
+void Gx::Font::reset(GraphicsDevice &device, const Desc &desc)
+{
+    d = desc;
+    reset(device);
+}
+
 void Gx::Font::draw(int x, int y, const std::string &text, const Color &color)
 {
     RECT rect;
