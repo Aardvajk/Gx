@@ -23,6 +23,7 @@ public:
         Graphics::Pool pool;
     };
 
+    Texture();
     explicit Texture(GraphicsDevice &device, const Desc &desc);
     virtual ~Texture() override;
     

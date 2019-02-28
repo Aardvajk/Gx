@@ -26,6 +26,8 @@ public:
     std::vector<Vec3> vertices() const;
     std::vector<Face> faces() const;
 
+    static PolyhedronShape *cuboid(const Vec3 &dims);
+
 private:
     pcx::scoped_ptr<btConvexHullShape> shape;
 

@@ -28,6 +28,7 @@ public:
         Format format;
     };
 
+    DepthStencilSurface();
     explicit DepthStencilSurface(GraphicsDevice &device, const Desc &desc);
     virtual ~DepthStencilSurface() override;
     

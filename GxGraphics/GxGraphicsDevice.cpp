@@ -5,8 +5,6 @@
 #include "GxGraphics/GxVertexBuffer.h"
 #include "GxGraphics/GxTexture.h"
 
-#include "GxMaths/GxColor.h"
-
 #include <memory>
 #include <d3d9.h>
 
@@ -105,26 +103,35 @@ void Gx::GraphicsDevice::clear(const Gx::Color &color, float z)
 
 void Gx::GraphicsDevice::renderTriangleList(const VertexBuffer &buffer, unsigned count)
 {
-    device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
-    device->SetIndices(0);
+    if(count)
+    {
+        device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
+        device->SetIndices(0);
 
-    device->DrawPrimitive(D3DPT_TRIANGLELIST, 0, count);
+        device->DrawPrimitive(D3DPT_TRIANGLELIST, 0, count);
+    }
 }
 
 void Gx::GraphicsDevice::renderLineList(const VertexBuffer &buffer, unsigned count)
 {
-    device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
-    device->SetIndices(0);
+    if(count)
+    {
+        device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
+        device->SetIndices(0);
 
-    device->DrawPrimitive(D3DPT_LINELIST, 0, count);
+        device->DrawPrimitive(D3DPT_LINELIST, 0, count);
+    }
 }
 
 void Gx::GraphicsDevice::renderPointList(const VertexBuffer &buffer, unsigned count)
 {
-    device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
-    device->SetIndices(0);
+    if(count)
+    {
+        device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
+        device->SetIndices(0);
 
-    device->DrawPrimitive(D3DPT_POINTLIST, 0, count);
+        device->DrawPrimitive(D3DPT_POINTLIST, 0, count);
+    }
 }
 
 void Gx::GraphicsDevice::setZBufferEnable(bool state)

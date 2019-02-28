@@ -3,6 +3,8 @@
 
 #include <GxCore/GxWindows.h>
 
+#include <GxMaths/GxColor.h>
+
 #include <pcx/non_copyable.h>
 #include <pcx/aligned_store.h>
 
@@ -18,7 +20,6 @@ class AbstractShader;
 class VertexShader;
 class PixelShader;
 class Texture;
-class Color;
 
 class GraphicsDevice : public pcx::non_copyable
 {

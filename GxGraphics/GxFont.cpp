@@ -9,6 +9,10 @@
 #include <stdexcept>
 #include <d3dx9.h>
 
+Gx::Font::Font() : ptr(nullptr)
+{
+}
+
 Gx::Font::Font(GraphicsDevice &device, const Desc &desc) : d(desc), ptr(nullptr)
 {
     reset(device);

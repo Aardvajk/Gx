@@ -31,6 +31,7 @@ public:
         Gx::Graphics::Pool pool;
     };
 
+    CubeMap();
     explicit CubeMap(GraphicsDevice &device, const Desc &desc);
     virtual ~CubeMap() override;
     

@@ -8,6 +8,10 @@
 #include <stdexcept>
 #include <d3dx9.h>
 
+Gx::Texture::Texture() : ptr(nullptr)
+{
+}
+
 Gx::Texture::Texture(GraphicsDevice &device, const Desc &desc) : d(desc), ptr(nullptr)
 {
     reset(device);

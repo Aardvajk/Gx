@@ -19,6 +19,7 @@ public:
         Graphics::Pool pool;
     };
     
+    VertexBuffer();
     explicit VertexBuffer(GraphicsDevice &device, const Desc &desc);
     virtual ~VertexBuffer() override;
 
@@ -32,7 +33,7 @@ public:
     void *lock(Graphics::Lock::Flags flags);
     void unlock();
 
-    unsigned bytes() const;
+    unsigned size() const;
 
 private:
     friend class GraphicsDevice;

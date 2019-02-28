@@ -24,6 +24,10 @@ D3DFORMAT format(Gx::DepthStencilSurface::Format value)
 
 }
 
+Gx::DepthStencilSurface::DepthStencilSurface() : ptr(nullptr)
+{
+}
+
 Gx::DepthStencilSurface::DepthStencilSurface(GraphicsDevice &device, const Desc &desc) : d(desc), ptr(nullptr)
 {
     reset(device);

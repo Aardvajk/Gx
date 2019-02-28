@@ -42,6 +42,7 @@ protected:
         Pixel
     };
 
+    AbstractShader(Type type);
     AbstractShader(GraphicsDevice &device, Type type, std::vector<char> buffer);
 
 private:

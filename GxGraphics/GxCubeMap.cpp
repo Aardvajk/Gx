@@ -8,6 +8,10 @@
 #include <stdexcept>
 #include <d3dx9.h>
 
+Gx::CubeMap::CubeMap() : ptr(nullptr)
+{
+}
+
 Gx::CubeMap::CubeMap(GraphicsDevice &device, const Desc &desc) : d(desc), ptr(nullptr)
 {
     reset(device);

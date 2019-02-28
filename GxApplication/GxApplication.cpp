@@ -33,6 +33,14 @@ LRESULT CALLBACK wndProc(HWND hw, UINT msg, WPARAM wParam, LPARAM lParam)
         return 0;
     }
 
+    if(auto app = reinterpret_cast<Gx::Application*>(GetWindowLongPtr(hw, GWLP_USERDATA)))
+    {
+        switch(msg)
+        {
+            default: break;
+        }
+    }
+
     return DefWindowProc(hw, msg, wParam, lParam);
 }
 
@@ -54,12 +62,14 @@ Gx::Application::Application(const Size &size) : hw(NULL)
     }
 
     hw = CreateWindow("WINDOWCLASS", "Game", WS_DLGFRAME | WS_SYSMENU, 100, 100, 0, 0, NULL, NULL, wc.hInstance, NULL);
-    setClientSize(hw, size.width, size.height);
 
     if(!hw)
     {
         throw std::runtime_error("unable to create window");
     }
+
+    setClientSize(hw, size.width, size.height);
+    SetWindowLongPtr(hw, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 }
 
 void Gx::Application::show()
