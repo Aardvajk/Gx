@@ -20,7 +20,7 @@ public:
 
     void close();
 
-    HWND hwnd() const { return hw; }
+    HWND hwnd() const;
 
 private:
     HWND hw;

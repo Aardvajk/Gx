@@ -7,6 +7,8 @@
 
 #include "internal/gx_physics_common.h"
 #include "internal/gx_physics_gjk.h"
+#include "internal/gx_physics_broadphase.h"
+#include "internal/gx_physics_ray.h"
 
 #include <btBulletDynamicsCommon.h>
 
@@ -51,6 +53,27 @@ Gx::PhysicsModel::PhysicsModel()
 
 Gx::PhysicsModel::~PhysicsModel()
 {
+}
+
+Gx::BroadphaseResult Gx::PhysicsModel::broadphase(const Aabb &aabb)
+{
+    BroadphaseResult r;
+
+    gx_physics_broadphase callback(r);
+    cache.get<Cache>().world->getBroadphase()->aabbTest(gx_detail_physics_fromVec3(aabb.min), gx_detail_physics_fromVec3(aabb.max), callback);
+
+    return r;
+}
+
+pcx::optional<Gx::ConvexResult> Gx::PhysicsModel::convexIntersection(const Shape &shape1, const Matrix &transform1, const Shape &shape2, const Matrix &transform2)
+{
+    return cache.get<Cache>().gjk->intersection(shape1.convexShape, gx_detail_physics_fromMatrix(transform1), shape2.convexShape, gx_detail_physics_fromMatrix(transform2));
+}
+
+pcx::optional<Gx::RayResult> Gx::PhysicsModel::rayCast(const Ray &ray, float max)
+{
+    btCollisionWorld::ClosestRayResultCallback callback(gx_detail_physics_fromVec3(ray.position), gx_detail_physics_fromVec3(ray.position + (ray.direction * max)));
+    return gx_physics_raycast(cache.get<Cache>().world.get(), ray, max, callback);
 }
 
 Gx::Body *Gx::PhysicsModel::createBody(Shape *shape, const Matrix &transform, float mass)

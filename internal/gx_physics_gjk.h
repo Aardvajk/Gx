@@ -17,7 +17,7 @@ class gx_physics_gjk
 public:
     gx_physics_gjk() = default;
 
-    pcx::optional<Gx::Physics::ConvexResult> intersection(const btConvexShape *shape1, const btTransform &transform1, const btConvexShape *shape2, const btTransform &transform2);
+    pcx::optional<Gx::ConvexResult> intersection(const btConvexShape *shape1, const btTransform &transform1, const btConvexShape *shape2, const btTransform &transform2);
 
 private:
     btVoronoiSimplexSolver voronoiSolver;

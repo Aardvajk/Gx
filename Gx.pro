@@ -60,7 +60,10 @@ SOURCES += \
     GxPhysics/GxShapes/GxCapsuleShape.cpp \
     GxPhysics/GxShapes/GxSphereShape.cpp \
     GxPhysics/GxShapes/GxPolyhedronShape.cpp \
-    GxPhysics/GxBody.cpp
+    GxPhysics/GxBody.cpp \
+    GxMaths/GxAabb.cpp \
+    internal/gx_physics_broadphase.cpp \
+    internal/gx_physics_ray.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -105,5 +108,8 @@ HEADERS += \
     GxPhysics/GxShapes/GxCapsuleShape.h \
     GxPhysics/GxShapes/GxSphereShape.h \
     GxPhysics/GxShapes/GxPolyhedronShape.h \
-    GxPhysics/GxBody.h
+    GxPhysics/GxBody.h \
+    GxMaths/GxAabb.h \
+    internal/gx_physics_broadphase.h \
+    internal/gx_physics_ray.h
 

@@ -94,3 +94,7 @@ void Gx::Application::close()
     PostMessage(hw, WM_CLOSE, 0, 0);
 }
 
+HWND Gx::Application::hwnd() const
+{
+    return hw;
+}

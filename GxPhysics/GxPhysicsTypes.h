@@ -3,19 +3,28 @@
 
 #include <GxMaths/GxVector.h>
 
+#include <vector>
+
 namespace Gx
 {
 
-namespace Physics
-{
+class Body;
+
+using BroadphaseResult = std::vector<Body*>;
 
 struct ConvexResult
 {
     Vec3 point;
-    Vec3 msv;
+    Vec3 separatingVector;
 };
 
-}
+struct RayResult
+{
+    Body *body;
+    Vec3 point;
+    Vec3 normal;
+    float distance;
+};
 
 }
 
