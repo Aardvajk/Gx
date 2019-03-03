@@ -19,5 +19,5 @@ float Gx::CapsuleShape::radius() const
 
 float Gx::CapsuleShape::height() const
 {
-    return shape->getHalfHeight() * 2;
+    return (shape->getHalfHeight() * 2) + (shape->getRadius() * 2);
 }

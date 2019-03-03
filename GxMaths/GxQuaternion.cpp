@@ -25,7 +25,40 @@ Gx::Vec2 Gx::Quaternion::angle() const
     return Vec2(tx, ty);
 }
 
-Gx::Quaternion Gx::Quaternion::rotationBetween(const Gx::Vec3 &a, const Gx::Vec3 &b) const
+Gx::Quaternion Gx::Quaternion::interpolated(const Quaternion &v, float t) const
+{
+    Gx::Quaternion q;
+
+    Gx::Quaternion n0;
+    Gx::Quaternion n1;
+
+    D3DXQuaternionNormalize(&n0, this);
+    D3DXQuaternionNormalize(&n1, &v);
+
+    D3DXQuaternionSlerp(&q, &n0, &n1, t);
+
+    D3DXQuaternionNormalize(&q, &q);
+
+    return q;
+}
+
+Gx::Quaternion Gx::Quaternion::identity()
+{
+    Quaternion q;
+    D3DXQuaternionIdentity(&q);
+
+    return q;
+}
+
+Gx::Quaternion Gx::Quaternion::axisRotation(const Vec3 &v)
+{
+    Quaternion q;
+    D3DXQuaternionRotationYawPitchRoll(&q, v.y, v.x, v.z);
+
+    return q;
+}
+
+Gx::Quaternion Gx::Quaternion::rotationBetween(const Gx::Vec3 &a, const Gx::Vec3 &b)
 {
     Quaternion q;
 
@@ -66,39 +99,6 @@ Gx::Quaternion Gx::Quaternion::rotationBetween(const Gx::Vec3 &a, const Gx::Vec3
 
         D3DXQuaternionNormalize(&q, &q);
     }
-
-    return q;
-}
-
-Gx::Quaternion Gx::Quaternion::interpolated(const Quaternion &v, float t) const
-{
-    Gx::Quaternion q;
-
-    Gx::Quaternion n0;
-    Gx::Quaternion n1;
-
-    D3DXQuaternionNormalize(&n0, this);
-    D3DXQuaternionNormalize(&n1, &v);
-
-    D3DXQuaternionSlerp(&q, &n0, &n1, t);
-
-    D3DXQuaternionNormalize(&q, &q);
-
-    return q;
-}
-
-Gx::Quaternion Gx::Quaternion::identity()
-{
-    Quaternion q;
-    D3DXQuaternionIdentity(&q);
-
-    return q;
-}
-
-Gx::Quaternion Gx::Quaternion::axisRotation(const Vec3 &v)
-{
-    Quaternion q;
-    D3DXQuaternionRotationYawPitchRoll(&q, v.y, v.x, v.z);
 
     return q;
 }

@@ -21,11 +21,11 @@ public:
     Matrix matrix() const;
     Vec2 angle() const;
 
-    Quaternion rotationBetween(const Vec3 &a, const Vec3 &b) const;
     Quaternion interpolated(const Quaternion &v, float t) const;
 
     static Quaternion identity();
     static Quaternion axisRotation(const Vec3 &v);
+    static Quaternion rotationBetween(const Vec3 &a, const Vec3 &b);
 };
 
 }
