@@ -1,6 +1,8 @@
 #ifndef GX_QUATERNION_H
 #define GX_QUATERNION_H
 
+#include <GxMaths/GxBlendValue.h>
+
 #include <d3dx9.h>
 
 namespace Gx
@@ -27,6 +29,8 @@ public:
     static Quaternion axisRotation(const Vec3 &v);
     static Quaternion rotationBetween(const Vec3 &a, const Vec3 &b);
 };
+
+using BlendQuaternion = BlendValue<Quaternion>;
 
 }
 

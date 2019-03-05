@@ -111,5 +111,6 @@ HEADERS += \
     GxPhysics/GxBody.h \
     GxMaths/GxAabb.h \
     internal/gx_physics_broadphase.h \
-    internal/gx_physics_ray.h
+    internal/gx_physics_ray.h \
+    GxMaths/GxBlendValue.h
 

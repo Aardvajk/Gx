@@ -22,7 +22,15 @@ public:
 
     HWND hwnd() const;
 
+protected:
+    virtual void activationEvent(bool state);
+    virtual void rawMouseEvent(int x, int y);
+    virtual void keyPressedEvent(int key);
+    virtual void keyReleasedEvent(int key);
+
 private:
+    static LRESULT CALLBACK wndProc(HWND hw, UINT msg, WPARAM wParam, LPARAM lParam);
+
     HWND hw;
 };
 

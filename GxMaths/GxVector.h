@@ -1,6 +1,8 @@
 #ifndef GX_VECTOR_H
 #define GX_VECTOR_H
 
+#include <GxMaths/GxBlendValue.h>
+
 #include <d3dx9.h>
 
 namespace Gx
@@ -30,6 +32,8 @@ public:
     float lengthSq() const;
 };
 
+using BlendVec2 = BlendValue<Vec2>;
+
 class Vec3 : public D3DXVECTOR3
 {
 public:
@@ -57,6 +61,8 @@ public:
     float lengthSq() const;
 };
 
+using BlendVec3 = BlendValue<Vec3>;
+
 class Vec4 : public D3DXVECTOR4
 {
 public:
@@ -76,6 +82,8 @@ public:
     float length() const;
     float lengthSq() const;
 };
+
+using BlendVec4 = BlendValue<Vec4>;
 
 }
 
