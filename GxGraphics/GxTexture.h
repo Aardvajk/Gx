@@ -6,6 +6,8 @@
 #include <GxGraphics/GxGraphicsTypes.h>
 #include <GxGraphics/GxGraphicsResource.h>
 
+#include <string>
+
 class IDirect3DTexture9;
 
 namespace Gx
@@ -24,7 +26,8 @@ public:
     };
 
     Texture();
-    explicit Texture(GraphicsDevice &device, const Desc &desc);
+    Texture(GraphicsDevice &device, const Desc &desc);
+    Texture(GraphicsDevice &device, const std::string &path, const Desc &desc);
     virtual ~Texture() override;
     
     virtual void reset(GraphicsDevice &device) override;

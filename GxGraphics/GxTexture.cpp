@@ -17,6 +17,14 @@ Gx::Texture::Texture(GraphicsDevice &device, const Desc &desc) : d(desc), ptr(nu
     reset(device);
 }
 
+Gx::Texture::Texture(GraphicsDevice &device, const std::string &path, const Desc &desc) : d(desc), ptr(nullptr)
+{
+    if(FAILED(D3DXCreateTextureFromFileEx(device.device, path.c_str(), 0, 0, d.mipLevels, gx_detail_graphics_usage(d.usage), gx_detail_graphics_format(d.format), gx_detail_graphics_pool(d.pool), D3DX_DEFAULT, D3DX_FILTER_LINEAR, 0, 0, 0, &ptr)))
+    {
+        throw std::runtime_error("unable to load texture");
+    }
+}
+
 Gx::Texture::~Texture()
 {
     release();
@@ -26,8 +34,7 @@ void Gx::Texture::reset(Gx::GraphicsDevice &device)
 {
     release();
 
-    HRESULT r = D3DXCreateTexture(device.device, d.size.width, d.size.height, d.mipLevels, gx_detail_graphics_usage(d.usage), gx_detail_graphics_format(d.format), gx_detail_graphics_pool(d.pool), &ptr);
-    if(FAILED(r))
+    if(FAILED(D3DXCreateTexture(device.device, d.size.width, d.size.height, d.mipLevels, gx_detail_graphics_usage(d.usage), gx_detail_graphics_format(d.format), gx_detail_graphics_pool(d.pool), &ptr)))
     {
         release();
         throw std::runtime_error("unable to create texture");
