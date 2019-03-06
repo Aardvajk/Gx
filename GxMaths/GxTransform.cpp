@@ -57,3 +57,7 @@ void Gx::Transform::flatVectors(Vec3 &look, Vec3 &right) const
     right = Vec3(1, 0, 0).transformedNormal(m).normalized();
 }
 
+Gx::Transform Gx::TransformInterpolator::operator()(const Transform &a, const Transform &b, float t) const
+{
+    return Transform(Interpolator<Vec3>()(a.position(), b.position(), t), Interpolator<Quaternion>()(a.rotation(), b.rotation(), t));
+}

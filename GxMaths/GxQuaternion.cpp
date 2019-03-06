@@ -103,3 +103,23 @@ Gx::Quaternion Gx::Quaternion::rotationBetween(const Gx::Vec3 &a, const Gx::Vec3
     return q;
 }
 
+Gx::Quaternion Gx::QuaternionInterpolator::operator()(const Quaternion &a, const Quaternion &b, float t) const
+{
+    if(t <= 0) return a;
+    if(t >= 1) return b;
+
+    Gx::Quaternion q;
+
+    Gx::Quaternion n0;
+    Gx::Quaternion n1;
+
+    D3DXQuaternionNormalize(&n0, &a);
+    D3DXQuaternionNormalize(&n1, &b);
+
+    D3DXQuaternionSlerp(&q, &n0, &n1, t);
+
+    D3DXQuaternionNormalize(&q, &q);
+
+    return q;
+}
+

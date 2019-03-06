@@ -6,9 +6,8 @@
 namespace Gx
 {
 
-template<typename T> class Interpolator
+template<typename T> struct Interpolator
 {
-public:
     T operator()(const T &a, const T &b, float t) const { return (a * (1 - t)) + (b * t); }
 };
 

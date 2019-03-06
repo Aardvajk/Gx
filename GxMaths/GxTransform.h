@@ -3,6 +3,7 @@
 
 #include <GxMaths/GxVector.h>
 #include <GxMaths/GxQuaternion.h>
+#include <GxMaths/GxBlendValue.h>
 
 namespace Gx
 {
@@ -29,6 +30,13 @@ private:
     Vec3 pos;
     Quaternion rot;
 };
+
+struct TransformInterpolator
+{
+    Transform operator()(const Transform &a, const Transform &b, float t) const;
+};
+
+using BlendTransform = BlendValue<Transform, TransformInterpolator>;
 
 }
 
