@@ -14,6 +14,7 @@ class Application : public pcx::non_copyable
 {
 public:
     explicit Application(const Size &size);
+    virtual ~Application() = default;
     
     void show();
     bool loop();
