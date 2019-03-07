@@ -40,6 +40,7 @@ public:
     void setTexture(unsigned stage);
 
     void clear(const Color &color, float z);
+    void clear(float z);
 
     void renderTriangleList(const VertexBuffer &buffer, unsigned count);
     void renderLineList(const VertexBuffer &buffer, unsigned count);

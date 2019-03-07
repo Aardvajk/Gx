@@ -101,6 +101,11 @@ void Gx::GraphicsDevice::clear(const Gx::Color &color, float z)
     device->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, color, z, 0);
 }
 
+void Gx::GraphicsDevice::clear(float z)
+{
+    device->Clear(0, NULL, D3DCLEAR_ZBUFFER, { }, z, 0);
+}
+
 void Gx::GraphicsDevice::renderTriangleList(const VertexBuffer &buffer, unsigned count)
 {
     if(count)
