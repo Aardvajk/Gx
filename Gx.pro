@@ -63,7 +63,8 @@ SOURCES += \
     GxPhysics/GxBody.cpp \
     GxMaths/GxAabb.cpp \
     internal/gx_physics_broadphase.cpp \
-    internal/gx_physics_ray.cpp
+    internal/gx_physics_ray.cpp \
+    GxMaths/GxRect.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -112,5 +113,7 @@ HEADERS += \
     GxMaths/GxAabb.h \
     internal/gx_physics_broadphase.h \
     internal/gx_physics_ray.h \
-    GxMaths/GxBlendValue.h
+    GxMaths/GxBlendValue.h \
+    GxMaths/GxRect.h \
+    GxMaths/GxPoint.h
 

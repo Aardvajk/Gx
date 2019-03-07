@@ -14,7 +14,7 @@ public:
     T height;
 };
 
-class Size : public BasicSize<unsigned>
+class Size : public BasicSize<int>
 {
 public:
     using BasicSize::BasicSize;
@@ -24,6 +24,7 @@ class SizeF : public BasicSize<float>
 {
 public:
     using BasicSize::BasicSize;
+    SizeF(const Size &s) : BasicSize(static_cast<float>(s.width), static_cast<float>(s.height)) { }
 };
 
 }
