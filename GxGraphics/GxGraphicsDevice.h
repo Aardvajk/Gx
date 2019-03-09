@@ -5,6 +5,8 @@
 
 #include <GxMaths/GxColor.h>
 
+#include <GxGraphics/GxTexture.h>
+
 #include <pcx/non_copyable.h>
 #include <pcx/aligned_store.h>
 
@@ -20,6 +22,7 @@ class AbstractShader;
 class VertexShader;
 class PixelShader;
 class Texture;
+class CubeMap;
 
 class GraphicsDevice : public pcx::non_copyable
 {
@@ -27,17 +30,20 @@ public:
     GraphicsDevice();
     virtual ~GraphicsDevice() = default;
 
-    void setVertexDeclaration(const VertexDeclaration &resource);
+    void setVertexDeclaration(const VertexDeclaration &declaration);
     void setVertexDeclaration();
 
-    void setVertexShader(const VertexShader &resource);
+    void setVertexShader(const VertexShader &shader);
     void setVertexShader();
-    
-    void setPixelShader(const PixelShader &resource);
+
+    void setPixelShader(const PixelShader &shader);
     void setPixelShader();
     
     void setTexture(unsigned stage, const Texture &texture);
+    void setTexture(unsigned stage, const CubeMap &cubeMap);
     void setTexture(unsigned stage);
+
+    void setTextureFilter(unsigned stage, Texture::Filter type);
 
     void clear(const Color &color, float z);
     void clear(float z);

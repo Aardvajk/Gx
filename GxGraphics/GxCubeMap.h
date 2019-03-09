@@ -45,6 +45,7 @@ public:
     unsigned size() const;
 
 private:
+    friend class GraphicsDevice;
     friend class RenderContext;
 
     Desc d;

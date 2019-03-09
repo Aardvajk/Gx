@@ -3,7 +3,9 @@
 #include "GxGraphics/GxVertexDeclaration.h"
 #include "GxGraphics/GxShader.h"
 #include "GxGraphics/GxVertexBuffer.h"
-#include "GxGraphics/GxTexture.h"
+#include "GxGraphics/GxCubeMap.h"
+
+#include "internal/gx_graphics_common.h"
 
 #include <memory>
 #include <d3d9.h>
@@ -28,12 +30,12 @@ Gx::GraphicsDevice::GraphicsDevice() : direct3d(nullptr), device(nullptr)
     cache.alloc<Cache>();
 }
 
-void Gx::GraphicsDevice::setVertexDeclaration(const VertexDeclaration &resource)
+void Gx::GraphicsDevice::setVertexDeclaration(const VertexDeclaration &declaratione)
 {
-    if(cache.get<Cache>().vertexDec != &resource)
+    if(cache.get<Cache>().vertexDec != &declaratione)
     {
-        device->SetVertexDeclaration(resource.ptr);
-        cache.get<Cache>().vertexDec = &resource;
+        device->SetVertexDeclaration(declaratione.ptr);
+        cache.get<Cache>().vertexDec = &declaratione;
     }
 }
 
@@ -46,14 +48,14 @@ void Gx::GraphicsDevice::setVertexDeclaration()
     }
 }
 
-void Gx::GraphicsDevice::setVertexShader(const VertexShader &resource)
+void Gx::GraphicsDevice::setVertexShader(const VertexShader &shader)
 {
-    if(cache.get<Cache>().vertexShader != &resource)
+    if(cache.get<Cache>().vertexShader != &shader)
     {
-        device->SetVertexShader(static_cast<IDirect3DVertexShader9*>(resource.ptr));
-        resource.table->SetDefaults(device);
+        device->SetVertexShader(static_cast<IDirect3DVertexShader9*>(shader.ptr));
+        shader.table->SetDefaults(device);
 
-        cache.get<Cache>().vertexShader = &resource;
+        cache.get<Cache>().vertexShader = &shader;
     }
 }
 
@@ -66,14 +68,14 @@ void Gx::GraphicsDevice::setVertexShader()
     }
 }
 
-void Gx::GraphicsDevice::setPixelShader(const PixelShader &resource)
+void Gx::GraphicsDevice::setPixelShader(const PixelShader &shader)
 {
-    if(cache.get<Cache>().pixelShader != &resource)
+    if(cache.get<Cache>().pixelShader != &shader)
     {
-        device->SetPixelShader(static_cast<IDirect3DPixelShader9*>(resource.ptr));
-        resource.table->SetDefaults(device);
+        device->SetPixelShader(static_cast<IDirect3DPixelShader9*>(shader.ptr));
+        shader.table->SetDefaults(device);
 
-        cache.get<Cache>().pixelShader = &resource;
+        cache.get<Cache>().pixelShader = &shader;
     }
 }
 
@@ -91,9 +93,24 @@ void Gx::GraphicsDevice::setTexture(unsigned stage, const Texture &texture)
     device->SetTexture(stage, texture.ptr);
 }
 
+void Gx::GraphicsDevice::setTexture(unsigned stage, const CubeMap &cubeMap)
+{
+    device->SetTexture(stage, cubeMap.ptr);
+}
+
 void Gx::GraphicsDevice::setTexture(unsigned stage)
 {
     device->SetTexture(stage, nullptr);
+}
+
+void Gx::GraphicsDevice::setTextureFilter(unsigned stage, Texture::Filter type)
+{
+    auto filter = gx_detail_texture_filter(type);
+
+    device->SetSamplerState(stage, D3DSAMP_MAGFILTER, filter);
+    device->SetSamplerState(stage, D3DSAMP_MINFILTER, filter);
+
+    device->SetSamplerState(stage, D3DSAMP_MIPFILTER, filter);
 }
 
 void Gx::GraphicsDevice::clear(const Gx::Color &color, float z)

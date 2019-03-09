@@ -25,6 +25,14 @@ public:
         Graphics::Pool pool;
     };
 
+    enum class Filter
+    {
+        None,
+        Point,
+        Linear,
+        Anisotropic
+    };
+
     Texture();
     Texture(GraphicsDevice &device, const Desc &desc);
     Texture(GraphicsDevice &device, const std::string &path, const Desc &desc);

@@ -40,3 +40,16 @@ D3DFORMAT gx_detail_graphics_format(Gx::Graphics::Format v)
         default: return { };
     }
 }
+
+DWORD gx_detail_texture_filter(Gx::Texture::Filter v)
+{
+    switch(v)
+    {
+        case Gx::Texture::Filter::None: return D3DTEXF_NONE;
+        case Gx::Texture::Filter::Point: return D3DTEXF_POINT;
+        case Gx::Texture::Filter::Linear: return D3DTEXF_LINEAR;
+        case Gx::Texture::Filter::Anisotropic: return D3DTEXF_ANISOTROPIC;
+
+        default: return { };
+    }
+}
