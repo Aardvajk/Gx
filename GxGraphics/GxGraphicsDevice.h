@@ -21,7 +21,6 @@ class VertexBuffer;
 class AbstractShader;
 class VertexShader;
 class PixelShader;
-class Texture;
 class CubeMap;
 
 class GraphicsDevice : public pcx::non_copyable
