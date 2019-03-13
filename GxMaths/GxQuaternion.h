@@ -30,12 +30,12 @@ public:
     static Quaternion rotationBetween(const Vec3 &a, const Vec3 &b);
 };
 
-struct QuaternionInterpolator
+template<> struct Interpolator<Quaternion>
 {
     Quaternion operator()(const Quaternion &a, const Quaternion &b, float t) const;
 };
 
-using BlendQuaternion = BlendValue<Quaternion, QuaternionInterpolator>;
+using BlendQuaternion = BlendValue<Quaternion>;
 
 }
 

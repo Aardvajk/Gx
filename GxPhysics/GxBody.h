@@ -2,6 +2,7 @@
 #define GXBODY_H
 
 #include <GxMaths/GxMatrix.h>
+#include <GxMaths/GxTransform.h>
 
 #include <pcx/non_copyable.h>
 #include <pcx/scoped_ptr.h>
@@ -19,7 +20,9 @@ class Body : public pcx::non_copyable
 public:
     virtual ~Body();
 
-    Matrix transform() const;
+    Matrix matrix() const;
+    Transform transform() const;
+
     const Shape &shape() const;
 
 private:

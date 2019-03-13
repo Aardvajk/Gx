@@ -48,3 +48,13 @@ btTransform gx_detail_physics_fromMatrix(const Gx::Matrix &m)
    transform.setOrigin(p);
    return transform;
 }
+
+Gx::Quaternion gx_detail_physics_toQuaternion(const btQuaternion &q)
+{
+    return Gx::Quaternion(q.x(), q.y(), q.z(), q.w());
+}
+
+btQuaternion gx_detail_physics_fromQuaternion(const Gx::Quaternion &q)
+{
+    return btQuaternion(q.x, q.y, q.z, q.w);
+}

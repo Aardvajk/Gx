@@ -31,12 +31,12 @@ private:
     Quaternion rot;
 };
 
-struct TransformInterpolator
+template<> struct Interpolator<Transform>
 {
     Transform operator()(const Transform &a, const Transform &b, float t) const;
 };
 
-using BlendTransform = BlendValue<Transform, TransformInterpolator>;
+using BlendTransform = BlendValue<Transform>;
 
 }
 

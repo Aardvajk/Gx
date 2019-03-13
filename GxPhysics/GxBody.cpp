@@ -12,12 +12,20 @@ Gx::Body::~Body()
     model->releaseBody(this);
 }
 
-Gx::Matrix Gx::Body::transform() const
+Gx::Matrix Gx::Body::matrix() const
 {
     btTransform tr;
     ptr->getMotionState()->getWorldTransform(tr);
 
     return gx_detail_physics_toMatrix(tr);
+}
+
+Gx::Transform Gx::Body::transform() const
+{
+    btTransform tr;
+    ptr->getMotionState()->getWorldTransform(tr);
+
+    return Transform(gx_detail_physics_toVec3(tr.getOrigin()), gx_detail_physics_toQuaternion(tr.getRotation()));
 }
 
 const Gx::Shape &Gx::Body::shape() const

@@ -103,7 +103,7 @@ Gx::Quaternion Gx::Quaternion::rotationBetween(const Gx::Vec3 &a, const Gx::Vec3
     return q;
 }
 
-Gx::Quaternion Gx::QuaternionInterpolator::operator()(const Quaternion &a, const Quaternion &b, float t) const
+Gx::Quaternion Gx::Interpolator<Gx::Quaternion>::operator()(const Quaternion &a, const Quaternion &b, float t) const
 {
     if(t <= 0) return a;
     if(t >= 1) return b;

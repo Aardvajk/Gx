@@ -24,6 +24,7 @@ class SizeF : public BasicSize<float>
 {
 public:
     using BasicSize::BasicSize;
+    SizeF() : BasicSize(float(), float()) { }
     SizeF(const Size &s) : BasicSize(static_cast<float>(s.width), static_cast<float>(s.height)) { }
 };
 
