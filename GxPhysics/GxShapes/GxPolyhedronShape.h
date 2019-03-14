@@ -21,7 +21,6 @@ public:
     using Face = pcx::fixed_array<std::size_t, 4>;
 
     PolyhedronShape(const std::vector<Vec3> &vertices, const std::vector<Face> &faces);
-    explicit PolyhedronShape(const Vec3 &dims);
     virtual ~PolyhedronShape() override;
 
     std::vector<Vec3> vertices() const;
