@@ -64,7 +64,8 @@ SOURCES += \
     GxMaths/GxAabb.cpp \
     internal/gx_physics_broadphase.cpp \
     internal/gx_physics_ray.cpp \
-    GxMaths/GxRect.cpp
+    GxMaths/GxRect.cpp \
+    GxPhysics/GxShapes/GxConeShape.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -115,5 +116,6 @@ HEADERS += \
     internal/gx_physics_ray.h \
     GxMaths/GxBlendValue.h \
     GxMaths/GxRect.h \
-    GxMaths/GxPoint.h
+    GxMaths/GxPoint.h \
+    GxPhysics/GxShapes/GxConeShape.h
 
