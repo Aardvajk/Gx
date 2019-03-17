@@ -123,36 +123,36 @@ void Gx::GraphicsDevice::clear(float z)
     device->Clear(0, NULL, D3DCLEAR_ZBUFFER, { }, z, 0);
 }
 
-void Gx::GraphicsDevice::renderTriangleList(const VertexBuffer &buffer, unsigned count)
+void Gx::GraphicsDevice::renderTriangleList(const VertexBuffer &buffer, unsigned start, unsigned count)
 {
     if(count)
     {
         device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
         device->SetIndices(0);
 
-        device->DrawPrimitive(D3DPT_TRIANGLELIST, 0, count);
+        device->DrawPrimitive(D3DPT_TRIANGLELIST, start, count);
     }
 }
 
-void Gx::GraphicsDevice::renderLineList(const VertexBuffer &buffer, unsigned count)
+void Gx::GraphicsDevice::renderLineList(const VertexBuffer &buffer, unsigned start, unsigned count)
 {
     if(count)
     {
         device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
         device->SetIndices(0);
 
-        device->DrawPrimitive(D3DPT_LINELIST, 0, count);
+        device->DrawPrimitive(D3DPT_LINELIST, start, count);
     }
 }
 
-void Gx::GraphicsDevice::renderPointList(const VertexBuffer &buffer, unsigned count)
+void Gx::GraphicsDevice::renderPointList(const VertexBuffer &buffer, unsigned start, unsigned count)
 {
     if(count)
     {
         device->SetStreamSource(0, reinterpret_cast<IDirect3DVertexBuffer9*>(buffer.ptr), 0, cache.get<Cache>().vertexDec->stride());
         device->SetIndices(0);
 
-        device->DrawPrimitive(D3DPT_POINTLIST, 0, count);
+        device->DrawPrimitive(D3DPT_POINTLIST, start, count);
     }
 }
 

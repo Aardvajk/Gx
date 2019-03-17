@@ -47,9 +47,9 @@ public:
     void clear(const Color &color, float z);
     void clear(float z);
 
-    void renderTriangleList(const VertexBuffer &buffer, unsigned count);
-    void renderLineList(const VertexBuffer &buffer, unsigned count);
-    void renderPointList(const VertexBuffer &buffer, unsigned count);
+    void renderTriangleList(const VertexBuffer &buffer, unsigned start, unsigned count);
+    void renderLineList(const VertexBuffer &buffer, unsigned start, unsigned count);
+    void renderPointList(const VertexBuffer &buffer, unsigned start, unsigned count);
 
     void setZBufferEnable(bool state);
     void setZWriteEnable(bool state);
