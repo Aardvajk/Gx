@@ -56,8 +56,10 @@ public:
     void setPointSize(float size);
 
     enum class AlphaBlend { Off, Normal, Invert };
-
     void setAlphaBlend(AlphaBlend type);
+
+    enum class Cull { Off, Clockwise, CounterClockwise };
+    void setCulling(Cull type);
 
     bool isOk() const;
     bool isReadyToReset() const;

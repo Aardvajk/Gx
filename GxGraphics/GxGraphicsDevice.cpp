@@ -191,6 +191,12 @@ void Gx::GraphicsDevice::setAlphaBlend(AlphaBlend type)
     }
 }
 
+void Gx::GraphicsDevice::setCulling(Cull type)
+{
+    static const DWORD v[] = { D3DCULL_NONE, D3DCULL_CW, D3DCULL_CCW };
+    device->SetRenderState(D3DRS_CULLMODE, v[static_cast<int>(type)]);
+}
+
 bool Gx::GraphicsDevice::isOk() const
 {
     return device->TestCooperativeLevel() == D3D_OK;
