@@ -47,6 +47,29 @@ enum class Format : std::uint8_t
     R32F
 };
 
+enum class AlphaBlend : std::uint8_t
+{
+    Off,
+    Normal,
+    Invert
+};
+
+
+enum class Cull : std::uint8_t
+{
+    Off,
+    Clockwise,
+    CounterClockwise
+};
+
+enum class Filter : std::uint8_t
+{
+    None,
+    Point,
+    Linear,
+    Anisotropic
+};
+
 }
 
 }

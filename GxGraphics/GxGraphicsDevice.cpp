@@ -3,6 +3,7 @@
 #include "GxGraphics/GxVertexDeclaration.h"
 #include "GxGraphics/GxShader.h"
 #include "GxGraphics/GxVertexBuffer.h"
+#include "GxGraphics/GxTexture.h"
 #include "GxGraphics/GxCubeMap.h"
 
 #include "internal/gx_graphics_common.h"
@@ -103,9 +104,9 @@ void Gx::GraphicsDevice::setTexture(unsigned stage)
     device->SetTexture(stage, nullptr);
 }
 
-void Gx::GraphicsDevice::setTextureFilter(unsigned stage, Texture::Filter type)
+void Gx::GraphicsDevice::setTextureFilter(unsigned stage, Graphics::Filter type)
 {
-    auto filter = gx_detail_texture_filter(type);
+    auto filter = gx_detail_graphics_filter(type);
 
     device->SetSamplerState(stage, D3DSAMP_MAGFILTER, filter);
     device->SetSamplerState(stage, D3DSAMP_MINFILTER, filter);
@@ -171,15 +172,15 @@ void Gx::GraphicsDevice::setPointSize(float size)
     device->SetRenderState(D3DRS_POINTSIZE, *((DWORD*)(&size)));
 }
 
-void Gx::GraphicsDevice::setAlphaBlend(AlphaBlend type)
+void Gx::GraphicsDevice::setAlphaBlend(Graphics::AlphaBlend type)
 {
-    if(type == AlphaBlend::Normal)
+    if(type == Graphics::AlphaBlend::Normal)
     {
         device->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
         device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
         device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
     }
-    else if(type == AlphaBlend::Invert)
+    else if(type == Graphics::AlphaBlend::Invert)
     {
         device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
         device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_INVDESTCOLOR);
@@ -191,10 +192,9 @@ void Gx::GraphicsDevice::setAlphaBlend(AlphaBlend type)
     }
 }
 
-void Gx::GraphicsDevice::setCulling(Cull type)
+void Gx::GraphicsDevice::setCulling(Graphics::Cull type)
 {
-    static const DWORD v[] = { D3DCULL_NONE, D3DCULL_CW, D3DCULL_CCW };
-    device->SetRenderState(D3DRS_CULLMODE, v[static_cast<int>(type)]);
+    device->SetRenderState(D3DRS_CULLMODE, gx_detail_graphics_cull(type));
 }
 
 bool Gx::GraphicsDevice::isOk() const

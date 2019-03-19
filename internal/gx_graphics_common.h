@@ -2,7 +2,6 @@
 #define GX_GRAPHICS_COMMON_H
 
 #include "GxGraphics/GxGraphicsTypes.h"
-#include "GxGraphics/GxTexture.h"
 
 #include <d3d9.h>
 
@@ -13,6 +12,7 @@ D3DPOOL gx_detail_graphics_pool(Gx::Graphics::Pool v);
 
 D3DFORMAT gx_detail_graphics_format(Gx::Graphics::Format v);
 
-DWORD gx_detail_texture_filter(Gx::Texture::Filter v);
+DWORD gx_detail_graphics_filter(Gx::Graphics::Filter v);
+DWORD gx_detail_graphics_cull(Gx::Graphics::Cull v);
 
 #endif // GX_GRAPHCIS_COMMON_H

@@ -41,14 +41,26 @@ D3DFORMAT gx_detail_graphics_format(Gx::Graphics::Format v)
     }
 }
 
-DWORD gx_detail_texture_filter(Gx::Texture::Filter v)
+DWORD gx_detail_graphics_filter(Gx::Graphics::Filter v)
 {
     switch(v)
     {
-        case Gx::Texture::Filter::None: return D3DTEXF_NONE;
-        case Gx::Texture::Filter::Point: return D3DTEXF_POINT;
-        case Gx::Texture::Filter::Linear: return D3DTEXF_LINEAR;
-        case Gx::Texture::Filter::Anisotropic: return D3DTEXF_ANISOTROPIC;
+        case Gx::Graphics::Filter::None: return D3DTEXF_NONE;
+        case Gx::Graphics::Filter::Point: return D3DTEXF_POINT;
+        case Gx::Graphics::Filter::Linear: return D3DTEXF_LINEAR;
+        case Gx::Graphics::Filter::Anisotropic: return D3DTEXF_ANISOTROPIC;
+
+        default: return { };
+    }
+}
+
+DWORD gx_detail_graphics_cull(Gx::Graphics::Cull v)
+{
+    switch(v)
+    {
+        case Gx::Graphics::Cull::Off: return D3DCULL_NONE;
+        case Gx::Graphics::Cull::Clockwise: return D3DCULL_CW;
+        case Gx::Graphics::Cull::CounterClockwise: return D3DCULL_CCW;
 
         default: return { };
     }

@@ -5,7 +5,7 @@
 
 #include <GxMaths/GxColor.h>
 
-#include <GxGraphics/GxTexture.h>
+#include <GxGraphics/GxGraphicsTypes.h>
 
 #include <pcx/non_copyable.h>
 #include <pcx/aligned_store.h>
@@ -21,6 +21,7 @@ class VertexBuffer;
 class AbstractShader;
 class VertexShader;
 class PixelShader;
+class Texture;
 class CubeMap;
 
 class GraphicsDevice : public pcx::non_copyable
@@ -42,7 +43,7 @@ public:
     void setTexture(unsigned stage, const CubeMap &cubeMap);
     void setTexture(unsigned stage);
 
-    void setTextureFilter(unsigned stage, Texture::Filter type);
+    void setTextureFilter(unsigned stage, Graphics::Filter type);
 
     void clear(const Color &color, float z);
     void clear(float z);
@@ -54,12 +55,8 @@ public:
     void setZBufferEnable(bool state);
     void setZWriteEnable(bool state);
     void setPointSize(float size);
-
-    enum class AlphaBlend { Off, Normal, Invert };
-    void setAlphaBlend(AlphaBlend type);
-
-    enum class Cull { Off, Clockwise, CounterClockwise };
-    void setCulling(Cull type);
+    void setAlphaBlend(Graphics::AlphaBlend type);
+    void setCulling(Graphics::Cull type);
 
     bool isOk() const;
     bool isReadyToReset() const;
