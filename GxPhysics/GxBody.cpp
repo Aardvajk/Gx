@@ -28,6 +28,12 @@ Gx::Transform Gx::Body::transform() const
     return Transform(gx_detail_physics_toVec3(tr.getOrigin()), gx_detail_physics_toQuaternion(tr.getRotation()));
 }
 
+void Gx::Body::applyCentralForce(const Vec3 &v)
+{
+    ptr->activate(true);
+    ptr->applyCentralForce(gx_detail_physics_fromVec3(v));
+}
+
 const Gx::Shape &Gx::Body::shape() const
 {
     return *sh;

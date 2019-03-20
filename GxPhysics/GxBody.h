@@ -23,6 +23,8 @@ public:
     Matrix matrix() const;
     Transform transform() const;
 
+    void applyCentralForce(const Vec3 &v);
+
     const Shape &shape() const;
 
 private:
