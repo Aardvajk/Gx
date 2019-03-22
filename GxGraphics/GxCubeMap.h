@@ -4,6 +4,9 @@
 #include <GxGraphics/GxGraphicsTypes.h>
 #include <GxGraphics/GxGraphicsResource.h>
 
+#include <vector>
+#include <string>
+
 class IDirect3DCubeTexture9;
 
 namespace Gx
@@ -32,7 +35,8 @@ public:
     };
 
     CubeMap();
-    explicit CubeMap(GraphicsDevice &device, const Desc &desc);
+    CubeMap(GraphicsDevice &device, const Desc &desc);
+    CubeMap(GraphicsDevice &device, const std::vector<std::string> &paths, const Desc &desc);
     virtual ~CubeMap() override;
     
     virtual void reset(GraphicsDevice &device) override;
