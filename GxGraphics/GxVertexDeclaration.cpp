@@ -19,6 +19,8 @@ const BYTE types[] =
     D3DDECLTYPE_FLOAT3,
     D3DDECLTYPE_D3DCOLOR,
     D3DDECLTYPE_FLOAT2,
+    D3DDECLTYPE_UBYTE4,
+    D3DDECLTYPE_FLOAT4
 };
 
 const BYTE usages[] =
@@ -26,7 +28,9 @@ const BYTE usages[] =
     D3DDECLUSAGE_POSITION,
     D3DDECLUSAGE_NORMAL,
     D3DDECLUSAGE_COLOR,
-    D3DDECLUSAGE_TEXCOORD
+    D3DDECLUSAGE_TEXCOORD,
+    D3DDECLUSAGE_BLENDINDICES,
+    D3DDECLUSAGE_BLENDWEIGHT
 };
 
 const WORD sizes[] =
@@ -34,11 +38,15 @@ const WORD sizes[] =
     12,
     12,
     4,
-    8
+    8,
+    4,
+    16
 };
 
 const BYTE indices[] =
 {
+    0,
+    0,
     0,
     0,
     0,

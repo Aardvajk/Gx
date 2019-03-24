@@ -34,6 +34,7 @@ public:
     void setVector(GraphicsDevice &device, const std::string &name, const Vec3 &value);
     void setVector(GraphicsDevice &device, const std::string &name, const Vec4 &value);
     void setMatrix(GraphicsDevice &device, const std::string &name, const Matrix &value);
+    void setMatrixArray(GraphicsDevice &device, const std::string &name, const std::vector<Matrix> &values);
 
 protected:
     enum class Type : std::uint8_t

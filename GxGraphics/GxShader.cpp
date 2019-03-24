@@ -115,6 +115,11 @@ void Gx::AbstractShader::setMatrix(GraphicsDevice &device, const std::string &na
     table->SetMatrix(device.device, cache.get<Cache>().handle(table, name), &value);
 }
 
+void Gx::AbstractShader::setMatrixArray(GraphicsDevice &device, const std::string &name, const std::vector<Matrix> &values)
+{
+    table->SetMatrixArray(device.device, cache.get<Cache>().handle(table, name), values.data(), values.size());
+}
+
 Gx::AbstractShader::AbstractShader(Type type) : ptr(nullptr), table(nullptr)
 {
     cache.alloc<Cache>();
