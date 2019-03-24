@@ -88,9 +88,14 @@ void Gx::Skeleton::setKeyFrame(const KeyFrame &key)
     }
 }
 
-const Gx::SkeletonJoint &Gx::Skeleton::joint(std::size_t index) const
+Gx::SkeletonJoint Gx::Skeleton::joint(std::size_t index) const
 {
     return cache.get<Cache>().joints[index];
+}
+
+Gx::Matrix Gx::Skeleton::transform(std::size_t index) const
+{
+    return cache.get<Cache>().palette[index + 1];
 }
 
 std::vector<Gx::Matrix> Gx::Skeleton::palette() const

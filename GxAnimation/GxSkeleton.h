@@ -26,7 +26,8 @@ public:
     void addJoint(const std::string &name, const SkeletonJoint &joint);
     void setKeyFrame(const KeyFrame &key);
 
-    const SkeletonJoint &joint(std::size_t index) const;
+    SkeletonJoint joint(std::size_t index) const;
+    Gx::Matrix transform(std::size_t index) const;
 
     std::vector<Gx::Matrix> palette() const;
 

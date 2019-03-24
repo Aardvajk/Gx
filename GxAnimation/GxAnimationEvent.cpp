@@ -8,8 +8,6 @@ namespace
 class Cache
 {
 public:
-    Cache(pcx::optional<float> position, const std::string &data) : position(position), data(data) { }
-
     pcx::optional<float> position;
     std::string data;
 };
@@ -18,7 +16,7 @@ public:
 
 Gx::AnimationEvent::AnimationEvent()
 {
-    cache.alloc<Cache>(pcx::nullopt, std::string());
+    cache.alloc<Cache>();
 }
 
 Gx::AnimationEvent::AnimationEvent(const AnimationEvent &other)
@@ -28,7 +26,10 @@ Gx::AnimationEvent::AnimationEvent(const AnimationEvent &other)
 
 Gx::AnimationEvent::AnimationEvent(float position, const std::string &data)
 {
-    cache.alloc<Cache>(position, data);
+    auto &c = cache.alloc<Cache>();
+
+    c.position = position;
+    c.data = data;
 }
 
 Gx::AnimationEvent::~AnimationEvent()
