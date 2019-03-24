@@ -21,6 +21,8 @@ public:
 
     Animation &operator=(const Animation &other);
 
+    float duration() const;
+
     KeyFrame keyFrame(float time) const;
     std::vector<AnimationEvent> events(float from, float to) const;
 

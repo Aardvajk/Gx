@@ -57,6 +57,11 @@ Gx::Animation &Gx::Animation::operator=(const Animation &other)
     return *this;
 }
 
+float Gx::Animation::duration() const
+{
+    return cache.get<Cache>().duration;
+}
+
 Gx::KeyFrame Gx::Animation::keyFrame(float time) const
 {
     auto &c = cache.get<Cache>();
