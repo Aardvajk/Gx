@@ -1,7 +1,8 @@
 #ifndef GXANIMATIONEVENT_H
 #define GXANIMATIONEVENT_H
 
-#include <pcx/aligned_store.h>
+#include <pcx/shared_data.h>
+#include <pcx/optional.h>
 
 #include <string>
 
@@ -12,18 +13,20 @@ class AnimationEvent
 {
 public:
     AnimationEvent();
-    AnimationEvent(const AnimationEvent &other);
     AnimationEvent(float position, const std::string &data);
-    ~AnimationEvent();
-
-    AnimationEvent &operator=(const AnimationEvent &other);
 
     bool valid() const;
     float position() const;
     std::string data() const;
 
 private:
-    pcx::aligned_store<64> cache;
+    struct Data
+    {
+        pcx::optional<float> position;
+        std::string data;
+    };
+
+    pcx::shared_data<Data> s;
 };
 
 }
