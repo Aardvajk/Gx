@@ -3,6 +3,8 @@
 
 #include <GxMaths/GxBlendValue.h>
 
+#include <pcx/datastream.h>
+
 #include <d3dx9.h>
 
 namespace Gx
@@ -86,5 +88,14 @@ public:
 using BlendVec4 = BlendValue<Vec4>;
 
 }
+
+inline pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::Vec2 &v){ return ds >> v.x >> v.y; }
+inline pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::Vec2 &v){ return ds << v.x << v.y; }
+
+inline pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::Vec3 &v){ return ds >> v.x >> v.y >> v.z; }
+inline pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::Vec3 &v){ return ds << v.x << v.y << v.z; }
+
+inline pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::Vec4 &v){ return ds >> v.x >> v.y >> v.z >> v.w; }
+inline pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::Vec4 &v){ return ds << v.x << v.y << v.z << v.w; }
 
 #endif // GX_VECTOR_H

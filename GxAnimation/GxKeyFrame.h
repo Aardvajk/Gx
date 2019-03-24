@@ -1,6 +1,8 @@
 #ifndef GXKEYFRAME_H
 #define GXKEYFRAME_H
 
+#include <pcx/datastream.h>
+
 #include <GxMaths/GxBlendValue.h>
 
 #include <GxAnimation/GxJointTransform.h>
@@ -26,5 +28,8 @@ template<> struct Interpolator<KeyFrame>
 };
 
 }
+
+pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::KeyFrame &v);
+pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::KeyFrame &v);
 
 #endif // GXKEYFRAME_H

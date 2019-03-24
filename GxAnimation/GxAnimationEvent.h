@@ -3,6 +3,7 @@
 
 #include <pcx/shared_data.h>
 #include <pcx/optional.h>
+#include <pcx/datastream.h>
 
 #include <string>
 
@@ -30,5 +31,8 @@ private:
 };
 
 }
+
+pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::AnimationEvent &v);
+pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::AnimationEvent &v);
 
 #endif // GXANIMATIONEVENT_H

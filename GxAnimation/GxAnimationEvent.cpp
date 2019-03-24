@@ -22,3 +22,18 @@ std::string Gx::AnimationEvent::data() const
 {
     return s.value().data;
 }
+
+pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::AnimationEvent &v)
+{
+    auto position = ds.get<float>();
+    auto data = ds.get<std::string>();
+
+    v = Gx::AnimationEvent(position, data);
+
+    return ds;
+}
+
+pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::AnimationEvent &v)
+{
+    return ds << v.position() << v.data();
+}

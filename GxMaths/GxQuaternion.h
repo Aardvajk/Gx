@@ -3,6 +3,8 @@
 
 #include <GxMaths/GxBlendValue.h>
 
+#include <pcx/datastream.h>
+
 #include <d3dx9.h>
 
 namespace Gx
@@ -38,5 +40,8 @@ template<> struct Interpolator<Quaternion>
 using BlendQuaternion = BlendValue<Quaternion>;
 
 }
+
+inline pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::Quaternion &v){ return ds >> v.x >> v.y >> v.z >> v.w; }
+inline pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::Quaternion &v){ return ds << v.x << v.y << v.z << v.w; }
 
 #endif // GX_QUATERNION_H
