@@ -66,7 +66,13 @@ SOURCES += \
     internal/gx_physics_ray.cpp \
     GxMaths/GxRect.cpp \
     GxPhysics/GxShapes/GxConeShape.cpp \
-    GxMaths/GxFrustrum.cpp
+    GxMaths/GxFrustrum.cpp \
+    GxAnimation/GxSkeleton.cpp \
+    GxAnimation/GxJointTransform.cpp \
+    GxAnimation/GxSkeletonJoint.cpp \
+    GxAnimation/GxKeyFrame.cpp \
+    GxAnimation/GxAnimation.cpp \
+    GxAnimation/GxAnimationEvent.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -119,5 +125,11 @@ HEADERS += \
     GxMaths/GxRect.h \
     GxMaths/GxPoint.h \
     GxPhysics/GxShapes/GxConeShape.h \
-    GxMaths/GxFrustrum.h
+    GxMaths/GxFrustrum.h \
+    GxAnimation/GxSkeleton.h \
+    GxAnimation/GxJointTransform.h \
+    GxAnimation/GxSkeletonJoint.h \
+    GxAnimation/GxKeyFrame.h \
+    GxAnimation/GxAnimation.h \
+    GxAnimation/GxAnimationEvent.h
 
