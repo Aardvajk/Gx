@@ -19,7 +19,7 @@ public:
 
     float duration() const;
 
-    KeyFrame keyFrame(float time) const;
+    KeyFrame keyFrame(float t) const;
     std::vector<AnimationEvent> events(float from, float to) const;
 
 private:

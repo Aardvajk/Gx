@@ -22,7 +22,7 @@ float Gx::Animation::duration() const
     return s.value().duration;
 }
 
-Gx::KeyFrame Gx::Animation::keyFrame(float time) const
+Gx::KeyFrame Gx::Animation::keyFrame(float t) const
 {
     auto &v = s.value();
     if(v.keys.empty())
@@ -32,7 +32,7 @@ Gx::KeyFrame Gx::Animation::keyFrame(float time) const
 
     float fr = static_cast<float>(v.count);
 
-    float mod = v.loop ? fmod(time, 1) : time;
+    float mod = v.loop ? fmod(t, 1) : t;
     float position = static_cast<float>(fr - 1.0f) * mod;
 
     if(position < v.keys.front().position)
