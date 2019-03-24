@@ -94,7 +94,7 @@ std::vector<Gx::AnimationEvent> Gx::Animation::events(float from, float to) cons
     {
         for(std::size_t j = 0; j < r.size(); ++j)
         {
-            if(r[j].contains(v.events[i].position()))
+            if(r[j].contains(v.events[i].position))
             {
                 fired.push_back(v.events[i]);
                 break;

@@ -23,16 +23,3 @@ Gx::KeyFrame Gx::Interpolator<Gx::KeyFrame>::operator()(const KeyFrame &a, const
 
     return r;
 }
-
-pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::KeyFrame &v)
-{
-    v.position = ds.get<float>();
-    v.transforms = ds.get<std::vector<Gx::JointTransform> >();
-
-    return ds;
-}
-
-pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::KeyFrame &v)
-{
-    return ds << v.position << v.transforms;
-}

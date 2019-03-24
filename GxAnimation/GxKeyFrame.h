@@ -29,7 +29,7 @@ template<> struct Interpolator<KeyFrame>
 
 }
 
-pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::KeyFrame &v);
-pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::KeyFrame &v);
+inline pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::KeyFrame &v){ return ds >> v.position >> v.transforms; }
+inline pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::KeyFrame &v){ return ds << v.position << v.transforms; }
 
 #endif // GXKEYFRAME_H
