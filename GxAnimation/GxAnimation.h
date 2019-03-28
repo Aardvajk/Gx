@@ -1,5 +1,5 @@
-#ifndef GXANIMATION_H
-#define GXANIMATION_H
+#ifndef GX_ANIMATION_H
+#define GX_ANIMATION_H
 
 #include <GxAnimation/GxKeyFrame.h>
 #include <GxAnimation/GxAnimationEvent.h>
@@ -37,4 +37,4 @@ private:
 
 }
 
-#endif // GXANIMATION_H
+#endif // GX_ANIMATION_H

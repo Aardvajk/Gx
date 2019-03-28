@@ -1,5 +1,5 @@
-#ifndef GXANIMATIONEVENT_H
-#define GXANIMATIONEVENT_H
+#ifndef GX_ANIMATIONEVENT_H
+#define GX_ANIMATIONEVENT_H
 
 #include <pcx/datastream.h>
 
@@ -23,4 +23,4 @@ public:
 inline pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::AnimationEvent &v){ return ds >> v.position >> v.data; }
 inline pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::AnimationEvent &v){ return ds << v.position << v.data; }
 
-#endif // GXANIMATIONEVENT_H
+#endif // GX_ANIMATIONEVENT_H

@@ -1,5 +1,5 @@
-#ifndef GXKEYFRAME_H
-#define GXKEYFRAME_H
+#ifndef GX_KEYFRAME_H
+#define GX_KEYFRAME_H
 
 #include <pcx/datastream.h>
 
@@ -27,9 +27,19 @@ template<> struct Interpolator<KeyFrame>
     KeyFrame operator()(const KeyFrame &a, const KeyFrame &b, float t) const;
 };
 
+class WeightedKey
+{
+public:
+    WeightedKey();
+    WeightedKey(const Gx::KeyFrame &key, float weight);
+
+    KeyFrame key;
+    float weight;
+};
+
 }
 
 inline pcx::data_istream &operator>>(pcx::data_istream &ds, Gx::KeyFrame &v){ return ds >> v.position >> v.transforms; }
 inline pcx::data_ostream &operator<<(pcx::data_ostream &ds, const Gx::KeyFrame &v){ return ds << v.position << v.transforms; }
 
-#endif // GXKEYFRAME_H
+#endif // GX_KEYFRAME_H
