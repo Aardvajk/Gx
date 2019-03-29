@@ -18,7 +18,8 @@ enum class VertexElement : std::uint8_t
     Color,
     TexCoord,
     Indices,
-    Weights
+    Weights,
+    Tangent
 };
 
 class VertexDeclaration : public GraphicsResource
