@@ -100,6 +100,11 @@ void Gx::AbstractShader::setFloat(GraphicsDevice &device, const std::string &nam
     table->SetFloat(device.device, cache.get<Cache>().handle(table, name), value);
 }
 
+void Gx::AbstractShader::setBool(GraphicsDevice &device, const std::string &name, bool value)
+{
+    table->SetBool(device.device, cache.get<Cache>().handle(table, name), value);
+}
+
 void Gx::AbstractShader::setVector(GraphicsDevice &device, const std::string &name, const Vec3 &value)
 {
     setVector(device, name, Vec4(value.x, value.y, value.z, 1));

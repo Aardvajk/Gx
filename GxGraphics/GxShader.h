@@ -31,6 +31,7 @@ public:
     void reset(GraphicsDevice &device, std::vector<char> data);
 
     void setFloat(GraphicsDevice &device, const std::string &name, float value);
+    void setBool(GraphicsDevice &device, const std::string &name, bool value);
     void setVector(GraphicsDevice &device, const std::string &name, const Vec3 &value);
     void setVector(GraphicsDevice &device, const std::string &name, const Vec4 &value);
     void setMatrix(GraphicsDevice &device, const std::string &name, const Matrix &value);
