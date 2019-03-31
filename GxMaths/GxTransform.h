@@ -23,9 +23,6 @@ public:
     Quaternion rotation() const;
     Vec2 angle() const;
 
-    Transform interpolated(const Transform &v, float t) const;
-    void flatVectors(Vec3 &look, Vec3 &right) const;
-
 private:
     Vec3 pos;
     Quaternion rot;

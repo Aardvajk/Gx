@@ -44,19 +44,6 @@ Gx::Vec2 Gx::Transform::angle() const
     return rot.angle();
 }
 
-Gx::Transform Gx::Transform::interpolated(const Transform &v, float t) const
-{
-    return Transform(pos.interpolated(v.pos, t), rot.interpolated(v.rot, t));
-}
-
-void Gx::Transform::flatVectors(Vec3 &look, Vec3 &right) const
-{
-    auto m = Matrix::rotationY(angle().x);
-
-    look = Vec3(0, 0, 1).transformedNormal(m).normalized();
-    right = Vec3(1, 0, 0).transformedNormal(m).normalized();
-}
-
 Gx::Transform Gx::Interpolator<Gx::Transform>::operator()(const Transform &a, const Transform &b, float t) const
 {
     return Transform(Interpolator<Vec3>()(a.position(), b.position(), t), Interpolator<Quaternion>()(a.rotation(), b.rotation(), t));
