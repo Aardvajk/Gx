@@ -32,7 +32,7 @@ public:
     void update(float delta);
 
     const Body &body(int index) const;
-    int count() const;
+    int bodyCount() const;
 
 private:
     friend class Body;

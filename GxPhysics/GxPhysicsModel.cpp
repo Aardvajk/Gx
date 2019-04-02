@@ -113,7 +113,7 @@ const Gx::Body &Gx::PhysicsModel::body(int index) const
     return *(reinterpret_cast<const Body*>(cache.get<Cache>().world->getCollisionObjectArray()[index]->getUserPointer()));
 }
 
-int Gx::PhysicsModel::count() const
+int Gx::PhysicsModel::bodyCount() const
 {
     return cache.get<Cache>().world->getCollisionObjectArray().size();
 }
@@ -122,4 +122,5 @@ void Gx::PhysicsModel::releaseBody(Body *body)
 {
     cache.get<Cache>().world->removeCollisionObject(body->ptr);
 }
+
 
