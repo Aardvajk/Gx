@@ -44,7 +44,7 @@ setGlobalDeviceSettings(IDirect3DDevice9 *device)
 {
     DWORD filter = D3DTEXF_LINEAR;
 
-    for(int i = 0; i < 3; ++i)
+    for(int i = 0; i < 8; ++i)
     {
         device->SetSamplerState(i, D3DSAMP_MAGFILTER, filter);
         device->SetSamplerState(i, D3DSAMP_MINFILTER, filter);
