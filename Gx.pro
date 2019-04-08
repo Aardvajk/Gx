@@ -74,7 +74,8 @@ SOURCES += \
     GxAnimation/GxSkeletonJoint.cpp \
     GxAnimation/GxKeyFrame.cpp \
     GxAnimation/GxAnimation.cpp \
-    GxAnimation/GxAnimationEvent.cpp
+    GxAnimation/GxAnimationEvent.cpp \
+    GxPhysics/GxShapes/GxCylinderShape.cpp
 
 HEADERS += \
     GxApplication/GxApplication.h \
@@ -133,5 +134,6 @@ HEADERS += \
     GxAnimation/GxSkeletonJoint.h \
     GxAnimation/GxKeyFrame.h \
     GxAnimation/GxAnimation.h \
-    GxAnimation/GxAnimationEvent.h
+    GxAnimation/GxAnimationEvent.h \
+    GxPhysics/GxShapes/GxCylinderShape.h
 

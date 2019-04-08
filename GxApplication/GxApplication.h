@@ -3,6 +3,7 @@
 
 #include <GxCore/GxWindows.h>
 
+#include <GxMaths/GxPoint.h>
 #include <GxMaths/GxSize.h>
 
 #include <pcx/non_copyable.h>
@@ -13,7 +14,7 @@ namespace Gx
 class Application : public pcx::non_copyable
 {
 public:
-    explicit Application(const Size &size);
+    explicit Application(const Point &position, const Size &size);
     virtual ~Application() = default;
     
     void show();

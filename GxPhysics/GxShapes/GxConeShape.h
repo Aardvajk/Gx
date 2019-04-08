@@ -10,7 +10,7 @@ class btConeShape;
 namespace Gx
 {
 
-class ConeShape : public Gx::Shape
+class ConeShape : public Shape
 {
 public:
     ConeShape(float radius, float height);

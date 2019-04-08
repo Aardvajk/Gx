@@ -25,7 +25,7 @@ void setClientSize(HWND hw, int width, int height)
 
 }
 
-Gx::Application::Application(const Size &size) : hw(NULL)
+Gx::Application::Application(const Point &position, const Size &size) : hw(NULL)
 {
     WNDCLASS wc;
     ZeroMemory(&wc, sizeof(WNDCLASS));
@@ -40,7 +40,7 @@ Gx::Application::Application(const Size &size) : hw(NULL)
         throw std::runtime_error("unable to register window class");
     }
 
-    hw = CreateWindow("WINDOWCLASS", "Game", WS_DLGFRAME | WS_SYSMENU, 100, 100, 0, 0, NULL, NULL, wc.hInstance, NULL);
+    hw = CreateWindow("WINDOWCLASS", "Game", WS_DLGFRAME | WS_SYSMENU, position.x, position.y, 0, 0, NULL, NULL, wc.hInstance, NULL);
 
     if(!hw)
     {
