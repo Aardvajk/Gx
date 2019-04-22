@@ -19,7 +19,7 @@ createParams(HWND hw, const Gx::DisplaySettings &settings)
     p.BackBufferFormat = D3DFMT_X8R8G8B8;
     p.BackBufferCount = 1;
 
-    p.MultiSampleType = D3DMULTISAMPLE_NONE;
+    p.MultiSampleType = static_cast<D3DMULTISAMPLE_TYPE>(settings.multisampling);
 
     p.SwapEffect = D3DSWAPEFFECT_DISCARD;
     p.hDeviceWindow = hw;

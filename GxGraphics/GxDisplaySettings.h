@@ -21,10 +21,11 @@ public:
     using Flags = pcx::flags<Flag>;
 
     DisplaySettings() = default;
-    DisplaySettings(const Size &size, Flags options) : size(size), options(options) { }
+    DisplaySettings(const Size &size, Flags options, unsigned multisampling) : size(size), options(options), multisampling(multisampling) { }
     
     Size size;
     Flags options;
+    unsigned multisampling;
 };
 
 }
