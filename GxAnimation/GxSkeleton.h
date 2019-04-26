@@ -1,27 +1,25 @@
 #ifndef GX_SKELETON_H
 #define GX_SKELETON_H
 
+#include <GxAnimation/GxSkeletonJoint.h>
+
 #include <GxMaths/GxMatrix.h>
 
-#include <pcx/aligned_store.h>
-#include <pcx/optional.h>
+#include <pcx/shared_data.h>
 
+#include <string>
 #include <vector>
+#include <unordered_map>
 
 namespace Gx
 {
 
-class SkeletonJoint;
 class KeyFrame;
 
 class Skeleton
 {
 public:
     Skeleton();
-    Skeleton(const Skeleton &other);
-    ~Skeleton();
-
-    Skeleton &operator=(const Skeleton &other);
 
     void addJoint(const std::string &name, const SkeletonJoint &joint);
     void setKeyFrame(const KeyFrame &key);
@@ -34,7 +32,14 @@ public:
     std::size_t size() const;
 
 private:
-    pcx::aligned_store<104> cache;
+    struct Data
+    {
+        std::vector<Gx::SkeletonJoint> joints;
+        std::unordered_map<std::string, std::size_t> mapping;
+        std::vector<Gx::Matrix> palette;
+    };
+
+    pcx::shared_data<Data> s;
 };
 
 }
