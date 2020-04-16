@@ -37,6 +37,7 @@ SOURCES += \
     GxGraphics/GxVertexDeclaration.cpp \
     GxGraphics/GxVertexBuffer.cpp \
     GxGraphics/GxShader.cpp \
+    GxMaths/GxColor.cpp \
     GxMaths/GxMatrix.cpp \
     GxGraphics/GxFont.cpp \
     GxGraphics/GxFontMetrics.cpp \
